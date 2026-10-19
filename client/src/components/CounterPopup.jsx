@@ -1,21 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { X, Gift, Clock, ShieldCheck } from 'lucide-react';
 
 export default function CounterPopup({ onClaimDiscount }) {
   const [isOpen, setIsOpen] = useState(false);
   const [secondsRemaining, setSecondsRemaining] = useState(486); // 8 minutes 6 seconds (08:06)
+  const timeoutRef = useRef(null);
 
   useEffect(() => {
-    // Check if already dismissed this session
-    if (typeof window !== 'undefined') {
-      const dismissed = sessionStorage.getItem('studiogta_popup_dismissed');
-      if (dismissed) return;
-    }
-
-    // Auto-open after 5 seconds
-    const timer = setTimeout(() => {
+    // 1. Initial Startup: Exactly 10 seconds (10,000 ms)
+    timeoutRef.current = setTimeout(() => {
       setIsOpen(true);
-    }, 5000);
+    }, 10000);
 
     // Also trigger on exit-intent (moving mouse towards top)
     const handleMouseLeave = (e) => {
@@ -26,7 +21,7 @@ export default function CounterPopup({ onClaimDiscount }) {
     document.addEventListener('mouseleave', handleMouseLeave);
 
     return () => {
-      clearTimeout(timer);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
       document.removeEventListener('mouseleave', handleMouseLeave);
     };
   }, []);
@@ -50,13 +45,16 @@ export default function CounterPopup({ onClaimDiscount }) {
 
   const closePopup = () => {
     setIsOpen(false);
-    if (typeof window !== 'undefined') {
-      sessionStorage.setItem('studiogta_popup_dismissed', 'true');
-    }
+    // 2. Cooldown: Wait exactly 2 minutes (120,000 ms) before appearing again
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
+      setIsOpen(true);
+    }, 120000);
   };
 
   const handleClaim = () => {
-    closePopup();
+    setIsOpen(false);
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
     if (onClaimDiscount) {
       onClaimDiscount();
     }
