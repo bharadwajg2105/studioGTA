@@ -1,16 +1,15 @@
-/* Studio GTA — Shared Application & Page Layout Utilities */
+/* Estate Shutter — Shared App Wrapper Styles */
 
 .site-wrapper {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: var(--color-ivory);
-  color: var(--color-charcoal);
+  background-color: var(--color-bg);
+  color: var(--color-fg);
   width: 100%;
-  overflow-x: clip;
 }
 
-.page-transition-wrap {
+.main-content {
   flex: 1 0 auto;
   width: 100%;
 }

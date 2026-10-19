@@ -1,67 +1,72 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
-import { X, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
-import { PACKAGES } from '../data/siteData';
+import { X, CheckCircle, AlertCircle, Loader2, Calendar, Tag, ShieldCheck } from 'lucide-react';
+import { PACKAGES, COMPANY } from '../data/siteData';
 import { API_BASE_URL } from '../api/client';
 
-export default function BookingModal({ isOpen, onClose, initialPackageId = '' }) {
+export default function BookingModal({
+  isOpen,
+  onClose,
+  initialPackageId = '',
+  discountActive = false,
+  formMode = 'booking' // 'booking' or 'contact'
+}) {
   const resolvePackage = (pkgId) => {
     if (pkgId) {
       const match = PACKAGES.find((p) => p.id === pkgId);
-      return match ? `${match.name} (${match.price} CAD)` : pkgId;
+      return match ? `${match.name} ($${match.price})` : pkgId;
     }
-    return PACKAGES.length > 1 ? `${PACKAGES[1].name} (${PACKAGES[1].price} CAD)` : '';
+    return 'Standard ($359)';
   };
+
+  const [mode, setMode] = useState(formMode);
+  const [prevFormMode, setPrevFormMode] = useState(formMode);
+  if (prevFormMode !== formMode) {
+    setPrevFormMode(formMode);
+    setMode(formMode);
+  }
 
   const [formData, setFormData] = useState(() => ({
     name: '',
     email: '',
     phone: '',
     package: resolvePackage(initialPackageId),
+    service: 'Standard Package ($359)',
     propertyAddress: '',
+    location: '',
     preferredDate: '',
-    preferredTime: 'Morning (9 AM - 12 PM)',
-    propertySize: '',
+    preferredTime: 'Morning (9 AM – 12 PM)',
+    propertySize: '1,500 – 2,500 sq ft',
     notes: '',
+    message: '',
     honeypot: ''
   }));
 
-  const [prevPackageId, setPrevPackageId] = useState(initialPackageId);
-  if (prevPackageId !== initialPackageId) {
-    setPrevPackageId(initialPackageId);
-    setFormData((prev) => ({ ...prev, package: resolvePackage(initialPackageId) }));
+  const [prevPkgId, setPrevPkgId] = useState(initialPackageId);
+  if (prevPkgId !== initialPackageId) {
+    setPrevPkgId(initialPackageId);
+    setFormData((prev) => ({
+      ...prev,
+      package: resolvePackage(initialPackageId),
+      service: resolvePackage(initialPackageId)
+    }));
   }
 
   const [loading, setLoading] = useState(false);
   const [successMsg, setSuccessMsg] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const successTimerRef = useRef(null);
-  const previousFocusRef = useRef(null);
 
-  // Manage body scroll lock and focus restoration safely
   useEffect(() => {
     if (!isOpen) return;
 
-    previousFocusRef.current = document.activeElement;
-    const originalOverflow = document.body.style.overflow;
-    const originalPaddingRight = document.body.style.paddingRight;
-
-    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-    if (scrollbarWidth > 0) {
-      document.body.style.paddingRight = `${scrollbarWidth}px`;
-    }
+    const orig = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
-
     return () => {
-      document.body.style.overflow = originalOverflow;
-      document.body.style.paddingRight = originalPaddingRight;
-      if (previousFocusRef.current && typeof previousFocusRef.current.focus === 'function') {
-        previousFocusRef.current.focus({ preventScroll: true });
-      }
+      document.body.style.overflow = orig;
     };
   }, [isOpen]);
 
-  // Clear timer when component unmounts
   useEffect(() => {
     return () => {
       if (successTimerRef.current) {
@@ -79,7 +84,6 @@ export default function BookingModal({ isOpen, onClose, initialPackageId = '' })
     onClose();
   }, [onClose]);
 
-  // Trap escape key
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape' && isOpen) {
@@ -102,21 +106,17 @@ export default function BookingModal({ isOpen, onClose, initialPackageId = '' })
     e.preventDefault();
     if (loading) return;
 
-    // Clear any existing dismissal timer before starting new submission
-    if (successTimerRef.current) {
-      clearTimeout(successTimerRef.current);
-    }
     setErrorMsg('');
     setSuccessMsg('');
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!formData.name.trim() || formData.name.trim().length < 2) {
-      setErrorMsg('Please enter your full name (at least 2 characters).');
+      setErrorMsg('Please enter your full name.');
       return;
     }
 
     if (!emailRegex.test(formData.email.trim())) {
-      setErrorMsg('Please enter a valid email address (e.g. name@domain.com).');
+      setErrorMsg('Please enter a valid email address.');
       return;
     }
 
@@ -125,214 +125,300 @@ export default function BookingModal({ isOpen, onClose, initialPackageId = '' })
       return;
     }
 
-    if (!formData.propertyAddress.trim()) {
-      setErrorMsg('Please provide the property address or city.');
-      return;
-    }
-
     setLoading(true);
 
     try {
-      const res = await fetch(`${API_BASE_URL}/api/book-package`, {
+      const endpoint = mode === 'contact' ? `${API_BASE_URL}/api/contact` : `${API_BASE_URL}/api/book-package`;
+      const payload = mode === 'contact'
+        ? {
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            service: formData.service || formData.package,
+            location: formData.location || formData.propertyAddress,
+            preferredDate: formData.preferredDate,
+            message: formData.message || formData.notes || 'Inquiry from website modal',
+            honeypot: formData.honeypot
+          }
+        : {
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            package: formData.package,
+            propertyAddress: formData.propertyAddress || formData.location,
+            preferredDate: formData.preferredDate,
+            preferredTime: formData.preferredTime,
+            propertySize: formData.propertySize,
+            notes: formData.notes || formData.message,
+            honeypot: formData.honeypot
+          };
+
+      const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(payload)
       });
 
       const data = await res.json();
 
       if (res.ok && data.success) {
-        setSuccessMsg(data.message || 'Your shoot booking request has been submitted!');
+        setSuccessMsg(data.message || 'Thank you! Your request has been received. Our team will contact you shortly.');
         setFormData({
           name: '',
           email: '',
           phone: '',
-          package: '',
+          package: 'Standard ($359)',
+          service: 'Standard Package ($359)',
           propertyAddress: '',
+          location: '',
           preferredDate: '',
-          preferredTime: 'Morning (9 AM - 12 PM)',
-          propertySize: '',
+          preferredTime: 'Morning (9 AM – 12 PM)',
+          propertySize: '1,500 – 2,500 sq ft',
           notes: '',
+          message: '',
           honeypot: ''
         });
 
-        // Automatically dismiss success message after approximately 1.5 seconds and close modal
         successTimerRef.current = setTimeout(() => {
           setSuccessMsg('');
           onClose();
-        }, 1500);
+        }, 2200);
       } else {
-        setErrorMsg(data.error || 'Failed to submit booking. Please call 647-300-0315.');
+        setErrorMsg(data.error || `Failed to submit. Please call ${COMPANY.phone}.`);
       }
     } catch (err) {
-      console.error('Booking submission error:', err);
-      setErrorMsg('Network error. Please call us at 647-300-0315 or email tour@studiogta.ca.');
+      console.error('Submission error:', err);
+      setErrorMsg(`Network error. Please call us at ${COMPANY.phone} or email ${COMPANY.email}.`);
     } finally {
       setLoading(false);
     }
   };
 
   return createPortal(
-    <div className="modal-backdrop" onClick={handleClose} role="dialog" aria-modal="true" aria-labelledby="booking-modal-title">
-      <div className="modal-dialog" onClick={(e) => e.stopPropagation()}>
-        <button
-          type="button"
-          className="modal-close-btn"
-          onClick={handleClose}
-          aria-label="Close booking modal"
-        >
-          <X size={20} />
-        </button>
-
+    <div
+      className="modal-overlay"
+      onClick={handleClose}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="booking-modal-title"
+    >
+      <div
+        className="modal-dialog"
+        onClick={(e) => e.stopPropagation()}
+        style={{ maxWidth: '640px' }}
+      >
         <div className="modal-header">
-          <div className="eyebrow">
-            <span className="eyebrow-dot" />
-            <span>Schedule A Shoot</span>
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
+              <h3 id="booking-modal-title" className="modal-title">
+                {mode === 'contact' ? 'Contact StudioGTA' : 'Book Your Media Shoot'}
+              </h3>
+              {discountActive && (
+                <span
+                  style={{
+                    backgroundColor: '#fef3c7',
+                    color: '#b45309',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.72rem',
+                    fontWeight: 700,
+                    padding: '0.2rem 0.55rem',
+                    borderRadius: '999px',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.25rem'
+                  }}
+                >
+                  <Tag size={12} />
+                  <span>10% OFF APPLIED</span>
+                </span>
+              )}
+            </div>
+            <p style={{ fontSize: '0.82rem', color: 'var(--color-fg-muted)' }}>
+              Zero deposit required • 100% Satisfaction Guarantee • Pay after approval
+            </p>
           </div>
-          <h3 id="booking-modal-title">Book A Photography Session</h3>
-          <p style={{ fontSize: '0.95rem', marginTop: '0.25rem' }}>
-            Submit your listing details below. Our coordinator will contact you promptly to confirm availability and lock in your appointment.
-          </p>
+          <button
+            type="button"
+            className="modal-close"
+            onClick={handleClose}
+            aria-label="Close dialog"
+          >
+            <X size={20} />
+          </button>
         </div>
 
-        {successMsg && (
-          <div className="form-feedback success">
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 700, marginBottom: '0.25rem' }}>
-              <CheckCircle size={18} /> Booking Request Received
-            </div>
-            {successMsg}
-          </div>
-        )}
+        {/* Tab switch */}
+        <div
+          style={{
+            display: 'flex',
+            borderBottom: '1px solid var(--color-border)',
+            backgroundColor: '#faf9f7'
+          }}
+        >
+          <button
+            type="button"
+            onClick={() => setMode('booking')}
+            style={{
+              flex: 1,
+              padding: '0.75rem',
+              fontSize: '0.9rem',
+              fontWeight: mode === 'booking' ? 700 : 500,
+              color: mode === 'booking' ? '#111827' : '#6b7280',
+              borderBottom: mode === 'booking' ? '2px solid #cba238' : 'none',
+              backgroundColor: mode === 'booking' ? '#ffffff' : 'transparent',
+              cursor: 'pointer'
+            }}
+          >
+            Schedule a Shoot
+          </button>
+          <button
+            type="button"
+            onClick={() => setMode('contact')}
+            style={{
+              flex: 1,
+              padding: '0.75rem',
+              fontSize: '0.9rem',
+              fontWeight: mode === 'contact' ? 700 : 500,
+              color: mode === 'contact' ? '#111827' : '#6b7280',
+              borderBottom: mode === 'contact' ? '2px solid #cba238' : 'none',
+              backgroundColor: mode === 'contact' ? '#ffffff' : 'transparent',
+              cursor: 'pointer'
+            }}
+          >
+            General Inquiry / Question
+          </button>
+        </div>
 
-        {errorMsg && (
-          <div className="form-feedback error">
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 700, marginBottom: '0.25rem' }}>
-              <AlertCircle size={18} /> Submission Error
+        <div className="modal-body">
+          {successMsg && (
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.75rem',
+                backgroundColor: '#ecfdf5',
+                border: '1px solid #10b981',
+                color: '#065f46',
+                padding: '1rem',
+                borderRadius: 'var(--radius-md)',
+                marginBottom: '1.25rem',
+                fontSize: '0.92rem'
+              }}
+            >
+              <CheckCircle size={20} color="#10b981" />
+              <span>{successMsg}</span>
             </div>
-            {errorMsg}
-          </div>
-        )}
+          )}
 
-        {!successMsg && (
-          <form onSubmit={handleSubmit}>
+          {errorMsg && (
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.75rem',
+                backgroundColor: '#fef2f2',
+                border: '1px solid #ef4444',
+                color: '#991b1b',
+                padding: '1rem',
+                borderRadius: 'var(--radius-md)',
+                marginBottom: '1.25rem',
+                fontSize: '0.92rem'
+              }}
+            >
+              <AlertCircle size={20} color="#ef4444" />
+              <span>{errorMsg}</span>
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} noValidate>
             {/* Honeypot field */}
-            <input
-              type="text"
-              name="honeypot"
-              value={formData.honeypot}
-              onChange={handleChange}
-              style={{ display: 'none' }}
-              tabIndex={-1}
-              autoComplete="off"
-            />
+            <div style={{ display: 'none' }} aria-hidden="true">
+              <input
+                type="text"
+                name="honeypot"
+                value={formData.honeypot}
+                onChange={handleChange}
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </div>
 
-            <div className="form-grid">
-              {/* Package Selection */}
-              <div className="form-group full-width">
-                <label className="form-label" htmlFor="package-select">
-                  Selected Package <span className="required-star">*</span>
-                </label>
-                <select
-                  id="package-select"
-                  name="package"
-                  value={formData.package}
-                  onChange={handleChange}
-                  className="form-select"
-                  required
-                >
-                  <option value="">Select a Photography Package...</option>
-                  {PACKAGES.map((pkg) => (
-                    <option key={pkg.id} value={`${pkg.name} (${pkg.price} CAD)`}>
-                      {pkg.name} — {pkg.price} CAD ({pkg.sizeLimit})
-                    </option>
-                  ))}
-                  <option value="Commercial & Hotels Shoot (Custom Quote)">
-                    Commercial & Hotels Shoot (Custom Quote)
-                  </option>
-                  <option value="Professional Headshot Session ($250 CAD)">
-                    Professional Headshot Session ($250 CAD)
-                  </option>
-                  <option value="Custom Photography / Video Package">
-                    Custom Photography / Video Package
-                  </option>
-                </select>
-              </div>
-
-              {/* Full Name */}
+            <div className="form-group-row">
               <div className="form-group">
-                <label className="form-label" htmlFor="client-name">
-                  Your Full Name <span className="required-star">*</span>
-                </label>
+                <label className="form-label">Full Name *</label>
                 <input
-                  id="client-name"
                   type="text"
                   name="name"
-                  placeholder="e.g. Sarah Jenkins"
                   value={formData.name}
                   onChange={handleChange}
-                  className="form-input"
                   required
+                  placeholder="e.g. David Chen"
+                  className="form-input"
                 />
               </div>
 
-              {/* Email Address */}
               <div className="form-group">
-                <label className="form-label" htmlFor="client-email">
-                  Email Address <span className="required-star">*</span>
-                </label>
+                <label className="form-label">Email Address *</label>
                 <input
-                  id="client-email"
                   type="email"
                   name="email"
-                  placeholder="realtor@brokerage.com"
                   value={formData.email}
                   onChange={handleChange}
-                  className="form-input"
                   required
+                  placeholder="realtor@brokerage.ca"
+                  className="form-input"
                 />
               </div>
+            </div>
 
-              {/* Phone Number */}
+            <div className="form-group-row">
               <div className="form-group">
-                <label className="form-label" htmlFor="client-phone">
-                  Phone Number <span className="required-star">*</span>
-                </label>
+                <label className="form-label">Phone Number *</label>
                 <input
-                  id="client-phone"
                   type="tel"
                   name="phone"
-                  placeholder="(647) 000-0000"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="form-input"
                   required
+                  placeholder="647-300-0315"
+                  className="form-input"
                 />
               </div>
 
-              {/* Property Address */}
               <div className="form-group">
-                <label className="form-label" htmlFor="property-address">
-                  Property Address / City <span className="required-star">*</span>
-                </label>
-                <input
-                  id="property-address"
-                  type="text"
-                  name="propertyAddress"
-                  placeholder="e.g. 120 Bay Street, Toronto"
-                  value={formData.propertyAddress}
+                <label className="form-label">Package / Service *</label>
+                <select
+                  name={mode === 'contact' ? 'service' : 'package'}
+                  value={mode === 'contact' ? formData.service : formData.package}
                   onChange={handleChange}
-                  className="form-input"
-                  required
-                />
+                  className="form-select"
+                >
+                  <option value="Basic ($199)">Basic ($199) — Up to 1,500 sq ft</option>
+                  <option value="Basic+ ($249)">Basic+ ($249) — Up to 2,200 sq ft</option>
+                  <option value="Standard ($359)">Standard ($359) [10% OFF] — Up to 2,500 sq ft</option>
+                  <option value="Pro ($539)">Pro ($539) [10% OFF] — Up to 5,000 sq ft</option>
+                  <option value="Custom / À La Carte">Custom / À La Carte Services</option>
+                </select>
               </div>
+            </div>
 
-              {/* Preferred Shoot Date */}
+            <div className="form-group">
+              <label className="form-label">Property Address / City *</label>
+              <input
+                type="text"
+                name={mode === 'contact' ? 'location' : 'propertyAddress'}
+                value={mode === 'contact' ? formData.location : formData.propertyAddress}
+                onChange={handleChange}
+                required
+                placeholder="123 Main St, Markham ON"
+                className="form-input"
+              />
+            </div>
+
+            <div className="form-group-row">
               <div className="form-group">
-                <label className="form-label" htmlFor="shoot-date">
-                  Preferred Shoot Date
-                </label>
+                <label className="form-label">Preferred Date</label>
                 <input
-                  id="shoot-date"
                   type="date"
                   name="preferredDate"
                   value={formData.preferredDate}
@@ -341,91 +427,78 @@ export default function BookingModal({ isOpen, onClose, initialPackageId = '' })
                 />
               </div>
 
-              {/* Preferred Time Window */}
               <div className="form-group">
-                <label className="form-label" htmlFor="shoot-time">
-                  Preferred Time Window
-                </label>
+                <label className="form-label">Time Window</label>
                 <select
-                  id="shoot-time"
                   name="preferredTime"
                   value={formData.preferredTime}
                   onChange={handleChange}
                   className="form-select"
                 >
-                  <option value="Morning (9 AM - 12 PM)">Morning (9:00 AM – 12:00 PM)</option>
-                  <option value="Afternoon (12 PM - 3 PM)">Afternoon (12:00 PM – 3:00 PM)</option>
-                  <option value="Late Afternoon (3 PM - 6 PM)">Late Afternoon (3:00 PM – 6:00 PM)</option>
-                  <option value="Twilight / Sunset Session">Twilight / Sunset Session</option>
-                  <option value="Flexible / Next Available">Flexible / Next Available</option>
+                  <option value="Morning (9 AM – 12 PM)">Morning (9 AM – 12 PM)</option>
+                  <option value="Afternoon (12 PM – 4 PM)">Afternoon (12 PM – 4 PM)</option>
+                  <option value="Golden Hour / Twilight (5 PM – Sunset)">Golden Hour / Twilight (5 PM – Sunset)</option>
+                  <option value="Flexible / First Available">Flexible / First Available</option>
                 </select>
               </div>
-
-              {/* Property Size */}
-              <div className="form-group full-width">
-                <label className="form-label" htmlFor="property-size">
-                  Estimated Property Size (Sq Ft)
-                </label>
-                <input
-                  id="property-size"
-                  type="text"
-                  name="propertySize"
-                  placeholder="e.g. Under 2,500 sq ft, 3,200 sq ft, etc."
-                  value={formData.propertySize}
-                  onChange={handleChange}
-                  className="form-input"
-                />
-              </div>
-
-              {/* Notes */}
-              <div className="form-group full-width">
-                <label className="form-label" htmlFor="shoot-notes">
-                  Lockbox / Access Details or Special Instructions
-                </label>
-                <textarea
-                  id="shoot-notes"
-                  name="notes"
-                  placeholder="Lockbox code, tenant notice, specific architectural features to highlight..."
-                  value={formData.notes}
-                  onChange={handleChange}
-                  className="form-textarea"
-                />
-              </div>
             </div>
 
-            <div style={{ marginTop: '1.75rem', display: 'flex', gap: '1rem', alignItems: 'center' }}>
-              <button
-                type="submit"
-                disabled={loading}
-                className="btn btn-primary"
-                style={{ flexGrow: 1 }}
-              >
-                {loading ? (
-                  <>
-                    <Loader2 size={16} className="animate-spin" /> Submitting Request...
-                  </>
-                ) : (
-                  'Request Booking'
-                )}
-              </button>
-              <button
-                type="button"
-                onClick={handleClose}
-                className="btn btn-secondary"
-              >
-                Cancel
-              </button>
+            <div className="form-group">
+              <label className="form-label">
+                {mode === 'contact' ? 'Your Message or Question *' : 'Special Instructions / Lockbox Code / Notes'}
+              </label>
+              <textarea
+                name={mode === 'contact' ? 'message' : 'notes'}
+                value={mode === 'contact' ? formData.message : formData.notes}
+                onChange={handleChange}
+                rows={3}
+                placeholder={
+                  mode === 'contact'
+                    ? 'How can we help you?'
+                    : 'e.g. Lockbox code, pet on site, specific features you want highlighted...'
+                }
+                className="form-textarea"
+                style={{ minHeight: '75px' }}
+              />
             </div>
-          </form>
-        )}
 
-        {successMsg && (
-          <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>
-            <button type="button" onClick={handleClose} className="btn btn-primary">
-              Done
+            <button
+              type="submit"
+              disabled={loading}
+              className="btn btn-primary btn-full"
+              style={{ marginTop: '0.5rem' }}
+            >
+              {loading ? (
+                <>
+                  <Loader2 size={16} className="animate-spin" />
+                  <span>Submitting Request...</span>
+                </>
+              ) : (
+                <>
+                  <Calendar size={16} />
+                  <span>
+                    {mode === 'contact' ? 'Send Message' : 'Confirm Shoot Request (Zero Upfront Cost)'}
+                  </span>
+                </>
+              )}
             </button>
+          </form>
+
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.4rem',
+              marginTop: '1rem',
+              fontSize: '0.78rem',
+              color: 'var(--color-fg-subtle)'
+            }}
+          >
+            <ShieldCheck size={14} color="#cba238" />
+            <span>Guaranteed 12-hour turnaround • No payment until you approve</span>
           </div>
-        )}
+        </div>
       </div>
     </div>,
     document.body

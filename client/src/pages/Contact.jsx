@@ -1,16 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Phone, Mail, MapPin, Clock, CheckCircle, AlertCircle, Loader2, ArrowRight } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, CheckCircle, AlertCircle, Loader2, Send } from 'lucide-react';
 import { COMPANY } from '../data/siteData';
 import { API_BASE_URL } from '../api/client';
-import useScrollReveal from '../hooks/useScrollReveal';
 
 export default function Contact() {
-  useScrollReveal();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
-    service: 'Residential Real Estate Photography',
+    service: 'Standard Package ($399)',
     location: '',
     preferredDate: '',
     message: '',
@@ -22,7 +20,6 @@ export default function Contact() {
   const [errorMsg, setErrorMsg] = useState('');
   const successTimerRef = useRef(null);
 
-  // Clear timer when component unmounts
   useEffect(() => {
     return () => {
       if (successTimerRef.current) {
@@ -40,7 +37,6 @@ export default function Contact() {
     e.preventDefault();
     if (loading) return;
 
-    // Clear any pending dismissal timer before starting new submission
     if (successTimerRef.current) {
       clearTimeout(successTimerRef.current);
     }
@@ -54,12 +50,12 @@ export default function Contact() {
     }
 
     if (!emailRegex.test(formData.email.trim())) {
-      setErrorMsg('Please enter a valid email address (e.g. name@domain.com).');
+      setErrorMsg('Please enter a valid email address.');
       return;
     }
 
     if (!formData.message.trim() || formData.message.trim().length < 5) {
-      setErrorMsg('Please provide details or a question about your shoot (at least 5 characters).');
+      setErrorMsg('Please provide a message or details about your inquiry.');
       return;
     }
 
@@ -75,28 +71,27 @@ export default function Contact() {
       const data = await res.json();
 
       if (res.ok && data.success) {
-        setSuccessMsg(data.message || 'Thank you! Your message has been sent to Studio GTA.');
+        setSuccessMsg(data.message || 'Thank you! Your message has been sent to StudioGTA.');
         setFormData({
           name: '',
           email: '',
           phone: '',
-          service: 'Residential Real Estate Photography',
+          service: 'Standard Package ($399)',
           location: '',
           preferredDate: '',
           message: '',
           honeypot: ''
         });
 
-        // Automatically dismiss the success message after approximately 1.5 seconds
         successTimerRef.current = setTimeout(() => {
           setSuccessMsg('');
-        }, 1500);
+        }, 3000);
       } else {
-        setErrorMsg(data.error || 'Failed to submit message. Please call 647-300-0315 directly.');
+        setErrorMsg(data.error || `Failed to submit message. Please call ${COMPANY.phone} directly.`);
       }
     } catch (err) {
       console.error('Contact form submission error:', err);
-      setErrorMsg('Network error. Please call us at 647-300-0315 or email info@studiogta.ca directly.');
+      setErrorMsg(`Network error. Please call us at ${COMPANY.phone} or email ${COMPANY.email} directly.`);
     } finally {
       setLoading(false);
     }
@@ -104,303 +99,221 @@ export default function Contact() {
 
   return (
     <div className="contact-page">
-      {/* PAGE HERO */}
-      <section className="page-hero" aria-label="Contact Page Hero">
+      {/* Page Hero */}
+      <section className="section section-muted" style={{ paddingBottom: '3.5rem' }}>
         <div className="container">
-          <div className="page-hero-grid">
-            <div className="page-hero-copy">
-              <div className="eyebrow">
-                <span className="eyebrow-dot" />
-                <span>Connect With Studio GTA</span>
-              </div>
-              <h1 className="page-hero-title">We Can't Wait To Work With You</h1>
-              <p className="page-hero-desc">
-                Get in touch below to book a photoshoot, inquire about custom commercial architecture packages, or check our current schedule availability.
-              </p>
-
-              <div className="page-hero-meta-strip">
-                <div className="page-hero-meta-item">
-                  <Phone size={15} style={{ color: 'var(--color-gold-deep)' }} />
-                  <span>{COMPANY.phone}</span>
-                </div>
-                <div className="page-hero-meta-item">
-                  <Mail size={15} style={{ color: 'var(--color-gold-deep)' }} />
-                  <span>{COMPANY.email}</span>
-                </div>
-                <div className="page-hero-meta-item">
-                  <MapPin size={15} style={{ color: 'var(--color-gold-deep)' }} />
-                  <span>Greater Toronto Area</span>
-                </div>
-              </div>
-
-              <div className="page-hero-cta-group">
-                <a href="#contact-form-section" className="btn btn-primary">
-                  Start Your Inquiry
-                  <ArrowRight size={16} />
-                </a>
-                <a href={`tel:${COMPANY.phoneClean}`} className="btn btn-secondary">
-                  Call {COMPANY.phone}
-                </a>
-              </div>
-            </div>
-
-            {/* Page Hero Media Card */}
-            <div className="page-hero-media">
-              <div className="page-hero-media-card">
-                <img
-                  src="/images/portfolio-foyer.jpg"
-                  alt="Welcoming Grand Foyer Interior by Studio GTA"
-                  width="600"
-                  height="450"
-                  fetchPriority="high"
-                />
-                <div className="page-hero-badge">
-                  <span className="page-hero-badge-gold">✦</span>
-                  <span>Welcoming GTA Inquiries</span>
-                </div>
-              </div>
-            </div>
+          <div className="section-header">
+            <span className="eyebrow">GET IN TOUCH</span>
+            <h1 className="section-title">Contact StudioGTA</h1>
+            <p className="section-desc">
+              Have questions about our packages, custom production shoots, or regional travel? Our team responds within 30 minutes during business hours.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* CONTACT DETAILS & INQUIRY FORM */}
-      <section id="contact-form-section" style={{ padding: 'var(--section-spacing) 0', backgroundColor: 'var(--color-white)' }}>
+      {/* Main Contact Section */}
+      <section className="section">
         <div className="container">
-          <div className="contact-split-grid">
-            {/* Left Column: Direct Contact Info & 3 Steps */}
-            <div className="reveal reveal-left">
-              <div className="eyebrow">
-                <span className="eyebrow-dot" />
-                <span>Direct Inquiries</span>
-              </div>
-              <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.4rem)', marginBottom: '1.25rem' }}>
-                Studio GTA Real Estate Media
-              </h2>
-              <p style={{ marginBottom: '2rem' }}>
-                Serving the entire Greater Toronto Area. Whether you have an urgent listing going live tomorrow or a custom architectural project, we respond within hours.
-              </p>
-
-              {/* Contact Card */}
-              <div
-                style={{
-                  backgroundColor: 'var(--color-linen)',
-                  padding: '2rem',
-                  borderRadius: 'var(--radius-md)',
-                  border: '1px solid var(--color-border)',
-                  marginBottom: '2.5rem'
-                }}
-              >
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.85rem' }}>
-                    <Phone size={18} className="icon-gold" style={{ marginTop: '0.2rem' }} />
-                    <div>
-                      <div style={{ fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-muted)', fontWeight: 700 }}>
-                        Call / Text Herman
-                      </div>
-                      <a href={`tel:${COMPANY.phoneClean}`} style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--color-dark)' }}>
-                        {COMPANY.phone}
-                      </a>
-                    </div>
-                  </div>
-
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.85rem' }}>
-                    <Mail size={18} className="icon-gold" style={{ marginTop: '0.2rem' }} />
-                    <div>
-                      <div style={{ fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-muted)', fontWeight: 700 }}>
-                        General & Business Inquiries
-                      </div>
-                      <a href={`mailto:${COMPANY.email}`} style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--color-dark)' }}>
-                        {COMPANY.email}
-                      </a>
-                    </div>
-                  </div>
-
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.85rem' }}>
-                    <Mail size={18} className="icon-gold" style={{ marginTop: '0.2rem' }} />
-                    <div>
-                      <div style={{ fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-muted)', fontWeight: 700 }}>
-                        Booking & Tour Inquiries
-                      </div>
-                      <a href={`mailto:${COMPANY.bookingEmail}`} style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--color-dark)' }}>
-                        {COMPANY.bookingEmail}
-                      </a>
-                    </div>
-                  </div>
-
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.85rem' }}>
-                    <MapPin size={18} className="icon-gold" style={{ marginTop: '0.2rem', flexShrink: 0 }} />
-                    <div>
-                      <div style={{ fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-muted)', fontWeight: 700 }}>
-                        Studio Office Address
-                      </div>
-                      <a
-                        href={COMPANY.mapUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="contact-address-link"
-                        style={{ fontSize: '0.95rem', color: 'var(--color-stone)', textDecoration: 'none', display: 'flex', flexDirection: 'column', lineHeight: 1.45 }}
-                        aria-label="Studio GTA office address in Google Maps (opens in new tab)"
-                      >
-                        {(COMPANY.addressLines || [COMPANY.address]).map((line, index) => (
-                          <span key={index}>{line}</span>
-                        ))}
-                      </a>
-                    </div>
-                  </div>
-
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.85rem' }}>
-                    <Clock size={18} className="icon-gold" style={{ marginTop: '0.2rem' }} />
-                    <div>
-                      <div style={{ fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-muted)', fontWeight: 700 }}>
-                        Working Hours
-                      </div>
-                      <span style={{ fontSize: '0.95rem', color: 'var(--color-stone)' }}>
-                        {COMPANY.hours}
-                      </span>
-                    </div>
-                  </div>
+          <div className="contact-grid">
+            {/* Left: Contact Info Panels */}
+            <div className="contact-info-panel">
+              <div className="contact-card">
+                <div className="contact-card-icon">
+                  <Phone size={20} />
                 </div>
+                <div>
+                  <div className="contact-card-title">Phone Support</div>
+                  <div className="contact-card-val">
+                    <a href={`tel:${COMPANY.phoneClean}`}>{COMPANY.phone}</a>
+                  </div>
+                  <div className="contact-card-sub">Direct call or SMS dispatch</div>
+                </div>
+              </div>
+
+              <div className="contact-card">
+                <div className="contact-card-icon">
+                  <Mail size={20} />
+                </div>
+                <div>
+                  <div className="contact-card-title">Email Inquiries</div>
+                  <div className="contact-card-val">
+                    <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
+                  </div>
+                  <div className="contact-card-sub">Inquiries & booking confirmations</div>
+                </div>
+              </div>
+
+              <div className="contact-card">
+                <div className="contact-card-icon">
+                  <MapPin size={20} />
+                </div>
+                <div>
+                  <div className="contact-card-title">Headquarters Office</div>
+                  <div className="contact-card-val" style={{ fontSize: '0.98rem', lineHeight: 1.45 }}>
+                    {COMPANY.address}
+                  </div>
+                  <div className="contact-card-sub">Serving GTA & Southwestern Ontario</div>
+                </div>
+              </div>
+
+              <div className="contact-card">
+                <div className="contact-card-icon">
+                  <Clock size={20} />
+                </div>
+                <div>
+                  <div className="contact-card-title">Operating Hours</div>
+                  <div className="contact-card-val" style={{ fontSize: '0.98rem' }}>
+                    {COMPANY.hours}
+                  </div>
+                  <div className="contact-card-sub">Weekend shoots & emergency slots available</div>
+                </div>
+              </div>
+
+              {/* Markham Google Map Embed */}
+              <div className="map-wrapper">
+                <iframe
+                  title="StudioGTA Office Location"
+                  src={COMPANY.mapEmbedUrl}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                />
               </div>
             </div>
 
-            {/* Right Column: Prominent Inquiry Form */}
-            <div
-              className="reveal reveal-right"
-              style={{
-                backgroundColor: 'var(--color-white)',
-                padding: 'clamp(2rem, 4vw, 3rem)',
-                borderRadius: 'var(--radius-md)',
-                border: '1px solid var(--color-border)',
-                boxShadow: 'var(--shadow-card)'
-              }}
-            >
-              <h3 style={{ fontSize: '1.75rem', marginBottom: '0.5rem', color: 'var(--color-dark)' }}>
-                Send An Inquiry / Request Shoot
-              </h3>
-              <p style={{ fontSize: '0.95rem', marginBottom: '1.75rem' }}>
-                Fill out the form below. We will check our photographer schedule and get back to you within 24 hours.
+            {/* Right: Contact Form */}
+            <div className="contact-form-wrap">
+              <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.85rem', marginBottom: '0.5rem' }}>
+                Send Us a Message
+              </h2>
+              <p style={{ fontSize: '0.92rem', color: 'var(--color-fg-muted)', marginBottom: '1.75rem' }}>
+                Fill out the form below and we will get back to you promptly.
               </p>
 
               {successMsg && (
-                <div className="form-feedback success">
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 700, marginBottom: '0.25rem' }}>
-                    <CheckCircle size={18} /> Message Successfully Delivered
-                  </div>
-                  {successMsg}
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.75rem',
+                  backgroundColor: '#ecfdf5',
+                  border: '1px solid #10b981',
+                  color: '#065f46',
+                  padding: '1rem',
+                  borderRadius: 'var(--radius-md)',
+                  marginBottom: '1.5rem',
+                  fontSize: '0.92rem'
+                }}>
+                  <CheckCircle size={20} color="#10b981" />
+                  <span>{successMsg}</span>
                 </div>
               )}
 
               {errorMsg && (
-                <div className="form-feedback error">
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 700, marginBottom: '0.25rem' }}>
-                    <AlertCircle size={18} /> Submission Error
-                  </div>
-                  {errorMsg}
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.75rem',
+                  backgroundColor: '#fef2f2',
+                  border: '1px solid #ef4444',
+                  color: '#991b1b',
+                  padding: '1rem',
+                  borderRadius: 'var(--radius-md)',
+                  marginBottom: '1.5rem',
+                  fontSize: '0.92rem'
+                }}>
+                  <AlertCircle size={20} color="#ef4444" />
+                  <span>{errorMsg}</span>
                 </div>
               )}
 
-              <form onSubmit={handleSubmit}>
-                <input
-                  type="text"
-                  name="honeypot"
-                  value={formData.honeypot}
-                  onChange={handleChange}
-                  style={{ display: 'none' }}
-                  tabIndex={-1}
-                  autoComplete="off"
-                />
+              <form onSubmit={handleSubmit} noValidate>
+                {/* Honeypot field */}
+                <div style={{ display: 'none' }} aria-hidden="true">
+                  <input
+                    type="text"
+                    name="honeypot"
+                    value={formData.honeypot}
+                    onChange={handleChange}
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                </div>
 
-                <div className="form-grid">
+                <div className="form-group-row">
                   <div className="form-group">
-                    <label className="form-label" htmlFor="contact-name">
-                      Full Name <span className="required-star">*</span>
-                    </label>
+                    <label className="form-label">Your Name *</label>
                     <input
-                      id="contact-name"
                       type="text"
                       name="name"
-                      placeholder="e.g. David Miller"
                       value={formData.name}
                       onChange={handleChange}
-                      className="form-input"
                       required
+                      placeholder="e.g. John Smith"
+                      className="form-input"
                     />
                   </div>
 
                   <div className="form-group">
-                    <label className="form-label" htmlFor="contact-email">
-                      Email Address <span className="required-star">*</span>
-                    </label>
+                    <label className="form-label">Your Email *</label>
                     <input
-                      id="contact-email"
                       type="email"
                       name="email"
-                      placeholder="david@realty.com"
                       value={formData.email}
                       onChange={handleChange}
-                      className="form-input"
                       required
+                      placeholder="john@brokerage.ca"
+                      className="form-input"
                     />
                   </div>
+                </div>
 
+                <div className="form-group-row">
                   <div className="form-group">
-                    <label className="form-label" htmlFor="contact-phone">
-                      Phone Number
-                    </label>
+                    <label className="form-label">Phone Number</label>
                     <input
-                      id="contact-phone"
                       type="tel"
                       name="phone"
-                      placeholder="(647) 000-0000"
                       value={formData.phone}
                       onChange={handleChange}
+                      placeholder="647-300-0315"
                       className="form-input"
                     />
                   </div>
 
                   <div className="form-group">
-                    <label className="form-label" htmlFor="contact-service">
-                      Inquiry Type / Service
-                    </label>
+                    <label className="form-label">Service of Interest</label>
                     <select
-                      id="contact-service"
                       name="service"
                       value={formData.service}
                       onChange={handleChange}
                       className="form-select"
                     >
-                      <option value="Residential Real Estate Photography">Residential Real Estate Photography</option>
-                      <option value="Video & Photo Package ($280 CAD)">Video & Photo Package ($280 CAD)</option>
-                      <option value="Premium Walkthrough Video Package ($420 CAD)">Premium Walkthrough Video Package ($420 CAD)</option>
-                      <option value="Commercial & Architectural Shoot">Commercial & Architectural Shoot</option>
-                      <option value="3D Matterport & Floor Plans">3D Matterport & Floor Plans</option>
-                      <option value="Professional Realtor Headshots ($250 CAD)">Professional Realtor Headshots ($250 CAD)</option>
-                      <option value="General Question / Custom Consultation">General Question / Custom Consultation</option>
+                      <option value="Basic Package ($199)">Basic Package ($199)</option>
+                      <option value="Basic+ Package ($249)">Basic+ Package ($249)</option>
+                      <option value="Standard Package ($399)">Standard Package ($399) - Most Popular</option>
+                      <option value="Pro Package ($599)">Pro Package ($599) - Luxury</option>
+                      <option value="Custom Media / À La Carte">Custom Media / À La Carte</option>
                     </select>
                   </div>
+                </div>
 
+                <div className="form-group-row">
                   <div className="form-group">
-                    <label className="form-label" htmlFor="contact-location">
-                      Property Location / City
-                    </label>
+                    <label className="form-label">Property Location / City</label>
                     <input
-                      id="contact-location"
                       type="text"
                       name="location"
-                      placeholder="e.g. Markham, Richmond Hill, Toronto"
                       value={formData.location}
                       onChange={handleChange}
+                      placeholder="e.g. Markham, Toronto, London"
                       className="form-input"
                     />
                   </div>
 
                   <div className="form-group">
-                    <label className="form-label" htmlFor="contact-date">
-                      Target Shoot Date
-                    </label>
+                    <label className="form-label">Target Shoot Date (Optional)</label>
                     <input
-                      id="contact-date"
                       type="date"
                       name="preferredDate"
                       value={formData.preferredDate}
@@ -408,39 +321,38 @@ export default function Contact() {
                       className="form-input"
                     />
                   </div>
-
-                  <div className="form-group full-width">
-                    <label className="form-label" htmlFor="contact-message">
-                      Your Message / Shoot Details <span className="required-star">*</span>
-                    </label>
-                    <textarea
-                      id="contact-message"
-                      name="message"
-                      placeholder="Tell us about the property, square footage, staging status, or specific architectural features you would like emphasized..."
-                      value={formData.message}
-                      onChange={handleChange}
-                      className="form-textarea"
-                      required
-                    />
-                  </div>
                 </div>
 
-                <div style={{ marginTop: '1.75rem' }}>
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="btn btn-primary"
-                    style={{ width: '100%' }}
-                  >
-                    {loading ? (
-                      <>
-                        <Loader2 size={16} className="animate-spin" /> Sending Inquiry...
-                      </>
-                    ) : (
-                      'Send Inquiry by Email'
-                    )}
-                  </button>
+                <div className="form-group">
+                  <label className="form-label">Your Message or Property Details *</label>
+                  <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    placeholder="Tell us about the property, square footage, specific requirements, or questions..."
+                    className="form-textarea"
+                  />
                 </div>
+
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="btn btn-primary btn-full"
+                  style={{ marginTop: '0.75rem' }}
+                >
+                  {loading ? (
+                    <>
+                      <Loader2 size={16} className="animate-spin" />
+                      <span>Sending Message...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send size={16} />
+                      <span>Send Message</span>
+                    </>
+                  )}
+                </button>
               </form>
             </div>
           </div>

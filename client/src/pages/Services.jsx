@@ -1,218 +1,235 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, ChevronRight, Sparkles } from 'lucide-react';
-import { SERVICES, ADDON_SERVICES } from '../data/siteData';
-import useScrollReveal from '../hooks/useScrollReveal';
+import { Camera, Check, Calendar, ShieldCheck } from 'lucide-react';
+import { SERVICES, ALACARTE_ADDONS, GUARANTEES } from '../data/siteData';
 
-export default function Services({ onOpenBooking: _onOpenBooking }) {
-  useScrollReveal();
-
+export default function Services({ onOpenBooking }) {
   return (
     <div className="services-page">
-      {/* PAGE HERO */}
-      <section className="page-hero" aria-label="Services Hero">
+      {/* Page Hero */}
+      <section className="section section-muted" style={{ paddingBottom: '3rem' }}>
         <div className="container">
-          <div className="page-hero-grid">
-            <div className="page-hero-copy">
-              <div className="eyebrow">
-                <span className="eyebrow-dot" />
-                <span>Real Estate & Architectural Media</span>
-              </div>
-              <h1 className="page-hero-title">Specialized Photography & Media Services</h1>
-              <p className="page-hero-desc">
-                Be it a house, commercial complex, or luxury condominium, you are on a journey to marketing and selling property. We are the storytellers who make your spaces shine.
-              </p>
-
-              <div className="page-hero-meta-strip">
-                <div className="page-hero-meta-item">
-                  <Sparkles size={15} style={{ color: 'var(--color-gold-deep)' }} />
-                  <span>HDR Still Photography</span>
-                </div>
-                <div className="page-hero-meta-item">
-                  <CheckCircle2 size={15} style={{ color: 'var(--color-gold-deep)' }} />
-                  <span>4K Cinematic Video</span>
-                </div>
-                <div className="page-hero-meta-item">
-                  <CheckCircle2 size={15} style={{ color: 'var(--color-gold-deep)' }} />
-                  <span>3D Matterport Tours</span>
-                </div>
-              </div>
-
-              <div className="page-hero-cta-group">
-                <Link to="/packages" className="btn btn-primary">
-                  View Packages
-                  <ArrowRight size={16} />
-                </Link>
-                <Link to="/contact" className="btn btn-secondary">
-                  Inquire About Services
-                </Link>
-              </div>
-            </div>
-
-            {/* Page Hero Media Card */}
-            <div className="page-hero-media">
-              <div className="page-hero-media-card">
-                <img
-                  src="/images/service-residential.jpg"
-                  alt="Comprehensive Real Estate Photography & Video Media by Studio GTA"
-                  width="600"
-                  height="450"
-                  fetchPriority="high"
-                />
-                <div className="page-hero-badge">
-                  <span className="page-hero-badge-gold">✦</span>
-                  <span>Comprehensive Media Solutions</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* DETAILED SERVICES SECTIONS (ALTERNATING EDITORIAL LAYOUT) */}
-      <section style={{ padding: 'var(--section-spacing) 0', backgroundColor: 'var(--color-white)' }}>
-        <div className="container">
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(4rem, 8vw, 7rem)' }}>
-            {SERVICES.map((service, index) => {
-              const isEven = index % 2 === 1;
-
-              return (
-                <div
-                  key={service.id}
-                  id={service.id}
-                  className="service-split-row reveal"
-                >
-                  {/* Image Column */}
-                  <div
-                    className="service-image-col"
-                    style={{
-                      order: isEven ? 2 : 1,
-                      borderRadius: 'var(--radius-md)',
-                      overflow: 'hidden',
-                      boxShadow: 'var(--shadow-card)',
-                      border: '1px solid var(--color-border)',
-                      aspectRatio: '4/3'
-                    }}
-                  >
-                    <img
-                      src={service.image}
-                      alt={service.title}
-                      loading="lazy"
-                      width="600"
-                      height="450"
-                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                    />
-                  </div>
-
-                  {/* Content Column */}
-                  <div className="service-content-col" style={{ order: isEven ? 1 : 2 }}>
-                    <div className="eyebrow">
-                      <span className="eyebrow-dot" />
-                      <span>{service.eyebrow}</span>
-                    </div>
-
-                    <h2>{service.title}</h2>
-
-                    <p style={{ marginTop: '1rem', marginBottom: '1.5rem', fontSize: '1.05rem', lineHeight: 1.75 }}>
-                      {service.description}
-                    </p>
-
-                    <div style={{ marginBottom: '2rem' }}>
-                      <div style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.12em', fontWeight: 700, color: 'var(--color-dark)', marginBottom: '0.85rem' }}>
-                        Key Inclusions & Highlights:
-                      </div>
-                      <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                        {service.features.map((feat, fIdx) => (
-                          <li key={fIdx} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem', fontSize: '0.94rem', color: '#3b3734' }}>
-                            <CheckCircle2 size={16} className="pricing-check-icon" />
-                            <span>{feat}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                      <Link to="/packages" className="btn btn-primary">
-                        View Packages & Pricing
-                        <ArrowRight size={16} />
-                      </Link>
-                      <Link to="/contact" className="btn btn-secondary">
-                        Inquire / Custom Quote
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* SPECIALIZED ADD-ONS & SESSIONS */}
-      <section style={{ padding: 'var(--section-spacing) 0', backgroundColor: 'var(--color-linen)', borderTop: '1px solid var(--color-border-light)' }}>
-        <div className="container">
-          <div className="section-header text-center reveal">
-            <div className="eyebrow">
-              <span className="eyebrow-dot" />
-              <span>Tailored Solutions</span>
-            </div>
-            <h2>Additional Photography Sessions & Floor Plans</h2>
-            <p className="section-subtitle">
-              Expand your marketing reach with customized commercial shoots, executive headshots, and immersive floor plans.
+          <div className="section-header">
+            <span className="eyebrow">OUR CAPABILITIES</span>
+            <h1 className="section-title">Comprehensive Real Estate Media Solutions</h1>
+            <p className="section-desc">
+              From magazine-grade HDR stills to Transport Canada certified 4K drone cinematography and 3D Matterport digital twins, we deliver high-impact visual assets tailored to maximize buyer interest.
             </p>
           </div>
+        </div>
+      </section>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }} className="reveal-stagger">
-            {ADDON_SERVICES.map((addon, idx) => (
-              <div
-                key={idx}
-                className="reveal"
-                style={{
-                  backgroundColor: 'var(--color-white)',
-                  padding: '2.25rem 2rem',
-                  borderRadius: 'var(--radius-md)',
-                  border: '1px solid var(--color-border)',
-                  boxShadow: 'var(--shadow-subtle)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between'
-                }}
-              >
-                <div>
-                  <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.45rem', fontWeight: 600, color: 'var(--color-dark)', marginBottom: '0.5rem' }}>
-                    {addon.name}
-                  </div>
-                  <div style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--color-gold-deep)', marginBottom: '1rem' }}>
-                    {addon.price}
-                  </div>
-                  <p style={{ fontSize: '0.94rem', color: 'var(--color-stone)', lineHeight: 1.65, marginBottom: '1.5rem' }}>
-                    {addon.details}
-                  </p>
+      {/* Services Detailed Grid */}
+      <section className="section">
+        <div className="container">
+          <div className="services-grid">
+            {SERVICES.map((srv) => (
+              <div key={srv.id} className="service-card">
+                <div className="service-icon-box">
+                  <Camera size={26} />
                 </div>
-                <Link to="/contact" className="link-arrow">
-                  Inquire About This Service <ChevronRight size={16} />
-                </Link>
+                <h3 className="service-title">{srv.name}</h3>
+                <div className="service-tagline">{srv.tagline}</div>
+                <p className="service-desc">{srv.desc}</p>
+
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--color-gold-deep)' }}>
+                    {srv.price}
+                  </span>
+                  <span style={{ fontSize: '0.8rem', color: 'var(--color-fg-subtle)' }}>
+                    ⚡ {srv.turnaround}
+                  </span>
+                </div>
+
+                <ul className="service-feature-list">
+                  {srv.features.map((feat, idx) => (
+                    <li key={idx} className="service-feature-item">
+                      <Check size={15} />
+                      <span>{feat}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <button
+                  type="button"
+                  className="btn btn-outline-gold btn-sm"
+                  style={{ marginTop: '1.5rem', width: '100%' }}
+                  onClick={() => onOpenBooking('standard')}
+                >
+                  <Calendar size={14} />
+                  <span>Book This Service</span>
+                </button>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CLOSING CTA BANNER */}
-      <section className="cta-banner-section">
+      {/* Package Comparison Table */}
+      <section className="section section-muted">
         <div className="container">
-          <div className="cta-banner-inner reveal">
-            <h2>Ready To Book A Service?</h2>
-            <p>Select an all-inclusive package or contact us for bespoke architectural media assignments.</p>
-            <div className="cta-banner-actions">
-              <Link to="/packages" className="btn btn-gold">
-                See Package Pricing
-                <ArrowRight size={16} />
-              </Link>
-              <Link to="/contact" className="btn btn-secondary" style={{ color: 'var(--color-white)', borderColor: 'rgba(255,255,255,0.25)' }}>
-                Contact Studio GTA
-              </Link>
-            </div>
+          <div className="section-header">
+            <span className="eyebrow">MEDIA COMPARISON</span>
+            <h2 className="section-title">Compare What Is Included in Each Package</h2>
+            <p className="section-desc">
+              Select the package best suited for your property's size and price bracket.
+            </p>
+          </div>
+
+          <div className="comparison-table-wrapper">
+            <table className="comparison-table">
+              <thead>
+                <tr>
+                  <th className="col-feature">Features & Inclusions</th>
+                  <th>Basic ($199)</th>
+                  <th>Basic+ ($249)</th>
+                  <th className="col-popular">Standard ($399) ★</th>
+                  <th>Pro ($599)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Property Size Ideal</strong></td>
+                  <td>Under 1,500 sq ft</td>
+                  <td>Up to 2,200 sq ft</td>
+                  <td className="col-popular">Up to 3,500 sq ft</td>
+                  <td>3,500+ sq ft / Luxury</td>
+                </tr>
+                <tr>
+                  <td><strong>High-Definition HDR Photos</strong></td>
+                  <td>25–30 Photos</td>
+                  <td>30–35 Photos</td>
+                  <td className="col-popular">35–40 Photos</td>
+                  <td>40–50+ Photos</td>
+                </tr>
+                <tr>
+                  <td><strong>2D Floor Plan with Measurements</strong></td>
+                  <td className="cell-check">✓</td>
+                  <td className="cell-check">✓</td>
+                  <td className="cell-check col-popular">✓</td>
+                  <td className="cell-check">✓ (2D + 3D)</td>
+                </tr>
+                <tr>
+                  <td><strong>Turnaround Guarantee</strong></td>
+                  <td>12–24 Hours</td>
+                  <td>12–24 Hours</td>
+                  <td className="col-popular">12–24 Hours</td>
+                  <td>Priority 12 Hours</td>
+                </tr>
+                <tr>
+                  <td><strong>Blue Sky Replacement & Flare Removal</strong></td>
+                  <td className="cell-check">✓</td>
+                  <td className="cell-check">✓</td>
+                  <td className="cell-check col-popular">✓</td>
+                  <td className="cell-check">✓</td>
+                </tr>
+                <tr>
+                  <td><strong>Photo Motion Slideshow</strong></td>
+                  <td className="cell-check">—</td>
+                  <td className="cell-check">✓</td>
+                  <td className="cell-check col-popular">—</td>
+                  <td className="cell-check">—</td>
+                </tr>
+                <tr>
+                  <td><strong>Cinematic 4K Walkthrough Video</strong></td>
+                  <td className="cell-check">—</td>
+                  <td className="cell-check">—</td>
+                  <td className="cell-check col-popular">✓ 4K Full Tour</td>
+                  <td className="cell-check">✓ 4K Extended + Intro</td>
+                </tr>
+                <tr>
+                  <td><strong>Aerial Drone Photos & 4K Video</strong></td>
+                  <td className="cell-check">—</td>
+                  <td className="cell-check">—</td>
+                  <td className="cell-check col-popular">✓ Included</td>
+                  <td className="cell-check">✓ Full Suite</td>
+                </tr>
+                <tr>
+                  <td><strong>3D Matterport Interactive Tour</strong></td>
+                  <td className="cell-check">—</td>
+                  <td className="cell-check">—</td>
+                  <td className="cell-check col-popular">—</td>
+                  <td className="cell-check">✓ 6 Mos Hosting</td>
+                </tr>
+                <tr>
+                  <td><strong>Virtual Staging Included</strong></td>
+                  <td className="cell-check">—</td>
+                  <td className="cell-check">—</td>
+                  <td className="cell-check col-popular">—</td>
+                  <td className="cell-check">✓ 3 Rooms</td>
+                </tr>
+                <tr>
+                  <td><strong>Twilight / Sunset Photography</strong></td>
+                  <td className="cell-check">—</td>
+                  <td className="cell-check">—</td>
+                  <td className="cell-check col-popular">—</td>
+                  <td className="cell-check">✓ Real or Virtual Dusk</td>
+                </tr>
+                <tr>
+                  <td><strong>Single-Property Listing Website</strong></td>
+                  <td className="cell-check">—</td>
+                  <td className="cell-check">—</td>
+                  <td className="cell-check col-popular">✓ Included</td>
+                  <td className="cell-check">✓ Branded & Unbranded</td>
+                </tr>
+                <tr>
+                  <td><strong>Zero Deposit: Pay After Approval</strong></td>
+                  <td className="cell-check">✓</td>
+                  <td className="cell-check">✓</td>
+                  <td className="cell-check col-popular">✓</td>
+                  <td className="cell-check">✓</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* À La Carte Services */}
+      <section className="section">
+        <div className="container">
+          <div className="section-header">
+            <span className="eyebrow">CUSTOMIZE YOUR SHOOT</span>
+            <h2 className="section-title">À La Carte & Add-On Media Services</h2>
+            <p className="section-desc">
+              Add individual services to any base package or order as stand-alone appointments.
+            </p>
+          </div>
+
+          <div className="alacarte-grid">
+            {ALACARTE_ADDONS.map((addon, idx) => (
+              <div key={idx} className="alacarte-item">
+                <div className="alacarte-info">
+                  <div className="alacarte-name">{addon.name}</div>
+                  <div className="alacarte-desc">{addon.desc}</div>
+                </div>
+                <div className="alacarte-price-block">
+                  <div className="alacarte-price">{addon.price}</div>
+                  <div className="alacarte-unit">{addon.unit}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Guarantees */}
+      <section className="section section-muted">
+        <div className="container">
+          <div className="section-header">
+            <span className="eyebrow">OUR PROMISE</span>
+            <h2 className="section-title">Built On 100% Realtor Confidence</h2>
+          </div>
+
+          <div className="guarantees-grid">
+            {GUARANTEES.map((g, idx) => (
+              <div key={idx} className="guarantee-card">
+                <div className="guarantee-icon-wrap">
+                  <ShieldCheck size={22} />
+                </div>
+                <h4 className="guarantee-title">{g.title}</h4>
+                <p className="guarantee-desc">{g.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

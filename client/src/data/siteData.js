@@ -1,371 +1,428 @@
-// Authentic Studio GTA Real Estate Media Data Source of Truth
+// StudioGTA - Real Estate Media Source of Truth
 
 export const COMPANY = {
-  name: 'STUDIO GTA',
-  tagline: 'Real Estate & Architectural Media',
-  founder: 'Herman',
-  phone: '647-300-0315',
-  phoneClean: '+16473000315',
+  name: 'StudioGTA',
+  tagline: 'Premium Real Estate Photography & Media Ontario',
+  founder: 'StudioGTA Production Team',
+  phone: '(647) 300-0315',
+  phoneClean: '6473000315',
+  phoneFormatted: '647-300-0315',
   email: 'info@studiogta.ca',
-  address: '3601 Highway 7 East, Suite 1005, Unit D08, Markham ON L3R 0M3',
+  address: '3601 Highway 7 East, Suite 1005, Unit DOB, Markham ON, L3R 0M3',
   addressLines: [
-    '3601 Highway 7 East, Suite 1005, Unit D08,',
-    'Markham ON',
-    'L3R 0M3'
+    '3601 Highway 7 East, Suite 1005, Unit DOB,',
+    'Markham ON, L3R 0M3'
   ],
-  mapUrl: 'https://maps.google.com/?q=3601+Highway+7+East,+Suite+1005,+Unit+D08,+Markham+ON+L3R+0M3',
-  serviceArea: 'Greater Toronto Area & Surrounding Regions',
-  hours: 'Monday – Saturday: 8:00 AM – 7:00 PM',
+  mapUrl: 'https://maps.google.com/?q=3601+Highway+7+East,+Suite+1005,+Unit+DOB,+Markham+ON+L3R+0M3',
+  mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2879.790610363242!2d-79.33644072346743!3d43.84976797109355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4d4681648a313%3A0x6b7724a275464a4b!2s3601%20Hwy%207%2C%20Markham%2C%20ON%20L3R%200M3!5e0!3m2!1sen!2sca!4v1708300000000!5m2!1sen!2sca',
+  serviceArea: 'Southwest Ontario & Greater Toronto Area',
+  hours: 'Everyday: 7:00 AM – 7:00 PM',
   instagram: 'https://www.instagram.com/studiogta_realestatemedia',
-  youtube: 'https://www.youtube.com/c/StudioGTAVirtualTour',
-  turnaround: '24-48 Hour Delivery',
-  guarantee: '100% Satisfaction Guaranteed'
+  turnaround: '12-Hour Turnaround',
+  guarantee: '100% Satisfaction Guaranteed (Pay After Approval)'
+};
+
+export const ANNOUNCEMENT_BAR = {
+  active: true,
+  badge: 'NEW CLIENT SPECIAL: 10% OFF',
+  text: 'Get 10% off your first photoshoot — use code WELCOME10 at booking',
+  ctaText: 'Claim 10% Off',
+  ctaLink: '#book'
 };
 
 export const TRUST_STATS = [
   {
-    number: '24',
+    number: '12',
     suffix: 'hr',
-    label: 'Fast Turnaround',
-    subtext: 'Next-day MLS delivery'
+    label: 'Turnaround Time',
+    subtext: 'Next-morning 9 AM delivery'
   },
   {
-    number: '5.0',
-    suffix: '★',
-    label: 'Google Reviews',
-    subtext: 'Flawless 5/5 client satisfaction'
-  },
-  {
-    number: '200',
+    number: '500',
     suffix: '+',
-    label: 'Top GTA Realtors',
-    subtext: 'Collaborating across Toronto'
+    label: '5-Star Reviews',
+    subtext: 'Top realtor satisfaction'
   },
   {
-    number: '10',
-    suffix: '+',
-    label: 'Years Experience',
-    subtext: 'Award-winning architectural media'
+    number: '32',
+    suffix: '%',
+    label: 'Faster Sales',
+    subtext: 'Proven listing performance'
+  },
+  {
+    number: '100',
+    suffix: '%',
+    label: 'Satisfaction Guarantee',
+    subtext: 'Pay only after approval'
   }
 ];
 
-export const BROKERAGES = [
-  { name: 'Barry Cohen Homes', logo: '/images/broker-barry-cohen.png', width: 77, height: 48, imgSize: 171 },
-  { name: "Sotheby's International Realty", logo: '/images/broker-sothebys.png', width: 213, height: 36, imgSize: 300 },
-  { name: 'RE/MAX', logo: '/images/broker-remax.png', width: 215, height: 38, imgSize: 317 },
-  { name: 'PSR Brokerage', logo: '/images/broker-psr.png', width: 129, height: 42, imgSize: 191 },
-  { name: 'Susan Gucci Team', logo: '/images/broker-susan-gucci.png', width: 257, height: 34, imgSize: 378 },
-  { name: 'Sutton Group', logo: '/images/broker-sutton.png', width: 85, height: 48, imgSize: 160 },
-  { name: 'Right At Home Realty', logo: '/images/broker-right-at-home.png', width: 71, height: 54, imgSize: 100 },
-  { name: 'Royal LePage', logo: '/images/broker-royal-lepage.png', width: 128, height: 44, imgSize: 180 },
-  { name: 'Benchmark Realty', logo: '/images/broker-benchmark.png', width: 154, height: 40, imgSize: 235 },
-  { name: 'Living Realty', logo: '/images/broker-living-realty.png', width: 111, height: 44, imgSize: 169 },
-  { name: 'Landpower Real Estate', logo: '/images/broker-landpower.png', width: 208, height: 36, imgSize: 313 },
-  { name: 'Bay Street Group', logo: '/images/broker-bay-street.png', width: 88, height: 46, imgSize: 177 },
-  { name: 'HomeLife', logo: '/images/broker-homelife.png', width: 116, height: 44, imgSize: 205 },
-  { name: 'Forest Hill Real Estate', logo: '/images/broker-forest-hill.png', width: 133, height: 42, imgSize: 271 },
-  { name: 'Century 21', logo: '/images/broker-century21.png', width: 297, height: 32, imgSize: 457 },
-  { name: 'Big City Realty', logo: '/images/broker-bigcity.png', width: 179, height: 38, imgSize: 271 },
-  { name: 'Keller Williams', logo: '/images/broker-keller-williams.png', width: 102, height: 46, imgSize: 167 }
+export const SERVICE_AREAS = [
+  {
+    region: 'Greater Toronto Area (GTA)',
+    cities: ['Toronto', 'Markham', 'Richmond Hill', 'Vaughan', 'Mississauga', 'Brampton', 'Oakville', 'Burlington', 'Pickering', 'Ajax'],
+    travelFee: 'Free ($0 Travel)'
+  },
+  {
+    region: 'Southwestern Ontario',
+    cities: ['London', 'Kitchener-Waterloo', 'Cambridge', 'Guelph', 'Hamilton', 'Brantford', 'Woodstock', 'Windsor'],
+    travelFee: 'Free in Core Zone'
+  },
+  {
+    region: 'Eastern & Northern Ontario',
+    cities: ['Barrie', 'Oshawa', 'Whitby', 'Peterborough', 'Niagara Region', 'St. Catharines'],
+    travelFee: 'Standard Mileage'
+  }
 ];
 
-export const TESTIMONIALS = [
+export const BROKERAGE_LOGOS = [
+  { name: 'Royal LePage', sub: 'Signature & Terrequity' },
+  { name: 'Century 21', sub: 'Leading Edge & Heritage' },
+  { name: 'Coldwell Banker', sub: 'Canada' },
+  { name: 'eXp Realty', sub: 'Brokerage' },
+  { name: "Sotheby's", sub: 'International Realty' },
+  { name: 'Compass', sub: 'Real Estate' },
+  { name: 'Right At Home Realty', sub: 'Brokerage' },
+  { name: 'HomeLife Realty', sub: 'Services Inc.' },
+  { name: 'RE/MAX', sub: 'Realtron & Hallmark' },
+  { name: 'Keller Williams', sub: 'Referred Realty' }
+];
+
+export const HERO_SLIDES = [
   {
-    quote: "I reach out to Herman for all my real estate photography/videography needs. He's so easy to work with, professional, accommodating and the results are always outstanding! I highly recommend his services.",
-    author: "James Arciaga",
-    role: "Real Estate Broker",
-    brokerage: "Toronto Brokerage"
+    id: 'commercial',
+    title: 'Commercial real estate photography',
+    category: 'Commercial',
+    image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1200&auto=format&fit=crop',
+    tag: 'FEATURED'
   },
   {
-    quote: "Herman and his team are fantastic to work with. Great photo/video quality and even better customer service! We would highly recommend them to any real estate professional or home builder.",
-    author: "Lome Irwin Real Estate Team",
-    role: "Top Producer Team",
-    brokerage: "Forest Hill Real Estate"
+    id: 'photography',
+    title: 'Modern architectural interior photography',
+    category: 'Photography',
+    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop',
+    tag: 'INTERIOR'
   },
   {
-    quote: "We have been working with Studio GTA Real Estate Media for 5 years. Their team has been our go-to photographer and videographer. I have full faith that our listings will look amazing and have never been disappointed. Very professional and good turn around time.",
-    author: "Michelle Zhao",
-    role: "Senior Real Estate Agent",
-    brokerage: "Greater Toronto Area"
+    id: 'staging',
+    title: 'Virtually staged luxury open-concept living',
+    category: 'Virtual Staging',
+    image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1200&auto=format&fit=crop',
+    tag: 'STAGING'
+  },
+  {
+    id: 'drone',
+    title: 'Transport Canada certified 4K drone cinematography',
+    category: 'Drone',
+    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1200&auto=format&fit=crop',
+    tag: 'AERIAL'
+  },
+  {
+    id: 'virtual-tour',
+    title: '3D Matterport interactive virtual dollhouse walkthrough',
+    category: 'Virtual Tour',
+    image: 'https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?q=80&w=1200&auto=format&fit=crop',
+    tag: '3D TOUR'
+  },
+  {
+    id: 'floor-plans',
+    title: 'Laser-accurate schematic 2D & 3D floor plans',
+    category: 'Floor Plans',
+    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1200&auto=format&fit=crop',
+    tag: 'SCHEMATIC'
+  },
+  {
+    id: 'airbnb',
+    title: 'High-converting Airbnb & boutique rental media',
+    category: 'Airbnb',
+    image: 'https://images.unsplash.com/photo-1540518614846-7ede433c4550?q=80&w=1200&auto=format&fit=crop',
+    tag: 'HOSPITALITY'
   }
 ];
 
 export const PACKAGES = [
   {
-    id: 'hdr-photography',
-    name: 'HDR Photography Package',
-    badge: 'Popular for Basic Decors',
-    price: '$185',
-    currency: 'CAD + HST',
-    sizeLimit: 'Properties less than 3,000 sq ft',
-    description: 'Designed for condos and residential listings with clean decors that need high-impact MLS imagery to maximize buyers\' first impression.',
-    inclusions: [
-      'Comprehensive Interior & Exterior Photography',
-      'True HDR Multi-Exposure Blending for Balanced Light',
-      'High-Resolution Still Images for Print Marketing',
-      'MLS-Optimized Web-Ready Compressed Images',
-      'Dedicated Property Webpage Virtual Tour Link',
-      'Client Portal & Instant Photo Delivery System',
-      'One-Click Social Media Sharing Assets',
-      'Local Map & Area Overview Integration',
-      'Guaranteed 24-Hour Turnaround'
-    ],
-    ctaText: 'Book This Package',
-    recommended: false
+    id: 'basic',
+    name: 'Basic',
+    subtitle: 'Professional HDR Photography Package',
+    originalPrice: 199,
+    price: 199,
+    discountApplied: false,
+    sqft: 'Under 1,500 sqft',
+    sqftLabel: 'Condos & Apartments',
+    duration: '30 mins on-site',
+    popular: false,
+    badge: 'Essential',
+    idealFor: 'Condos, starter homes & quick lease listings',
+    features: [
+      'Interior & Exterior Photos (Premium Quality)',
+      '12-Hour Turnaround',
+      'Blue Sky Replacement',
+      '2D Floor Plan (Dimensioned)',
+      'High-Resolution Print & Web MLS Files',
+      'Zero Deposit: Pay After Approval'
+    ]
   },
   {
-    id: 'video-photo',
-    name: 'Video & Photo Package',
-    badge: 'Most Popular',
-    price: '$280',
-    currency: 'CAD + HST',
-    sizeLimit: 'Properties less than 3,000 sq ft',
-    description: 'The complete digital marketing bundle for staged homes and proactive realtors who utilize video and social media to capture buyer attention.',
-    inclusions: [
-      'Everything in HDR Photography Package',
-      '2–4 Minute HD Cinematic Property Video',
-      'Professional Color Grading & Licensed Background Music',
-      'Branded & Unbranded MLS-Compliant Video Files',
-      'Smooth Gimbal Stabilization for Flowing Navigation',
-      'Dedicated Property Webpage Virtual Tour',
-      'High-Resolution Print & MLS-Ready Still Images',
-      'Client Portal & Seamless Cloud Delivery',
-      'Fast 24–48 Hour Turnaround'
-    ],
-    ctaText: 'Book This Package',
-    recommended: true
+    id: 'standard',
+    name: 'Standard',
+    subtitle: 'Complete Media Package with Drone + 4K Video',
+    originalPrice: 399,
+    price: 359,
+    discountApplied: true,
+    discountPercent: '10% OFF',
+    sqft: '1,500–2,500 sqft',
+    sqftLabel: 'Townhomes & Semis',
+    duration: '60 mins on-site',
+    popular: true,
+    badge: 'MOST POPULAR',
+    idealFor: 'Detached single-family homes & competitive suburban listings',
+    features: [
+      '75% of agents choose this',
+      'Interior & Exterior Photos (35–40)',
+      '4K Cinematic Walkthrough Video',
+      'Drone Aerial Photos & 4K Video',
+      '2D & 3D Floor Plan with Room Dimensions',
+      'Feature Single-Property Website',
+      '12-Hour Turnaround Guarantee',
+      'Zero Deposit: Pay After Approval'
+    ]
   },
   {
-    id: 'premium-walkthrough',
-    name: 'Premium Walkthrough Video & Photo Package',
-    badge: 'Luxury Properties',
-    price: '$420',
-    currency: 'CAD + HST',
-    sizeLimit: 'Properties less than 3,000 sq ft',
-    description: 'Engineered specifically for high-end luxury residences, custom architectural builds, and properties requiring maximum visual prestige.',
-    inclusions: [
-      'Complete Luxury Interior & Exterior HDR Photography',
-      'Premium Steadicam / Motorized Gimbal Walkthrough Video',
-      'Ultra-HD 4K Cinematic Visual Presentation',
-      'Detailed Architectural Vignettes & Custom Feature Focus',
-      'High-Resolution Print & MLS-Optimized Image Suite',
-      'Dedicated Property Webpage Virtual Tour Showcase',
-      'Social Media Vertical Reel / Short Teaser Video',
-      'Unbranded MLS Video & Branded Social Version',
-      'Priority Post-Production & Client Delivery Portal'
-    ],
-    ctaText: 'Book This Package',
-    recommended: false
-  }
-];
-
-export const ADDON_SERVICES = [
-  {
-    name: 'Professional Headshot Session',
-    price: '$250 CAD',
-    details: '15-min in-studio session + 15-min photo selection. Includes 2 high-res retouched JPGs + 2 transparent PNGs for marketing materials. Optional hair & makeup available.'
+    id: 'pro',
+    name: 'Pro',
+    subtitle: 'Premium Package with Virtual Tours + Digital Staging',
+    originalPrice: 599,
+    price: 539,
+    discountApplied: true,
+    discountPercent: '10% OFF',
+    sqft: '2,500–5,000 sqft',
+    sqftLabel: 'Standard & Large Detached',
+    duration: '90 mins on-site',
+    popular: false,
+    badge: 'LUXURY SHOWCASE',
+    idealFor: 'Luxury properties, custom builds & waterfront estates',
+    features: [
+      'Standout luxury marketing package',
+      '40–50+ Magazine-Grade HDR Photos',
+      'Extended 4K Video with Agent Intro',
+      'Full Drone Package (Photos + Video)',
+      '3D Matterport Tour (6 Months Hosting)',
+      '3 Virtually Staged Rooms',
+      'Twilight / Dusk Photography',
+      'Dedicated Custom Listing Website',
+      'Priority Delivery'
+    ]
   },
   {
-    name: '3D Matterport Interactive Floor Plan',
-    price: 'Custom Quote by Sq Ft',
-    details: 'Complete 3D digital twin of the property. Prospective buyers can walk through rooms virtually from anywhere in the world, filtering serious qualified buyers.'
-  },
-  {
-    name: 'Commercial & Architectural Photoshoot',
-    price: 'Custom Project Quote',
-    details: 'Custom tailored for architects, developers, hotels, and designers. Includes pre-planning, scouting, full-day shoot, advanced retouches (TIFF/JPG), and commercial usage licensing.'
+    id: 'basic-plus',
+    name: 'Basic+',
+    subtitle: 'HDR Photography + Photo Slideshow Video + Floor Plans',
+    originalPrice: 249,
+    price: 249,
+    discountApplied: false,
+    sqft: 'Up to 2,200 sqft',
+    sqftLabel: 'Mid-Sized Detached & Semis',
+    duration: '45 mins on-site',
+    popular: false,
+    badge: 'Popular Upgrade',
+    idealFor: 'Mid-sized detached homes, townhomes & semi-detached',
+    features: [
+      'Interior & Exterior Photos (30–35)',
+      'Photo Slideshow Video with Licensed Music',
+      '2D Floor Plan with Dimensions',
+      '12-Hour Turnaround Guarantee',
+      'Blue Sky & Green Grass Enhancement',
+      'Zero Deposit: Pay After Approval'
+    ]
   }
 ];
 
 export const SERVICES = [
   {
-    id: 'residential-photography',
-    title: 'Residential Real Estate Photography & Videography',
-    eyebrow: 'MLS & Marketing Media',
-    description: 'Still photography and cinematic video are the foundation of online real estate marketing. Studio GTA captures interiors with balanced exposure, natural window views, and wide-angle precision so rooms feel spacious, inviting, and true to life.',
-    image: '/images/service-residential.jpg',
+    id: 'photography',
+    name: 'HDR Photography',
+    tagline: 'Flawlessly Exposed, Magazine-Quality Stills',
+    desc: 'Multi-bracketed high dynamic range photography balanced for crisp interior details, vivid window views, and warm authentic ambiance.',
+    price: 'From $199',
     features: [
-      'True HDR exposure blending for crisp window views and rich ambient lighting',
-      'Ultra-wide architectural lenses that showcase spatial volume without unnatural fish-eye distortion',
-      'Detailed color correction, vertical perspective straightening, and lens optimization',
-      'Cinematic HD & 4K property walkthrough videos for MLS and social media reels',
-      'High-resolution files for print feature sheets and compressed formats ready for immediate MLS upload'
-    ]
+      'Flawless window pull with clear exterior views',
+      'True-to-life color accuracy & warm white balance',
+      'Free blue sky replacement on overcast days',
+      'Fireplace fire insertion & TV screen enhancement',
+      'Delivered in MLS-ready (2048px) and print-res (300dpi)'
+    ],
+    turnaround: '12 Hours'
   },
   {
-    id: 'commercial-architectural',
-    title: 'Commercial & Architectural Photography',
-    eyebrow: 'Architects & Commercial Developers',
-    description: 'Architectural photography requires meticulous preparation, understanding of natural sun angles, and exacting compositional control. We work directly with architects, interior designers, commercial developers, and luxury boutique hotels to translate physical structures into editorial art.',
-    image: '/images/service-commercial.jpg',
+    id: 'cinematic-video',
+    name: 'Cinematic 4K Video Tours',
+    tagline: 'Emotional, Flowing Walkthroughs That Captivate',
+    desc: 'Filmed on 3-axis stabilized cinema cameras in 4K resolution. Styled with elegant transitions, color grading, and commercial music licensing.',
+    price: 'From $199',
     features: [
-      'Comprehensive pre-production, site scouting, and sun angle planning',
-      'Exterior daylight, golden hour, and dusk twilight captures',
-      'Interior lighting balance highlighting materials, textures, and bespoke design finishes',
-      'Digital post-production with 16-bit TIFF master files and high-resolution JPGs',
-      'Full commercial usage rights agreements tailored to your promotional campaigns'
-    ]
+      'Smooth gimbal walkthrough showing the natural flow',
+      'Licensed premium soundtrack included',
+      'Horizontal 16:9 4K for MLS, YouTube, and Websites',
+      'Vertical 9:16 optimized for Instagram Reels and TikTok',
+      'Optional on-camera realtor introduction & voiceover'
+    ],
+    turnaround: '12–24 Hours'
   },
   {
-    id: 'matterport-3d-floorplans',
-    title: '3D Matterport Tours & Interactive Floor Plans',
-    eyebrow: 'Immersive Virtual Exploration',
-    description: 'Blow prospective buyers away with an immersive 3D digital twin of your property. Matterport technology allows out-of-town purchasers and busy executives to explore every room at their own pace, weeding out unqualified visits and driving serious offers.',
-    image: '/images/portfolio-interior.jpg',
+    id: 'drone',
+    name: 'Aerial Drone Media',
+    tagline: 'Elevated Perspectives & Neighborhood Context',
+    desc: 'Showcase lot size, architectural rooflines, surrounding greenery, proximity to parks, schools, and waterfronts from stunning bird’s-eye views.',
+    price: 'From $149',
     features: [
-      'Interactive 3D dollhouse and floor-by-floor navigation',
-      'Precision schematic floor plans with accurate room measurements',
-      'Hosted virtual tour link ready for MLS, Realtor.ca, and social media integration',
-      'Accessible on all devices—mobile phones, tablets, desktops, and VR headsets',
-      'Reduces unnecessary foot traffic while attracting highly motivated buyers'
-    ]
+      'Transport Canada Compliant & Insured Drone Pilots',
+      'High-altitude 4K aerial video and 20MP stills',
+      'Property boundary lot line overlays available',
+      'Scenic neighborhood and sunset flyover shots'
+    ],
+    turnaround: '12 Hours'
   },
   {
-    id: 'professional-headshots',
-    title: 'Professional Realtor Headshots',
-    eyebrow: 'Personal Branding & Executive Presence',
-    description: 'Elevate your real estate brand with a modern, commanding headshot. Shot in our dedicated studio or on location with high-end commercial retouching that enhances your natural confidence without artificial plastic filtering.',
-    image: '/images/portfolio-foyer.jpg',
+    id: 'matterport',
+    name: '3D Matterport Virtual Tours',
+    tagline: '24/7 Immersive Open House for Remote Buyers',
+    desc: 'Give out-of-town buyers and serious investors an interactive 3D dollhouse model and room-by-room virtual walk through the property.',
+    price: 'From $199',
     features: [
-      '15-minute guided in-studio or on-location session with posture coaching',
-      '15-minute live photo review to pick your favorite portraits immediately',
-      '2 High-Resolution master retouched JPGs for billboard and print feature sheets',
-      '2 Transparent PNG cutouts ready for social graphics and listing flyers',
-      'Optional in-house professional makeup and hair styling'
-    ]
+      'Accurate 3D dollhouse and overhead floor views',
+      'Measurement tool for buyers to verify furniture fit',
+      '6 months of cloud hosting included',
+      'Embeddable in MLS, Realtor.ca, and social media'
+    ],
+    turnaround: '24 Hours'
+  },
+  {
+    id: 'floor-plans',
+    name: 'Laser-Measured Floor Plans',
+    tagline: 'Accurate 2D & 3D Schematics with Room Dimensions',
+    desc: 'Buyers make purchasing decisions based on layout. Our digital floor plans display exact square footage, room names, and layout flow.',
+    price: 'From $99',
+    features: [
+      'Laser-measured on-site with ±1% accuracy',
+      'Total gross internal area (GIA) calculations',
+      'Branded and unbranded MLS-compliant versions',
+      'Delivered in high-resolution PDF and PNG formats'
+    ],
+    turnaround: '12 Hours'
+  },
+  {
+    id: 'virtual-staging',
+    name: 'Virtual Staging & Twilight',
+    tagline: 'Turn Empty Rooms Into Warm, Buyer-Ready Homes',
+    desc: 'Help buyers visualize potential without spending thousands on physical staging. We stage vacant living rooms, master suites, and patios digitally.',
+    price: '$40 / photo',
+    features: [
+      'Modern, Scandinavian, or Luxury furnishings',
+      'Photorealistic textures, shadows, and lighting match',
+      'Virtual twilight conversion from daytime photos',
+      'Decluttering & item removal services available'
+    ],
+    turnaround: '24 Hours'
   }
 ];
 
-export const PORTFOLIO_GALLERY = [
+export const ALACARTE_ADDONS = [
+  { name: 'Virtual Twilight Conversion', price: '$50', unit: 'per photo', desc: 'Convert daytime exterior to dramatic dusk sunset with glowing interior lights.' },
+  { name: 'Real Twilight Photography Shoot', price: '$149', unit: 'on-site', desc: 'On-site golden hour & blue hour photoshoot for breathtaking luxury exteriors.' },
+  { name: 'Virtual Staging', price: '$40', unit: 'per room photo', desc: 'Digitally furnish empty rooms with current designer furniture and decor.' },
+  { name: '2D Measured Floor Plan (Stand-alone)', price: '$99', unit: 'up to 2,500 sq ft', desc: 'Laser accurate measurements with square footage breakdown.' },
+  { name: '3D Matterport Tour (Stand-alone)', price: '$199', unit: 'up to 2,500 sq ft', desc: 'Interactive dollhouse 3D walkthrough with 6 months hosting.' },
+  { name: 'Drone Aerial Photography (Stand-alone)', price: '$149', unit: '8–12 photos', desc: 'Transport Canada certified aerial high-res photos.' },
+  { name: 'Social Media Reel (Vertical 9:16)', price: '$99', unit: 'per reel', desc: 'Fast-paced, hook-driven vertical video for Instagram Reels and TikTok.' },
+  { name: 'Custom Listing Feature Website', price: '$49', unit: 'per listing', desc: 'Dedicated single-property website with custom domain and lead capture form.' }
+];
+
+export const GUARANTEES = [
   {
-    id: 1,
-    title: 'Luxury Living & Toronto Skyline Balcony',
-    category: 'Residential',
-    location: 'Downtown Toronto, ON',
-    description: 'Over 1,100 sq ft luxury condo featuring floor-to-ceiling windows and a 400 sq ft wrap-around terrace overlooking the city skyline.',
-    image: '/images/portfolio-skyline.jpg',
-    featured: true
+    title: '100% Satisfaction Guarantee',
+    desc: 'We are confident you will love your media. If anything does not meet your high standards, we will reshoot or re-edit until you are thrilled.'
   },
   {
-    id: 2,
-    title: 'Woodwards W-43 Architectural Landmark',
-    category: 'Architectural',
-    location: 'Vancouver, BC / Toronto',
-    description: 'Iconic high-density architectural tower captured with precision vertical tilt-shift perspective.',
-    image: '/images/arch-woodwards.jpg',
-    featured: true
+    title: 'On-Time Delivery Guarantee',
+    desc: 'Your photos will be ready in your inbox within 12 hours (guaranteed by 9:00 AM next morning). If we are ever late, you receive 50% off.'
   },
   {
-    id: 3,
-    title: 'Custom Contemporary Chef Kitchen',
-    category: 'Residential',
-    location: 'South Ajax, ON',
-    description: 'Bright open-concept gourmet kitchen with custom cabinetry, quartz waterfall island, and designer pendant fixtures.',
-    image: '/images/portfolio-kitchen.jpg',
-    featured: false
+    title: 'Pay After Approval',
+    desc: 'Zero upfront deposit required. We shoot, edit, and send watermarked previews. You only pay once you review and approve the final product.'
   },
   {
-    id: 4,
-    title: 'Hotel X Toronto Luxury Hospitality',
-    category: 'Commercial',
-    location: 'Exhibition Place, Toronto',
-    description: 'Commercial hospitality shoot capturing interior grandeur and waterfront architecture.',
-    image: '/images/arch-hotel-x.jpg',
-    featured: true
+    title: 'Unlimited Free Revisions',
+    desc: 'Need a sky change, grass greener, exposure adjusted, or a photo re-ordered? We perform adjustments quickly at no additional charge.'
+  }
+];
+
+export const HOW_IT_WORKS_STEPS = [
+  {
+    step: '01',
+    title: 'Book in 60 Seconds',
+    desc: 'Choose your package, pick your preferred shoot date and time, and enter the property address. No deposit required.'
   },
   {
-    id: 5,
-    title: 'One Bloor Luxury Residence',
-    category: 'Architectural',
-    location: 'Bloor-Yorkville, Toronto',
-    description: 'One of Canada’s most prestigious residential high-rises shot for luxury real estate marketing.',
-    image: '/images/arch-one-bloor.jpg',
-    featured: false
+    step: '02',
+    title: 'We Capture the Property',
+    desc: 'Our certified real estate media specialists arrive on time with cinema cameras, lighting, drones, and laser measurement tools.'
   },
   {
-    id: 6,
-    title: 'The Paramount Keltic Development',
-    category: 'Architectural',
-    location: 'Metro Vancouver / Richmond',
-    description: 'Contemporary mixed-use urban architectural project showcasing curved glass facades and public concourse.',
-    image: '/images/arch-paramount.jpg',
-    featured: false
+    step: '03',
+    title: '12-Hour Professional Editing',
+    desc: 'Our in-house editorial team balances exposures, performs sky replacements, color grades video, and builds floor plans overnight.'
   },
   {
-    id: 7,
-    title: 'King Portland Centre Commercial Space',
-    category: 'Commercial',
-    location: 'King West Fashion District, Toronto',
-    description: 'Award-winning sustainable office and retail complex emphasizing brick-and-beam authenticity with modern steel.',
-    image: '/images/arch-king-portland.jpg',
-    featured: false
+    step: '04',
+    title: 'Review, Approve & Launch',
+    desc: 'Download your high-resolution print files and MLS-optimized photos ready to upload immediately.'
+  }
+];
+
+export const TESTIMONIALS = [
+  {
+    quote: 'StudioGTA has been a game-changer for my listings. The 12-hour turnaround is real — I shot a luxury detached home at 3 PM and had high-res photos and drone footage ready to upload by 8:30 AM the next day.',
+    author: 'David Chen',
+    brokerage: 'RE/MAX Realtron Realty Inc.',
+    location: 'Markham / Richmond Hill',
+    rating: 5
   },
   {
-    id: 8,
-    title: 'Modern Great Room & Staged Living',
-    category: 'Residential',
-    location: 'Markham, ON',
-    description: 'Expansive open-plan living room with natural ambient light and curated staging accents.',
-    image: '/images/portfolio-living.jpg',
-    featured: false
+    quote: 'The video quality is cinema-grade. The property sold in 4 days with multiple offers, and the buyers specifically mentioned the video walkthrough in their decision. Pay after approval gives me complete peace of mind.',
+    author: 'Sarah Jenkins',
+    brokerage: 'Royal LePage Signature Realty',
+    location: 'Toronto / GTA',
+    rating: 5
   },
   {
-    id: 9,
-    title: 'Wellesley on the Park Residential Tower',
-    category: 'Architectural',
-    location: 'Downtown Toronto',
-    description: 'Flowing sculptural balcony ribbons defining modern downtown high-rise architecture.',
-    image: '/images/arch-wellesley.jpg',
-    featured: false
-  },
-  {
-    id: 10,
-    title: 'Master Retreat & Natural Illumination',
-    category: 'Residential',
-    location: 'Richmond Hill, ON',
-    description: 'Tranquil master bedroom suite with natural hardwood floors and soft morning window light.',
-    image: '/images/portfolio-bedroom.jpg',
-    featured: false
-  },
-  {
-    id: 11,
-    title: 'Executive Dining & Architectural Millwork',
-    category: 'Residential',
-    location: 'Vaughan, ON',
-    description: 'Sophisticated formal dining area highlighting custom ceiling woodwork and ambient chandelier lighting.',
-    image: '/images/portfolio-dining.jpg',
-    featured: false
-  },
-  {
-    id: 12,
-    title: 'Modern Condominium Grand Foyer',
-    category: 'Residential',
-    location: 'North York, ON',
-    description: 'Inviting entrance foyer emphasizing sightlines and materials.',
-    image: '/images/portfolio-foyer.jpg',
-    featured: false
+    quote: 'I used to struggle with photographers missing deadlines or delivering dark photos. StudioGTA’s HDR photos are vibrant, windows are clear, and customer service is always responsive.',
+    author: 'Michael Tremblay',
+    brokerage: 'Century 21 Heritage Group',
+    location: 'London & Southwestern ON',
+    rating: 5
   }
 ];
 
 export const FAQS = [
   {
-    q: 'How fast will I receive the final photos and video?',
-    a: 'We understand that in the fast-paced GTA real estate market, timing is everything. Our HDR photography packages are delivered within 24 hours. Packages including cinematic video or 3D Matterport tours are delivered within 24 to 48 hours.'
+    category: 'Booking & Scheduling',
+    q: 'How far in advance do I need to book a shoot?',
+    a: 'We typically recommend booking 24 to 48 hours in advance. However, we keep dedicated emergency slots open for last-minute same-day shoots.'
   },
   {
-    q: 'Are the photos formatted for MLS upload?',
-    a: 'Yes, absolutely. You receive two full sets of files: a high-resolution set suited for luxury print brochures and magazines, and a properly formatted, compressed set ready for immediate upload to TRREB MLS, Realtor.ca, and brokerage portals.'
+    category: 'Booking & Scheduling',
+    q: 'What is your cancellation and weather policy?',
+    a: 'You can cancel or reschedule free of charge up to 12 hours prior to the appointment. If adverse weather impacts exterior or drone work, we will return for exteriors at no charge or reschedule free of charge.'
   },
   {
-    q: 'How do I prepare the home prior to the photoshoot?',
-    a: 'Ensure all interior lights and lamps are turned on, window blinds are neatly leveled to let in natural light, countertops are cleared of personal toiletries or clutter, and vehicles are parked away from the driveway to ensure unobstructed exterior views.'
+    category: 'Turnaround & Delivery',
+    q: 'What is your turnaround time?',
+    a: 'HDR photography and floor plans are delivered within 12 hours (guaranteed by 9:00 AM the following morning). Cinematic video walkthroughs and 3D Matterport tours are delivered within 12–24 hours.'
   },
   {
-    q: 'What is your service coverage area?',
-    a: 'Studio GTA covers the entire Greater Toronto Area, including Toronto, Markham, Richmond Hill, Vaughan, Mississauga, Brampton, Oakville, Burlington, Ajax, Pickering, and surrounding Ontario regions.'
-  },
-  {
-    q: 'How do I book a shoot?',
-    a: 'You can book directly through our website by choosing a package and submitting your property details, emailing us at tour@studiogta.ca, or calling Herman directly at 647-300-0315.'
+    category: 'Pricing & Payment',
+    q: 'Do you require a deposit before shooting?',
+    a: 'No! Zero upfront deposit required. We capture and edit the media, send you watermarked previews, and you only pay once you review and approve the final product.'
   }
 ];

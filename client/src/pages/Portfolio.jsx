@@ -1,364 +1,307 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { createPortal } from 'react-dom';
-import { Link } from 'react-router-dom';
-import { ArrowRight, X, MapPin, Tag, Eye, CheckCircle2 } from 'lucide-react';
-import { PORTFOLIO_GALLERY } from '../data/siteData';
-import useScrollReveal from '../hooks/useScrollReveal';
+import React, { useState } from 'react';
+import { Star, Calendar } from 'lucide-react';
+import { TESTIMONIALS } from '../data/siteData';
 
-/**
- * Accessible, Responsive Lightbox Modal for Portfolio Projects
- * Rendered via createPortal directly into document.body to escape
- * any transformed containing blocks or scroll boundaries.
- */
-function PortfolioModal({ item, onClose, onOpenBooking }) {
-  const closeBtnRef = useRef(null);
-  const previousFocusRef = useRef(null);
-
-  // Manage body scroll lock and focus management safely
-  useEffect(() => {
-    previousFocusRef.current = document.activeElement;
-
-    // Preserve original body inline styles
-    const originalOverflow = document.body.style.overflow;
-    const originalPaddingRight = document.body.style.paddingRight;
-
-    // Calculate scrollbar width to prevent desktop layout shifts
-    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-    if (scrollbarWidth > 0) {
-      document.body.style.paddingRight = `${scrollbarWidth}px`;
-    }
-    document.body.style.overflow = 'hidden';
-
-    // Keyboard listener for Escape dismissal
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') {
-        e.preventDefault();
-        onClose();
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-
-    // Focus close button with preventScroll to ensure the viewport never jumps
-    const focusTimer = setTimeout(() => {
-      if (closeBtnRef.current) {
-        closeBtnRef.current.focus({ preventScroll: true });
-      }
-    }, 40);
-
-    return () => {
-      clearTimeout(focusTimer);
-      document.body.style.overflow = originalOverflow;
-      document.body.style.paddingRight = originalPaddingRight;
-      window.removeEventListener('keydown', handleKeyDown);
-
-      // Restore focus to previously active element without scrolling
-      if (previousFocusRef.current && typeof previousFocusRef.current.focus === 'function') {
-        previousFocusRef.current.focus({ preventScroll: true });
-      }
-    };
-  }, [onClose]);
-
-  const handleBackdropClick = (e) => {
-    // Only close if user clicked directly on the backdrop element itself
-    if (e.target === e.currentTarget) {
-      onClose();
-    }
-  };
-
-  const handleBookingAction = (e) => {
-    onClose();
-    if (onOpenBooking) {
-      e.preventDefault();
-      onOpenBooking('hdr-photography');
-    }
-  };
-
-  return (
-    <div
-      className="portfolio-modal-backdrop"
-      onClick={handleBackdropClick}
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="portfolio-modal-title"
-      aria-describedby="portfolio-modal-desc"
-    >
-      <div
-        className="portfolio-modal-dialog"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Floating Close Button */}
-        <button
-          ref={closeBtnRef}
-          type="button"
-          className="portfolio-modal-close"
-          onClick={onClose}
-          aria-label="Close project details"
-        >
-          <X size={20} aria-hidden="true" />
-        </button>
-
-        {/* Two-Column Desktop / Single-Column Mobile Case Study Layout */}
-        <div className="portfolio-modal-layout">
-          {/* Column 1: High-Definition Photography */}
-          <div className="portfolio-modal-image-col">
-            <div className="portfolio-modal-image-container">
-              <img
-                src={item.image}
-                alt={item.title}
-                className="portfolio-modal-img"
-              />
-            </div>
-          </div>
-
-          {/* Column 2: Project Details & Case Study Information */}
-          <div className="portfolio-modal-details-col">
-            <div className="portfolio-modal-details-scroll">
-              {/* Category & Location Badges */}
-              <div className="portfolio-modal-meta-row">
-                <span className="portfolio-modal-category-badge">
-                  <Tag size={12} aria-hidden="true" />
-                  <span>{item.category}</span>
-                </span>
-                {item.location && (
-                  <span className="portfolio-modal-location-badge">
-                    <MapPin size={13} className="icon-gold" aria-hidden="true" />
-                    <span>{item.location}</span>
-                  </span>
-                )}
-              </div>
-
-              {/* Project Title */}
-              <h2 id="portfolio-modal-title" className="portfolio-modal-title">
-                {item.title}
-              </h2>
-
-              {/* Property Overview */}
-              <div className="portfolio-modal-body-section">
-                <h3 className="portfolio-modal-section-label">Property Overview</h3>
-                <p id="portfolio-modal-desc" className="portfolio-modal-desc">
-                  {item.description}
-                </p>
-              </div>
-
-              {/* Studio GTA Quality Guarantee Highlights */}
-              <div className="portfolio-modal-highlights">
-                <div className="portfolio-modal-highlight-item">
-                  <CheckCircle2 size={15} className="icon-gold" aria-hidden="true" />
-                  <span>Next-Day 24-48h MLS Media Delivery</span>
-                </div>
-                <div className="portfolio-modal-highlight-item">
-                  <CheckCircle2 size={15} className="icon-gold" aria-hidden="true" />
-                  <span>High-Resolution Print & TRREB Ready Files</span>
-                </div>
-                <div className="portfolio-modal-highlight-item">
-                  <CheckCircle2 size={15} className="icon-gold" aria-hidden="true" />
-                  <span>Studio GTA 100% Satisfaction Guarantee</span>
-                </div>
-              </div>
-
-              {/* Action CTAs */}
-              <div className="portfolio-modal-actions">
-                <Link
-                  to="/packages"
-                  className="btn btn-gold portfolio-modal-book-cta"
-                  onClick={handleBookingAction}
-                >
-                  <span>Book Shoot For This Property</span>
-                  <ArrowRight size={16} aria-hidden="true" />
-                </Link>
-                <button
-                  type="button"
-                  onClick={onClose}
-                  className="btn btn-secondary portfolio-modal-dismiss-btn"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+const PORTFOLIO_ITEMS = [
+  {
+    id: 1,
+    title: 'Modern Architecture Living Room',
+    category: 'photography',
+    categoryName: 'HDR Photography',
+    img: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1000&auto=format&fit=crop',
+    location: 'Oakville, ON'
+  },
+  {
+    id: 2,
+    title: 'Custom Waterfront Estate Aerial',
+    category: 'drone',
+    categoryName: 'Aerial Drone',
+    img: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1000&auto=format&fit=crop',
+    location: 'Burlington, ON'
+  },
+  {
+    id: 3,
+    title: 'Minimalist Chef Kitchen & Island',
+    category: 'photography',
+    categoryName: 'HDR Photography',
+    img: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1000&auto=format&fit=crop',
+    location: 'Toronto, ON'
+  },
+  {
+    id: 4,
+    title: 'Virtually Staged Primary Suite',
+    category: 'staging',
+    categoryName: 'Virtual Staging',
+    img: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1000&auto=format&fit=crop',
+    location: 'Markham, ON'
+  },
+  {
+    id: 5,
+    title: 'Twilight Luxury Backyard Oasis',
+    category: 'photography',
+    categoryName: 'Twilight Stills',
+    img: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1000&auto=format&fit=crop',
+    location: 'Richmond Hill, ON'
+  },
+  {
+    id: 6,
+    title: 'High-Altitude Suburban Panorama',
+    category: 'drone',
+    categoryName: 'Aerial Drone',
+    img: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=1000&auto=format&fit=crop',
+    location: 'London, ON'
+  },
+  {
+    id: 7,
+    title: 'Spa-Inspired Ensuite Bathroom',
+    category: 'photography',
+    categoryName: 'HDR Photography',
+    img: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?q=80&w=1000&auto=format&fit=crop',
+    location: 'Mississauga, ON'
+  },
+  {
+    id: 8,
+    title: 'Virtually Staged Open Concept Living',
+    category: 'staging',
+    categoryName: 'Virtual Staging',
+    img: 'https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?q=80&w=1000&auto=format&fit=crop',
+    location: 'Vaughan, ON'
+  },
+  {
+    id: 9,
+    title: 'Cinematic Walkthrough Feature',
+    category: 'video',
+    categoryName: '4K Cinema Video',
+    img: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1000&auto=format&fit=crop',
+    location: 'Kitchener-Waterloo, ON'
+  }
+];
 
 export default function Portfolio({ onOpenBooking }) {
-  useScrollReveal();
-  const [activeFilter, setActiveFilter] = useState('All');
-  const [activeModalItem, setActiveModalItem] = useState(null);
+  const [activeFilter, setActiveFilter] = useState('all');
+  const [sliderPosition, setSliderPosition] = useState(50);
 
-  const categories = ['All', 'Residential', 'Architectural', 'Commercial'];
-
-  const filteredItems = activeFilter === 'All'
-    ? PORTFOLIO_GALLERY
-    : PORTFOLIO_GALLERY.filter((item) => item.category === activeFilter);
-
-  const handleHeroBookClick = (e) => {
-    if (onOpenBooking) {
-      e.preventDefault();
-      onOpenBooking();
-    }
-  };
-
-  const handleOpenProject = (item, e) => {
-    if (e) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-    setActiveModalItem(item);
-  };
+  const filteredItems = PORTFOLIO_ITEMS.filter((item) => {
+    if (activeFilter === 'all') return true;
+    return item.category === activeFilter;
+  });
 
   return (
     <div className="portfolio-page">
-      {/* PAGE HERO: PANORAMIC PHOTOGRAPHY SHOWCASE */}
-      <section className="page-hero-panoramic" aria-label="Portfolio Hero">
-        <img
-          src="/images/portfolio-skyline.jpg"
-          alt="Luxury Living and Toronto Skyline Balcony by Studio GTA"
-          className="page-hero-panoramic-bg"
-          fetchPriority="high"
-        />
-        <div className="page-hero-panoramic-overlay" />
+      {/* Page Hero */}
+      <section className="section section-muted" style={{ paddingBottom: '3rem' }}>
         <div className="container">
-          <div className="page-hero-panoramic-content">
-            <div className="eyebrow" style={{ color: 'var(--color-gold)' }}>
-              <span className="eyebrow-dot" />
-              <span>Curated Architectural Work</span>
-            </div>
-            <h1 className="page-hero-panoramic-title">Portfolio of Properties & Architecture</h1>
-            <p className="page-hero-panoramic-desc">
-              Explore our residential and commercial media across Toronto and the Greater Toronto Area. Every image is carefully exposed, framed, and color-graded to accentuate the property's finest attributes.
+          <div className="section-header">
+            <span className="eyebrow">FEATURED WORK</span>
+            <h1 className="section-title">Media Portfolio</h1>
+            <p className="section-desc">
+              Explore our recent photography, aerial drone cinematography, and virtual staging productions across Southwest Ontario and the Greater Toronto Area.
             </p>
-            <div className="page-hero-cta-group">
-              <a
-                href="#portfolio-gallery"
-                className="btn btn-gold"
-              >
-                <span>Explore Gallery</span>
-                <ArrowRight size={16} aria-hidden="true" />
-              </a>
-              <Link
-                to="/packages"
-                onClick={handleHeroBookClick}
-                className="btn btn-white"
-              >
-                Book a Shoot
-              </Link>
-            </div>
+          </div>
+
+          {/* Filter Tabs */}
+          <div className="filter-tabs">
+            <button
+              type="button"
+              className={`filter-btn ${activeFilter === 'all' ? 'active' : ''}`}
+              onClick={() => setActiveFilter('all')}
+            >
+              All Media
+            </button>
+            <button
+              type="button"
+              className={`filter-btn ${activeFilter === 'photography' ? 'active' : ''}`}
+              onClick={() => setActiveFilter('photography')}
+            >
+              HDR Photography
+            </button>
+            <button
+              type="button"
+              className={`filter-btn ${activeFilter === 'drone' ? 'active' : ''}`}
+              onClick={() => setActiveFilter('drone')}
+            >
+              Aerial Drone
+            </button>
+            <button
+              type="button"
+              className={`filter-btn ${activeFilter === 'staging' ? 'active' : ''}`}
+              onClick={() => setActiveFilter('staging')}
+            >
+              Virtual Staging
+            </button>
+            <button
+              type="button"
+              className={`filter-btn ${activeFilter === 'video' ? 'active' : ''}`}
+              onClick={() => setActiveFilter('video')}
+            >
+              Cinematic Video
+            </button>
           </div>
         </div>
       </section>
 
-      {/* FILTER BUTTONS & GALLERY */}
-      <section id="portfolio-gallery" style={{ padding: 'var(--section-spacing) 0', backgroundColor: 'var(--color-white)' }}>
+      {/* Gallery Grid */}
+      <section className="section">
         <div className="container">
-          {/* Category Filter */}
-          <div className="portfolio-filter-row reveal" role="tablist" aria-label="Filter portfolio projects">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                type="button"
-                role="tab"
-                aria-selected={activeFilter === cat}
-                onClick={() => setActiveFilter(cat)}
-                className={`filter-btn ${activeFilter === cat ? 'active' : ''}`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-
-          {/* Responsive 3-Col / 2-Col / 1-Col Project Grid */}
-          <div className="portfolio-gallery-grid reveal">
+          <div className="gallery-grid">
             {filteredItems.map((item) => (
-              <article key={item.id} className="portfolio-card">
-                <div
-                  className="portfolio-card-media"
-                  onClick={(e) => handleOpenProject(item, e)}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      handleOpenProject(item, e);
-                    }
-                  }}
-                  aria-label={`View photo of ${item.title}`}
-                >
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    loading="lazy"
-                    width="600"
-                    height="400"
-                  />
-                  <span className="portfolio-card-badge">{item.category}</span>
-                  <div className="portfolio-card-media-overlay" aria-hidden="true">
-                    <span className="portfolio-card-quick-view">
-                      <Eye size={15} />
-                      <span>View Full Size</span>
-                    </span>
-                  </div>
+              <div key={item.id} className="gallery-item">
+                <img src={item.img} alt={item.title} loading="lazy" />
+                <div className="gallery-overlay">
+                  <span className="gallery-caption-sub">{item.categoryName} • {item.location}</span>
+                  <div className="gallery-caption-title">{item.title}</div>
                 </div>
-
-                <div className="portfolio-card-body">
-                  {item.location && (
-                    <div className="portfolio-card-location">
-                      <MapPin size={13} className="icon-gold" aria-hidden="true" />
-                      <span>{item.location}</span>
-                    </div>
-                  )}
-
-                  <h2 className="portfolio-card-title">{item.title}</h2>
-
-                  {item.description && (
-                    <p className="portfolio-card-desc">{item.description}</p>
-                  )}
-
-                  <div className="portfolio-card-footer">
-                    <button
-                      type="button"
-                      className="portfolio-explore-btn"
-                      onClick={(e) => handleOpenProject(item, e)}
-                      aria-label={`Explore project: ${item.title}`}
-                    >
-                      <span>Explore Project</span>
-                      <ArrowRight size={15} aria-hidden="true" />
-                    </button>
-                  </div>
-                </div>
-              </article>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* PORTAL-RENDERED RESPONSIVE TWO-COLUMN MODAL */}
-      {activeModalItem && typeof document !== 'undefined' && createPortal(
-        <PortfolioModal
-          item={activeModalItem}
-          onClose={() => setActiveModalItem(null)}
-          onOpenBooking={onOpenBooking}
-        />,
-        document.body
-      )}
-
-      {/* CLOSING CTA BANNER */}
-      <section className="cta-banner-section">
+      {/* Interactive Before & After Slider */}
+      <section className="section section-muted">
         <div className="container">
-          <div className="cta-banner-inner reveal">
-            <h2>Impressed By The Quality?</h2>
-            <p>
-              Let Studio GTA capture your next property with the same care and attention to detail. Fast next-day turnaround guaranteed.
+          <div className="section-header">
+            <span className="eyebrow">TRANSFORMATION PREVIEW</span>
+            <h2 className="section-title">Day-to-Dusk Twilight & Virtual Staging</h2>
+            <p className="section-desc">
+              Drag the interactive slider below to see how our post-production enhancements elevate ordinary property photography into captivating luxury marketing.
             </p>
-            <div className="cta-banner-actions">
-              <Link to="/packages" className="btn btn-gold">
-                <span>View Pricing & Book Shoot</span>
-                <ArrowRight size={16} aria-hidden="true" />
-              </Link>
-              <Link to="/contact" className="btn btn-secondary" style={{ color: 'var(--color-white)', borderColor: 'rgba(255,255,255,0.25)' }}>
-                Request Custom Quote
-              </Link>
+          </div>
+
+          <div style={{
+            maxWidth: '880px',
+            margin: '0 auto',
+            borderRadius: 'var(--radius-xl)',
+            overflow: 'hidden',
+            position: 'relative',
+            aspectRatio: '16 / 10',
+            boxShadow: 'var(--shadow-card)',
+            border: '1px solid var(--color-border)',
+            userSelect: 'none'
+          }}>
+            {/* After Image (Twilight Enhanced) */}
+            <img
+              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop"
+              alt="Twilight Enhanced Property"
+              style={{
+                position: 'absolute',
+                inset: 0,
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover'
+              }}
+            />
+
+            {/* Before Image (Daytime / Raw) */}
+            <div
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                bottom: 0,
+                width: `${sliderPosition}%`,
+                overflow: 'hidden',
+                borderRight: '2px solid #ffffff'
+              }}
+            >
+              <img
+                src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1200&auto=format&fit=crop"
+                alt="Original Daytime Property"
+                style={{
+                  width: '880px',
+                  maxWidth: 'none',
+                  height: '100%',
+                  objectFit: 'cover'
+                }}
+              />
+              <span style={{
+                position: 'absolute',
+                top: '1rem',
+                left: '1rem',
+                backgroundColor: 'rgba(0,0,0,0.65)',
+                color: '#ffffff',
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.75rem',
+                fontWeight: 600,
+                padding: '0.25rem 0.65rem',
+                borderRadius: 'var(--radius-sm)'
+              }}>
+                ORIGINAL DAYTIME
+              </span>
             </div>
+
+            {/* After Tag */}
+            <span style={{
+              position: 'absolute',
+              top: '1rem',
+              right: '1rem',
+              backgroundColor: 'var(--color-gold)',
+              color: '#ffffff',
+              fontFamily: 'var(--font-mono)',
+              fontSize: '0.75rem',
+              fontWeight: 700,
+              padding: '0.25rem 0.65rem',
+              borderRadius: 'var(--radius-sm)'
+            }}>
+              STUDIOGTA ENHANCED
+            </span>
+
+            {/* Range Input Slider Controller */}
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value={sliderPosition}
+              onChange={(e) => setSliderPosition(Number(e.target.value))}
+              style={{
+                position: 'absolute',
+                inset: 0,
+                width: '100%',
+                height: '100%',
+                opacity: 0,
+                cursor: 'ew-resize',
+                zIndex: 10
+              }}
+              aria-label="Before and after transformation slider"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="section">
+        <div className="container">
+          <div className="section-header">
+            <span className="eyebrow">WHAT REALTORS SAY</span>
+            <h2 className="section-title">Client Feedback</h2>
+          </div>
+
+          <div className="testimonials-grid">
+            {TESTIMONIALS.slice(0, 2).map((t, idx) => (
+              <div key={idx} className="testimonial-card">
+                <div className="testimonial-stars">
+                  {[...Array(t.rating)].map((_, i) => (
+                    <Star key={i} size={18} fill="#cba238" stroke="#cba238" />
+                  ))}
+                </div>
+                <p className="testimonial-quote">"{t.quote}"</p>
+                <div className="testimonial-author-block">
+                  <div className="testimonial-author-name">{t.author}</div>
+                  <div className="testimonial-brokerage">{t.brokerage} • {t.location}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+            <button
+              type="button"
+              className="btn btn-primary btn-lg"
+              onClick={() => onOpenBooking('standard')}
+            >
+              <Calendar size={18} />
+              <span>Book Your Next Shoot</span>
+            </button>
           </div>
         </div>
       </section>

@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import TopBar from './components/TopBar';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import BookingModal from './components/BookingModal';
+import CounterPopup from './components/CounterPopup';
 import ScrollToTop from './components/ScrollToTop';
 import ErrorBoundary from './components/ErrorBoundary';
-import LoadingScreen from './components/LoadingScreen';
 
 // Pages
 import Home from './pages/Home';
@@ -15,26 +14,52 @@ import Portfolio from './pages/Portfolio';
 import Services from './pages/Services';
 import Packages from './pages/Packages';
 import Contact from './pages/Contact';
+import Booking from './pages/Booking';
+import FAQ from './pages/FAQ';
 
-function MainRouter({ onOpenBooking }) {
+function MainRouter({ onOpenBooking, onOpenContact }) {
   const location = useLocation();
 
   return (
-    <div key={location.pathname} className="page-transition-wrap" style={{ minHeight: '100%' }}>
+    <div key={location.pathname} className="main-content">
       <Routes location={location}>
-        <Route path="/" element={<Home onOpenBooking={(pkgId) => onOpenBooking(pkgId)} />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/portfolio" element={<Portfolio onOpenBooking={(pkgId) => onOpenBooking(pkgId)} />} />
-        <Route path="/services" element={<Services onOpenBooking={(pkgId) => onOpenBooking(pkgId)} />} />
-        
-        {/* Package and Direct Booking Routes */}
-        <Route path="/packages" element={<Packages onOpenBookingWithPackage={(pkgId) => onOpenBooking(pkgId)} />} />
-        <Route path="/packages/book" element={<Packages onOpenBookingWithPackage={(pkgId) => onOpenBooking(pkgId)} />} />
-        <Route path="/book" element={<Packages onOpenBookingWithPackage={(pkgId) => onOpenBooking(pkgId || 'hdr-photography')} />} />
-        <Route path="/booking" element={<Packages onOpenBookingWithPackage={(pkgId) => onOpenBooking(pkgId || 'video-photo')} />} />
-        
-        <Route path="/contact" element={<Contact />} />
-        
+        <Route
+          path="/"
+          element={<Home onOpenBooking={onOpenBooking} onOpenContact={onOpenContact} />}
+        />
+        <Route
+          path="/about"
+          element={<About onOpenBooking={onOpenBooking} />}
+        />
+        <Route
+          path="/portfolio"
+          element={<Portfolio onOpenBooking={onOpenBooking} />}
+        />
+        <Route
+          path="/services"
+          element={<Services onOpenBooking={onOpenBooking} />}
+        />
+        <Route
+          path="/packages"
+          element={<Packages onOpenBooking={onOpenBooking} />}
+        />
+        <Route
+          path="/booking"
+          element={<Booking onOpenBooking={onOpenBooking} />}
+        />
+        <Route
+          path="/book"
+          element={<Booking onOpenBooking={onOpenBooking} />}
+        />
+        <Route
+          path="/contact"
+          element={<Contact onOpenBooking={onOpenBooking} />}
+        />
+        <Route
+          path="/faq"
+          element={<FAQ onOpenBooking={onOpenBooking} />}
+        />
+
         {/* Fallback to Home */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
@@ -45,9 +70,17 @@ function MainRouter({ onOpenBooking }) {
 export default function App() {
   const [bookingModalOpen, setBookingModalOpen] = useState(false);
   const [selectedPackageId, setSelectedPackageId] = useState('');
+  const [formMode, setFormMode] = useState('booking'); // 'booking' or 'contact'
+  const [discountActive, setDiscountActive] = useState(false);
 
   const handleOpenBooking = (pkgId = '') => {
     setSelectedPackageId(pkgId);
+    setFormMode('booking');
+    setBookingModalOpen(true);
+  };
+
+  const handleOpenContact = () => {
+    setFormMode('contact');
     setBookingModalOpen(true);
   };
 
@@ -55,34 +88,49 @@ export default function App() {
     setBookingModalOpen(false);
   };
 
+  const handleClaimDiscount = () => {
+    setDiscountActive(true);
+    setSelectedPackageId('standard');
+    setFormMode('booking');
+    setBookingModalOpen(true);
+  };
+
   return (
     <ErrorBoundary>
-      {/* Branded Luxury Loading Experience (Initial Startup Only) */}
-      <LoadingScreen />
-
       <BrowserRouter>
         <ScrollToTop />
-        <div className="site-wrapper" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-          {/* Global Top Information Bar */}
-          <TopBar />
+        <div className="site-wrapper">
+          {/* Header includes Announcement Bar, TopBar, and Sticky Nav */}
+          <Header
+            onOpenBooking={handleOpenBooking}
+            onOpenContact={handleOpenContact}
+          />
 
-          {/* Global Intelligent Scroll-Responsive Navigation Header */}
-          <Header onOpenBooking={() => handleOpenBooking()} />
-
-          {/* Main Content Router with Subtle Smooth Page Transitions */}
+          {/* Main Content Router */}
           <main style={{ flexGrow: 1 }}>
-            <MainRouter onOpenBooking={handleOpenBooking} />
+            <MainRouter
+              onOpenBooking={handleOpenBooking}
+              onOpenContact={handleOpenContact}
+            />
           </main>
 
           {/* Global Footer */}
-          <Footer />
+          <Footer
+            onOpenBooking={handleOpenBooking}
+            onOpenContact={handleOpenContact}
+          />
 
-          {/* Global Accessible Booking Modal */}
+          {/* Global Form Modal (opens for both Booking & Contact) */}
           <BookingModal
             isOpen={bookingModalOpen}
             onClose={handleCloseBooking}
             initialPackageId={selectedPackageId}
+            discountActive={discountActive}
+            formMode={formMode}
           />
+
+          {/* Counter Popup (appears on interval / exit intent) */}
+          <CounterPopup onClaimDiscount={handleClaimDiscount} />
         </div>
       </BrowserRouter>
     </ErrorBoundary>
