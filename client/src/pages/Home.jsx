@@ -682,8 +682,9 @@ export default function Home({ onOpenBooking, onOpenContact }) {
             </div>
           </div>
 
-          {/* Four Pricing Cards Grid */}
-          <div className="packages-grid" style={{ marginTop: '2.5rem' }}>
+          {/* Four Pricing Cards Grid in Horizontal Scroller */}
+          <div className="packages-scroller" style={{ marginTop: '2.5rem' }}>
+            <div className="packages-grid">
             {PACKAGES.map((pkg) => (
               <div
                 key={pkg.id}
@@ -765,6 +766,7 @@ export default function Home({ onOpenBooking, onOpenContact }) {
                 </div>
               </div>
             ))}
+            </div>
           </div>
 
           {/* Rate Sheet Footnote */}

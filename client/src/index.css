@@ -810,6 +810,44 @@ button {
 /* ==========================================================================
    PACKAGE CARDS & PRICING
    ========================================================================== */
+.packages-scroller {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 1.5rem;
+  padding-bottom: 1.5rem; /* Space for scrollbar */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+/* Hide scrollbar for a cleaner look */
+.packages-scroller::-webkit-scrollbar {
+  display: none;
+}
+.packages-scroller {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Ensure the cards don't shrink and snap to the start */
+.packages-scroller > * {
+  flex: 0 0 auto;
+  width: 320px; /* Adjust width so 3 fit on desktop, 1 on mobile */
+  scroll-snap-align: start;
+}
+
+.packages-scroller > .packages-grid {
+  display: flex;
+  width: max-content;
+  gap: 1.5rem;
+  flex: 0 0 auto;
+}
+
+.packages-scroller > .packages-grid > * {
+  flex: 0 0 auto;
+  width: 320px;
+  scroll-snap-align: start;
+}
+
 .packages-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

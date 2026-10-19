@@ -69,53 +69,55 @@ export default function Packages({ onOpenBooking }) {
       {/* Package Cards Grid */}
       <section className="section">
         <div className="container">
-          <div className="packages-grid">
-            {filteredPackages.map((pkg) => (
-              <div
-                key={pkg.id}
-                className={`package-card ${pkg.popular ? 'is-popular' : ''}`}
-              >
-                {pkg.popular && (
-                  <div className="package-badge-tag">{pkg.badge}</div>
-                )}
+          <div className="packages-scroller">
+            <div className="packages-grid">
+              {filteredPackages.map((pkg) => (
+                <div
+                  key={pkg.id}
+                  className={`package-card ${pkg.popular ? 'is-popular' : ''}`}
+                >
+                  {pkg.popular && (
+                    <div className="package-badge-tag">{pkg.badge}</div>
+                  )}
 
-                <div className="package-header">
-                  <h3 className="package-tier-name">{pkg.name}</h3>
-                  <div className="package-subtitle">{pkg.subtitle}</div>
+                  <div className="package-header">
+                    <h3 className="package-tier-name">{pkg.name}</h3>
+                    <div className="package-subtitle">{pkg.subtitle}</div>
 
-                  <div className="package-price-wrap" style={{ alignItems: 'baseline', gap: '0.35rem' }}>
-                    <span className="package-currency" style={{ fontSize: '1.25rem', fontWeight: 600 }}>
-                      CAD $
-                    </span>
-                    <span className="package-price">{pkg.price}</span>
+                    <div className="package-price-wrap" style={{ alignItems: 'baseline', gap: '0.35rem' }}>
+                      <span className="package-currency" style={{ fontSize: '1.25rem', fontWeight: 600 }}>
+                        CAD $
+                      </span>
+                      <span className="package-price">{pkg.price}</span>
+                    </div>
+                    <div className="package-sqft">{pkg.sqft}</div>
+                    <div style={{ fontSize: '0.82rem', color: 'var(--color-fg-subtle)', fontStyle: 'italic', marginBottom: '1rem' }}>
+                      Ideal for: {pkg.idealFor}
+                    </div>
                   </div>
-                  <div className="package-sqft">{pkg.sqft}</div>
-                  <div style={{ fontSize: '0.82rem', color: 'var(--color-fg-subtle)', fontStyle: 'italic', marginBottom: '1rem' }}>
-                    Ideal for: {pkg.idealFor}
+
+                  <ul className="package-features">
+                    {pkg.features.map((feat, fIdx) => (
+                      <li key={fIdx} className="package-feature-item">
+                        <Check size={16} />
+                        <span>{feat}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="package-card-footer">
+                    <button
+                      type="button"
+                      className={`btn btn-full ${pkg.popular ? 'btn-primary' : 'btn-outline'}`}
+                      onClick={() => onOpenBooking(pkg.id)}
+                    >
+                      <Calendar size={15} />
+                      <span>Book {pkg.name}</span>
+                    </button>
                   </div>
                 </div>
-
-                <ul className="package-features">
-                  {pkg.features.map((feat, fIdx) => (
-                    <li key={fIdx} className="package-feature-item">
-                      <Check size={16} />
-                      <span>{feat}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="package-card-footer">
-                  <button
-                    type="button"
-                    className={`btn btn-full ${pkg.popular ? 'btn-primary' : 'btn-outline'}`}
-                    onClick={() => onOpenBooking(pkg.id)}
-                  >
-                    <Calendar size={15} />
-                    <span>Book {pkg.name}</span>
-                  </button>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
           {/* Rate Sheet Footnote */}
