@@ -91,7 +91,7 @@ export default function Header({ onOpenBooking, onOpenContact }) {
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav aria-label="Primary Navigation">
+          <nav className="desktop-nav" aria-label="Primary Navigation">
             <ul className="nav-links">
               <li className="nav-item">
                 <NavLink to="/" end className={({ isActive }) => (isActive ? 'active' : '')}>
@@ -147,7 +147,7 @@ export default function Header({ onOpenBooking, onOpenContact }) {
           <div className="header-actions">
             <a
               href={`tel:${COMPANY.phoneClean}`}
-              className="header-phone-link"
+              className="header-phone-link header-desktop-only"
               aria-label={`Call ${COMPANY.phone}`}
             >
               <Phone size={15} className="icon-gold" />
@@ -156,7 +156,7 @@ export default function Header({ onOpenBooking, onOpenContact }) {
 
             <button
               type="button"
-              className="btn btn-outline btn-sm"
+              className="btn btn-outline btn-sm header-desktop-only"
               onClick={handleBookingClick}
               style={{
                 borderColor: '#e5e3df',
@@ -171,7 +171,7 @@ export default function Header({ onOpenBooking, onOpenContact }) {
 
             <button
               type="button"
-              className="btn btn-primary btn-sm"
+              className="btn btn-primary btn-sm header-desktop-only"
               onClick={handleBookingClick}
             >
               <Calendar size={14} />
@@ -253,12 +253,13 @@ export default function Header({ onOpenBooking, onOpenContact }) {
                 background: 'none',
                 border: 'none',
                 cursor: 'pointer',
-                fontSize: '1.1rem',
+                fontSize: '1.05rem',
                 fontWeight: 500,
-                color: 'var(--color-fg)',
-                padding: '0.4rem 0',
+                color: '#374151',
+                padding: '0.5rem 0.75rem',
                 textAlign: 'left',
-                width: '100%'
+                width: '100%',
+                borderRadius: '8px'
               }}
             >
               Contact Us
@@ -291,6 +292,149 @@ export default function Header({ onOpenBooking, onOpenContact }) {
           </button>
         </div>
       </div>
+
+      <style>{`
+        /* Mobile Navigation Media Query (max-width: 1024px) */
+        @media (max-width: 1024px) {
+          .desktop-nav,
+          .nav-links,
+          .header-desktop-only,
+          .header-phone-link {
+            display: none !important;
+          }
+
+          .mobile-menu-toggle {
+            display: inline-flex !important;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: none;
+            padding: 0.5rem;
+            color: var(--color-dark, #111827);
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.2s ease;
+          }
+
+          .mobile-menu-toggle:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+          }
+
+          .header-inner {
+            height: 64px;
+          }
+
+          .brand-logo {
+            font-size: 1.35rem;
+          }
+        }
+
+        @media (min-width: 1025px) {
+          .desktop-nav {
+            display: block !important;
+          }
+          .mobile-menu-toggle {
+            display: none !important;
+          }
+          .mobile-nav-overlay,
+          .mobile-nav-drawer {
+            display: none !important;
+          }
+        }
+
+        .mobile-nav-overlay {
+          position: fixed;
+          inset: 0;
+          background-color: rgba(0, 0, 0, 0.6);
+          backdrop-filter: blur(4px);
+          -webkit-backdrop-filter: blur(4px);
+          z-index: 9998;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.3s ease;
+        }
+
+        .mobile-nav-overlay.is-open {
+          opacity: 1;
+          pointer-events: auto;
+        }
+
+        .mobile-nav-drawer {
+          position: fixed;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          width: min(320px, 85vw);
+          background-color: #ffffff;
+          z-index: 9999;
+          transform: translateX(100%);
+          transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          display: flex;
+          flex-direction: column;
+          box-shadow: -8px 0 30px rgba(0, 0, 0, 0.2);
+          overflow-y: auto;
+        }
+
+        .mobile-nav-drawer.is-open {
+          transform: translateX(0);
+        }
+
+        .mobile-nav-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 1.25rem 1.5rem;
+          border-bottom: 1px solid #f3f4f6;
+        }
+
+        .mobile-nav-close {
+          background: none;
+          border: none;
+          padding: 0.4rem;
+          color: #4b5563;
+          cursor: pointer;
+          border-radius: 8px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .mobile-nav-links {
+          list-style: none;
+          padding: 1.5rem;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
+        }
+
+        .mobile-nav-links a {
+          font-size: 1.05rem;
+          font-weight: 500;
+          color: #374151;
+          display: block;
+          padding: 0.5rem 0.75rem;
+          border-radius: 8px;
+          transition: all 0.15s ease;
+        }
+
+        .mobile-nav-links a:hover,
+        .mobile-nav-links a.active {
+          color: #b45309;
+          background-color: #fef3c7;
+          font-weight: 600;
+        }
+
+        .mobile-nav-footer {
+          margin-top: auto;
+          padding: 1.5rem;
+          border-top: 1px solid #f3f4f6;
+          background-color: #fafaf9;
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
+        }
+      `}</style>
     </>
   );
 }

@@ -6,23 +6,18 @@ export default function CounterPopup({ onClaimDiscount }) {
   const [secondsRemaining, setSecondsRemaining] = useState(486); // 8 minutes 6 seconds (08:06)
   const timeoutRef = useRef(null);
 
+  // Initial 10-second trigger (ONLY ON MOUNT)
   useEffect(() => {
-    // 1. Initial Startup: Exactly 10 seconds (10,000 ms)
-    timeoutRef.current = setTimeout(() => {
+    const initialTimer = setTimeout(() => {
       setIsOpen(true);
-    }, 10000);
+    }, 10000); // 10 seconds
+    return () => clearTimeout(initialTimer);
+  }, []); // Empty array = only runs on page load
 
-    // Also trigger on exit-intent (moving mouse towards top)
-    const handleMouseLeave = (e) => {
-      if (e.clientY <= 15) {
-        setIsOpen(true);
-      }
-    };
-    document.addEventListener('mouseleave', handleMouseLeave);
-
+  // Cleanup cooldown timer on unmount
+  useEffect(() => {
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
-      document.removeEventListener('mouseleave', handleMouseLeave);
     };
   }, []);
 
@@ -43,13 +38,15 @@ export default function CounterPopup({ onClaimDiscount }) {
     return () => clearInterval(interval);
   }, [isOpen]);
 
+  // Close and cooldown function
   const closePopup = () => {
     setIsOpen(false);
-    // 2. Cooldown: Wait exactly 2 minutes (120,000 ms) before appearing again
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
+
+    // Wait 2 minutes before showing again
     timeoutRef.current = setTimeout(() => {
       setIsOpen(true);
-    }, 120000);
+    }, 120000); // 120,000 ms = 2 minutes
   };
 
   const handleClaim = () => {

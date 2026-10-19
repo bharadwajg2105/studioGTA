@@ -1785,13 +1785,15 @@ button {
 
 /* Under 1024px (Tablets & Mobile) */
 @media (max-width: 1024px) {
+  .desktop-nav,
   .nav-links,
-  .header-actions .header-phone-link {
-    display: none;
+  .header-actions .header-phone-link,
+  .header-actions .header-desktop-only {
+    display: none !important;
   }
 
   .mobile-menu-toggle {
-    display: block;
+    display: inline-flex !important;
   }
 
   .hero-grid {

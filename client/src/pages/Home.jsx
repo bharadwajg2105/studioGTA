@@ -448,8 +448,7 @@ export default function Home({ onOpenBooking, onOpenContact }) {
               'Drone',
               'Virtual Tour',
               'Commercial',
-              'Floor Plans',
-              'Airbnb'
+              'Floor Plans'
             ].map((cat) => {
               const active =
                 HERO_SLIDES[currentSlide]?.category.toLowerCase() ===

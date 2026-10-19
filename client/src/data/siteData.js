@@ -130,13 +130,6 @@ export const HERO_SLIDES = [
     category: 'Floor Plans',
     image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1200&auto=format&fit=crop',
     tag: 'SCHEMATIC'
-  },
-  {
-    id: 'airbnb',
-    title: 'High-converting Airbnb & boutique rental media',
-    category: 'Airbnb',
-    image: 'https://images.unsplash.com/photo-1540518614846-7ede433c4550?q=80&w=1200&auto=format&fit=crop',
-    tag: 'HOSPITALITY'
   }
 ];
 
