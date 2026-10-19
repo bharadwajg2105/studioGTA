@@ -15,7 +15,7 @@ export default function Booking() {
     name: '',
     email: '',
     phone: '',
-    package: 'Standard ($399)',
+    package: 'Basic Photo Package ($185)',
     propertyAddress: '',
     preferredDate: '',
     preferredTime: 'Morning (9 AM – 12 PM)',
@@ -78,7 +78,7 @@ export default function Booking() {
           name: '',
           email: '',
           phone: '',
-          package: 'Standard ($399)',
+          package: 'Basic Photo Package ($185)',
           propertyAddress: '',
           preferredDate: '',
           preferredTime: 'Morning (9 AM – 12 PM)',
@@ -318,6 +318,10 @@ export default function Booking() {
                     </>
                   )}
                 </button>
+
+                <div style={{ textAlign: 'center', marginTop: '1rem', fontSize: '0.82rem', color: '#6b7280', fontStyle: 'italic' }}>
+                  * {COMPANY.pricingFootnote}
+                </div>
               </form>
             </div>
           </div>

@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-route
 import Header from './components/Header';
 import Footer from './components/Footer';
 import BookingModal from './components/BookingModal';
-import CounterPopup from './components/CounterPopup';
 import ScrollToTop from './components/ScrollToTop';
 import ErrorBoundary from './components/ErrorBoundary';
 
@@ -71,7 +70,6 @@ export default function App() {
   const [bookingModalOpen, setBookingModalOpen] = useState(false);
   const [selectedPackageId, setSelectedPackageId] = useState('');
   const [formMode, setFormMode] = useState('booking'); // 'booking' or 'contact'
-  const [discountActive, setDiscountActive] = useState(false);
 
   const handleOpenBooking = (pkgId = '') => {
     setSelectedPackageId(pkgId);
@@ -88,19 +86,12 @@ export default function App() {
     setBookingModalOpen(false);
   };
 
-  const handleClaimDiscount = () => {
-    setDiscountActive(true);
-    setSelectedPackageId('standard');
-    setFormMode('booking');
-    setBookingModalOpen(true);
-  };
-
   return (
     <ErrorBoundary>
       <BrowserRouter>
         <ScrollToTop />
         <div className="site-wrapper">
-          {/* Header includes Announcement Bar, TopBar, and Sticky Nav */}
+          {/* Header includes TopBar and Sticky Nav */}
           <Header
             onOpenBooking={handleOpenBooking}
             onOpenContact={handleOpenContact}
@@ -125,12 +116,8 @@ export default function App() {
             isOpen={bookingModalOpen}
             onClose={handleCloseBooking}
             initialPackageId={selectedPackageId}
-            discountActive={discountActive}
             formMode={formMode}
           />
-
-          {/* Counter Popup (appears on interval / exit intent) */}
-          <CounterPopup onClaimDiscount={handleClaimDiscount} />
         </div>
       </BrowserRouter>
     </ErrorBoundary>

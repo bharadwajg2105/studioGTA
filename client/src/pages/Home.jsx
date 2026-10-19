@@ -656,12 +656,12 @@ export default function Home({ onOpenBooking, onOpenContact }) {
                   textTransform: 'uppercase'
                 }}
               >
-                10% OFF Standard & Pro
+                Standard Rates
               </span>
 
               <button
                 type="button"
-                onClick={() => onOpenBooking('standard')}
+                onClick={() => onOpenBooking('photo-regular-video')}
                 style={{
                   backgroundColor: '#ffffff',
                   color: '#111827',
@@ -682,83 +682,8 @@ export default function Home({ onOpenBooking, onOpenContact }) {
             </div>
           </div>
 
-          {/* Property Size Selector */}
-          <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-            <div
-              style={{
-                fontSize: '0.78rem',
-                fontFamily: 'var(--font-mono)',
-                color: '#6b7280',
-                marginBottom: '0.75rem',
-                textTransform: 'uppercase',
-                letterSpacing: '0.06em'
-              }}
-            >
-              ⚡ Select your property size:
-            </div>
-
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                gap: '0.5rem',
-                flexWrap: 'wrap'
-              }}
-            >
-              {[
-                { id: 'all', label: 'All Packages', sub: 'Show all' },
-                { id: 'under1500', label: 'Under 1,500 sqft', sub: 'Condos & Apartments' },
-                { id: '1500-2500', label: '1,500–2,500 sqft', sub: 'Townhomes & Semis' },
-                { id: '2500-5000', label: '2,500–5,000 sqft', sub: 'Standard Detached' },
-                { id: '5000+', label: '5,000+ sqft', sub: 'Luxury & Estates' }
-              ].map((btn) => {
-                const isSelected = selectedSizeFilter === btn.id;
-                return (
-                  <button
-                    key={btn.id}
-                    type="button"
-                    onClick={() => setSelectedSizeFilter(btn.id)}
-                    style={{
-                      padding: '0.55rem 1rem',
-                      borderRadius: '10px',
-                      border: '1px solid',
-                      borderColor: isSelected ? '#d97706' : '#e5e7eb',
-                      backgroundColor: isSelected ? '#fffbeb' : '#ffffff',
-                      color: isSelected ? '#b45309' : '#374151',
-                      cursor: 'pointer',
-                      textAlign: 'center',
-                      boxShadow: '0 1px 3px rgba(0,0,0,0.03)'
-                    }}
-                  >
-                    <div style={{ fontWeight: 700, fontSize: '0.85rem' }}>{btn.label}</div>
-                    <div style={{ fontSize: '0.68rem', color: isSelected ? '#b45309' : '#9ca3af' }}>
-                      {btn.sub}
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Orange 10% OFF Banner */}
-          <div
-            style={{
-              backgroundColor: '#fef3c7',
-              border: '1px solid #fde68a',
-              borderRadius: '10px',
-              padding: '0.75rem 1.25rem',
-              textAlign: 'center',
-              marginBottom: '2.5rem',
-              fontSize: '0.88rem',
-              color: '#92400e',
-              fontWeight: 600
-            }}
-          >
-            ★ 10% OFF Applied to Standard & Pro Only | Premium packages at discounted rates — limited time
-          </div>
-
           {/* Four Pricing Cards Grid */}
-          <div className="packages-grid">
+          <div className="packages-grid" style={{ marginTop: '2.5rem' }}>
             {PACKAGES.map((pkg) => (
               <div
                 key={pkg.id}
@@ -785,39 +710,12 @@ export default function Home({ onOpenBooking, onOpenContact }) {
                   <div className="package-subtitle">{pkg.subtitle}</div>
 
                   <div className="package-price-wrap" style={{ alignItems: 'baseline', gap: '0.35rem' }}>
-                    {pkg.discountApplied && (
-                      <span
-                        style={{
-                          fontSize: '1.25rem',
-                          color: '#9ca3af',
-                          textDecoration: 'line-through'
-                        }}
-                      >
-                        ${pkg.originalPrice}
-                      </span>
-                    )}
-                    <span className="package-currency" style={{ color: pkg.popular ? '#b45309' : '#111827' }}>
-                      $
+                    <span className="package-currency" style={{ color: pkg.popular ? '#b45309' : '#111827', fontSize: '1.25rem', fontWeight: 600 }}>
+                      CAD $
                     </span>
                     <span className="package-price" style={{ color: pkg.popular ? '#b45309' : '#111827' }}>
                       {pkg.price}
                     </span>
-                    {pkg.discountApplied && (
-                      <span
-                        style={{
-                          backgroundColor: '#ecfdf5',
-                          color: '#065f46',
-                          fontFamily: 'var(--font-mono)',
-                          fontSize: '0.72rem',
-                          fontWeight: 700,
-                          padding: '0.2rem 0.5rem',
-                          borderRadius: '999px',
-                          marginLeft: '0.3rem'
-                        }}
-                      >
-                        10% OFF
-                      </span>
-                    )}
                   </div>
 
                   <div className="package-sqft">{pkg.sqft}</div>
@@ -867,6 +765,20 @@ export default function Home({ onOpenBooking, onOpenContact }) {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Rate Sheet Footnote */}
+          <div
+            style={{
+              textAlign: 'center',
+              marginTop: '1.75rem',
+              fontSize: '0.88rem',
+              color: '#4b5563',
+              fontStyle: 'italic',
+              lineHeight: 1.5
+            }}
+          >
+            * {COMPANY.pricingFootnote}
           </div>
 
           <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>

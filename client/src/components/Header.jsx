@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { Menu, X, Phone, Camera, Calendar } from 'lucide-react';
-import { COMPANY, ANNOUNCEMENT_BAR } from '../data/siteData';
+import { COMPANY } from '../data/siteData';
 import TopBar from './TopBar';
 
 export default function Header({ onOpenBooking, onOpenContact }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [announcementDismissed, setAnnouncementDismissed] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   const closeMenu = () => setMobileMenuOpen(false);
@@ -52,32 +51,6 @@ export default function Header({ onOpenBooking, onOpenContact }) {
 
   return (
     <>
-      {/* Top Announcement Bar */}
-      {!announcementDismissed && (
-        <div className="announcement-bar" role="region" aria-label="Announcement">
-          <div className="container announcement-inner">
-            <span className="announcement-badge">{ANNOUNCEMENT_BAR.badge}</span>
-            <span className="announcement-text">{ANNOUNCEMENT_BAR.text}</span>
-            <button
-              type="button"
-              className="announcement-link"
-              onClick={handleBookingClick}
-              style={{ background: 'none', border: 'none', cursor: 'pointer' }}
-            >
-              {ANNOUNCEMENT_BAR.ctaText} →
-            </button>
-            <button
-              type="button"
-              className="announcement-close"
-              onClick={() => setAnnouncementDismissed(true)}
-              aria-label="Dismiss announcement"
-            >
-              <X size={15} />
-            </button>
-          </div>
-        </div>
-      )}
-
       {/* Desktop Top Contact Strip */}
       <TopBar />
 

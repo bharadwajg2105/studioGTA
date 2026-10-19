@@ -1,6 +1,6 @@
 import React from 'react';
 import { Camera, Check, Calendar, ShieldCheck } from 'lucide-react';
-import { SERVICES, ALACARTE_ADDONS, GUARANTEES } from '../data/siteData';
+import { SERVICES, ALACARTE_ADDONS, GUARANTEES, COMPANY } from '../data/siteData';
 
 export default function Services({ onOpenBooking }) {
   return (
@@ -79,34 +79,69 @@ export default function Services({ onOpenBooking }) {
             <table className="comparison-table">
               <thead>
                 <tr>
-                  <th className="col-feature">Features & Inclusions</th>
-                  <th>Basic ($199)</th>
-                  <th>Basic+ ($249)</th>
-                  <th className="col-popular">Standard ($399) ★</th>
-                  <th>Pro ($599)</th>
+                  <th className="col-feature">Inclusions</th>
+                  <th>Basic Photo (CAD $185)</th>
+                  <th>Premium Photo (CAD $265)</th>
+                  <th className="col-popular">Photo & Regular Video (CAD $280) ★</th>
+                  <th>Photo & Premium Walkthrough (CAD $420)</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><strong>Property Size Ideal</strong></td>
-                  <td>Under 1,500 sq ft</td>
-                  <td>Up to 2,200 sq ft</td>
-                  <td className="col-popular">Up to 3,500 sq ft</td>
-                  <td>3,500+ sq ft / Luxury</td>
+                  <td><strong>High Resolution Still Images</strong></td>
+                  <td className="cell-check">✓ Included</td>
+                  <td className="cell-check">✓ Included</td>
+                  <td className="cell-check col-popular">✓ Included</td>
+                  <td className="cell-check">✓ Included</td>
                 </tr>
                 <tr>
-                  <td><strong>High-Definition HDR Photos</strong></td>
-                  <td>25–30 Photos</td>
-                  <td>30–35 Photos</td>
-                  <td className="col-popular">35–40 Photos</td>
-                  <td>40–50+ Photos</td>
+                  <td><strong>Editing & Lighting Style</strong></td>
+                  <td>Standard HDR MLS</td>
+                  <td style={{ color: '#b45309', fontWeight: 600 }}>Magazine Style + HDR & Flash</td>
+                  <td className="col-popular">Standard HDR MLS</td>
+                  <td style={{ color: '#b45309', fontWeight: 600 }}>Magazine Grade Polish</td>
                 </tr>
                 <tr>
-                  <td><strong>2D Floor Plan with Measurements</strong></td>
-                  <td className="cell-check">✓</td>
-                  <td className="cell-check">✓</td>
-                  <td className="cell-check col-popular">✓</td>
-                  <td className="cell-check">✓ (2D + 3D)</td>
+                  <td><strong>Video Tour Included</strong></td>
+                  <td className="cell-check">—</td>
+                  <td className="cell-check">—</td>
+                  <td className="cell-check col-popular">✓ HD Video Tour</td>
+                  <td className="cell-check" style={{ fontWeight: 600 }}>✓ Upgraded Gimbal Walkthrough Video</td>
+                </tr>
+                <tr>
+                  <td><strong>Music Selection</strong></td>
+                  <td className="cell-check">—</td>
+                  <td className="cell-check">—</td>
+                  <td className="cell-check col-popular">Licensed Soundtrack</td>
+                  <td className="cell-check" style={{ fontWeight: 600 }}>Custom Music Selection</td>
+                </tr>
+                <tr>
+                  <td><strong>Unbranded & Branded Webpage</strong></td>
+                  <td className="cell-check">✓ Included</td>
+                  <td className="cell-check">✓ Included</td>
+                  <td className="cell-check col-popular">✓ Included</td>
+                  <td className="cell-check">✓ Included</td>
+                </tr>
+                <tr>
+                  <td><strong>Marketing Kit + Local Map</strong></td>
+                  <td className="cell-check">✓ Included</td>
+                  <td className="cell-check">✓ Included</td>
+                  <td className="cell-check col-popular">✓ Included</td>
+                  <td className="cell-check">✓ Included</td>
+                </tr>
+                <tr>
+                  <td><strong>Photos Ready to Upload to MLS</strong></td>
+                  <td className="cell-check">✓ Included</td>
+                  <td className="cell-check">✓ Included</td>
+                  <td className="cell-check col-popular">✓ Included</td>
+                  <td className="cell-check">✓ Included</td>
+                </tr>
+                <tr>
+                  <td><strong>Facebook, Twitter & WeChat Sharing</strong></td>
+                  <td className="cell-check">✓ Included</td>
+                  <td className="cell-check">✓ Included</td>
+                  <td className="cell-check col-popular">✓ Included</td>
+                  <td className="cell-check">✓ Included</td>
                 </tr>
                 <tr>
                   <td><strong>Turnaround Guarantee</strong></td>
@@ -116,63 +151,7 @@ export default function Services({ onOpenBooking }) {
                   <td>Priority 12 Hours</td>
                 </tr>
                 <tr>
-                  <td><strong>Blue Sky Replacement & Flare Removal</strong></td>
-                  <td className="cell-check">✓</td>
-                  <td className="cell-check">✓</td>
-                  <td className="cell-check col-popular">✓</td>
-                  <td className="cell-check">✓</td>
-                </tr>
-                <tr>
-                  <td><strong>Photo Motion Slideshow</strong></td>
-                  <td className="cell-check">—</td>
-                  <td className="cell-check">✓</td>
-                  <td className="cell-check col-popular">—</td>
-                  <td className="cell-check">—</td>
-                </tr>
-                <tr>
-                  <td><strong>Cinematic 4K Walkthrough Video</strong></td>
-                  <td className="cell-check">—</td>
-                  <td className="cell-check">—</td>
-                  <td className="cell-check col-popular">✓ 4K Full Tour</td>
-                  <td className="cell-check">✓ 4K Extended + Intro</td>
-                </tr>
-                <tr>
-                  <td><strong>Aerial Drone Photos & 4K Video</strong></td>
-                  <td className="cell-check">—</td>
-                  <td className="cell-check">—</td>
-                  <td className="cell-check col-popular">✓ Included</td>
-                  <td className="cell-check">✓ Full Suite</td>
-                </tr>
-                <tr>
-                  <td><strong>3D Matterport Interactive Tour</strong></td>
-                  <td className="cell-check">—</td>
-                  <td className="cell-check">—</td>
-                  <td className="cell-check col-popular">—</td>
-                  <td className="cell-check">✓ 6 Mos Hosting</td>
-                </tr>
-                <tr>
-                  <td><strong>Virtual Staging Included</strong></td>
-                  <td className="cell-check">—</td>
-                  <td className="cell-check">—</td>
-                  <td className="cell-check col-popular">—</td>
-                  <td className="cell-check">✓ 3 Rooms</td>
-                </tr>
-                <tr>
-                  <td><strong>Twilight / Sunset Photography</strong></td>
-                  <td className="cell-check">—</td>
-                  <td className="cell-check">—</td>
-                  <td className="cell-check col-popular">—</td>
-                  <td className="cell-check">✓ Real or Virtual Dusk</td>
-                </tr>
-                <tr>
-                  <td><strong>Single-Property Listing Website</strong></td>
-                  <td className="cell-check">—</td>
-                  <td className="cell-check">—</td>
-                  <td className="cell-check col-popular">✓ Included</td>
-                  <td className="cell-check">✓ Branded & Unbranded</td>
-                </tr>
-                <tr>
-                  <td><strong>Zero Deposit: Pay After Approval</strong></td>
+                  <td><strong>Pay After Approval (No Upfront Deposit)</strong></td>
                   <td className="cell-check">✓</td>
                   <td className="cell-check">✓</td>
                   <td className="cell-check col-popular">✓</td>
@@ -180,6 +159,19 @@ export default function Services({ onOpenBooking }) {
                 </tr>
               </tbody>
             </table>
+          </div>
+
+          {/* Rate Sheet Footnote Under Table */}
+          <div
+            style={{
+              textAlign: 'center',
+              marginTop: '1.75rem',
+              fontSize: '0.88rem',
+              color: 'var(--color-fg-muted)',
+              fontStyle: 'italic'
+            }}
+          >
+            * {COMPANY.pricingFootnote}
           </div>
         </div>
       </section>

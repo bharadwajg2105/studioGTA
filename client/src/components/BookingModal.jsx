@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
-import { X, CheckCircle, AlertCircle, Loader2, Calendar, Tag, ShieldCheck } from 'lucide-react';
+import { X, CheckCircle, AlertCircle, Loader2, Calendar, ShieldCheck } from 'lucide-react';
 import { PACKAGES, COMPANY } from '../data/siteData';
 import { API_BASE_URL } from '../api/client';
 
@@ -8,7 +8,6 @@ export default function BookingModal({
   isOpen,
   onClose,
   initialPackageId = '',
-  discountActive = false,
   formMode = 'booking' // 'booking' or 'contact'
 }) {
   const resolvePackage = (pkgId) => {
@@ -16,7 +15,7 @@ export default function BookingModal({
       const match = PACKAGES.find((p) => p.id === pkgId);
       return match ? `${match.name} ($${match.price})` : pkgId;
     }
-    return 'Standard ($359)';
+    return 'Basic Photo Package ($185)';
   };
 
   const [mode, setMode] = useState(formMode);
@@ -31,7 +30,7 @@ export default function BookingModal({
     email: '',
     phone: '',
     package: resolvePackage(initialPackageId),
-    service: 'Standard Package ($359)',
+    service: 'Basic Photo Package ($185)',
     propertyAddress: '',
     location: '',
     preferredDate: '',
@@ -213,25 +212,6 @@ export default function BookingModal({
               <h3 id="booking-modal-title" className="modal-title">
                 {mode === 'contact' ? 'Contact StudioGTA' : 'Book Your Media Shoot'}
               </h3>
-              {discountActive && (
-                <span
-                  style={{
-                    backgroundColor: '#fef3c7',
-                    color: '#b45309',
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.72rem',
-                    fontWeight: 700,
-                    padding: '0.2rem 0.55rem',
-                    borderRadius: '999px',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.25rem'
-                  }}
-                >
-                  <Tag size={12} />
-                  <span>10% OFF APPLIED</span>
-                </span>
-              )}
             </div>
             <p style={{ fontSize: '0.82rem', color: 'var(--color-fg-muted)' }}>
               Zero deposit required • 100% Satisfaction Guarantee • Pay after approval
@@ -393,10 +373,11 @@ export default function BookingModal({
                   onChange={handleChange}
                   className="form-select"
                 >
-                  <option value="Basic ($199)">Basic ($199) — Up to 1,500 sq ft</option>
-                  <option value="Basic+ ($249)">Basic+ ($249) — Up to 2,200 sq ft</option>
-                  <option value="Standard ($359)">Standard ($359) [10% OFF] — Up to 2,500 sq ft</option>
-                  <option value="Pro ($539)">Pro ($539) [10% OFF] — Up to 5,000 sq ft</option>
+                  {PACKAGES.map((pkg) => (
+                    <option key={pkg.id} value={`${pkg.name} ($${pkg.price})`}>
+                      {pkg.name} (${pkg.price}) — {pkg.sqft}
+                    </option>
+                  ))}
                   <option value="Custom / À La Carte">Custom / À La Carte Services</option>
                 </select>
               </div>
@@ -482,6 +463,10 @@ export default function BookingModal({
                 </>
               )}
             </button>
+
+            <div style={{ textAlign: 'center', marginTop: '0.75rem', fontSize: '0.76rem', color: '#6b7280', fontStyle: 'italic' }}>
+              * {COMPANY.pricingFootnote}
+            </div>
           </form>
 
           <div

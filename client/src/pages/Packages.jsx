@@ -9,17 +9,20 @@ import {
   PACKAGES,
   ALACARTE_ADDONS,
   SERVICE_AREAS,
-  GUARANTEES
+  GUARANTEES,
+  COMPANY
 } from '../data/siteData';
 
 export default function Packages({ onOpenBooking }) {
-  const [selectedSizeFilter, setSelectedSizeFilter] = useState('all');
+  const [selectedCategoryFilter, setSelectedCategoryFilter] = useState('all');
 
   const filteredPackages = PACKAGES.filter((pkg) => {
-    if (selectedSizeFilter === 'condo') return pkg.id === 'basic';
-    if (selectedSizeFilter === 'mid') return pkg.id === 'basic-plus' || pkg.id === 'standard';
-    if (selectedSizeFilter === 'large') return pkg.id === 'standard' || pkg.id === 'pro';
-    if (selectedSizeFilter === 'luxury') return pkg.id === 'pro';
+    if (selectedCategoryFilter === 'photo') {
+      return pkg.id === 'basic-photo' || pkg.id === 'premium-photo';
+    }
+    if (selectedCategoryFilter === 'video') {
+      return pkg.id === 'photo-regular-video' || pkg.id === 'photo-premium-walkthrough';
+    }
     return true;
   });
 
@@ -32,45 +35,31 @@ export default function Packages({ onOpenBooking }) {
             <span className="eyebrow">TRANSPARENT PRICING</span>
             <h1 className="section-title">Packages & Pricing</h1>
             <p className="section-desc">
-              All-inclusive marketing packages with zero hidden fees. Guaranteed 12–24 hour delivery, unlimited revisions, and pay only after you review and approve.
+              Official marketing media rate sheet for Ontario real estate. Guaranteed 12–24 hour delivery, unlimited revisions, and pay only after you review and approve.
             </p>
 
-            {/* Property Size Selector */}
+            {/* Package Category Filter */}
             <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', marginTop: '2rem', flexWrap: 'wrap' }}>
               <button
                 type="button"
-                className={`filter-btn ${selectedSizeFilter === 'all' ? 'active' : ''}`}
-                onClick={() => setSelectedSizeFilter('all')}
+                className={`filter-btn ${selectedCategoryFilter === 'all' ? 'active' : ''}`}
+                onClick={() => setSelectedCategoryFilter('all')}
               >
-                All Packages
+                All Packages (4)
               </button>
               <button
                 type="button"
-                className={`filter-btn ${selectedSizeFilter === 'condo' ? 'active' : ''}`}
-                onClick={() => setSelectedSizeFilter('condo')}
+                className={`filter-btn ${selectedCategoryFilter === 'photo' ? 'active' : ''}`}
+                onClick={() => setSelectedCategoryFilter('photo')}
               >
-                Condos (&lt;1,500 sq ft)
+                Photo Only Packages
               </button>
               <button
                 type="button"
-                className={`filter-btn ${selectedSizeFilter === 'mid' ? 'active' : ''}`}
-                onClick={() => setSelectedSizeFilter('mid')}
+                className={`filter-btn ${selectedCategoryFilter === 'video' ? 'active' : ''}`}
+                onClick={() => setSelectedCategoryFilter('video')}
               >
-                Mid-Sized (1,500–2,500 sq ft)
-              </button>
-              <button
-                type="button"
-                className={`filter-btn ${selectedSizeFilter === 'large' ? 'active' : ''}`}
-                onClick={() => setSelectedSizeFilter('large')}
-              >
-                Large Detached (2,500–3,500 sq ft)
-              </button>
-              <button
-                type="button"
-                className={`filter-btn ${selectedSizeFilter === 'luxury' ? 'active' : ''}`}
-                onClick={() => setSelectedSizeFilter('luxury')}
-              >
-                Luxury Estates (3,500+ sq ft)
+                Photo & Video Packages
               </button>
             </div>
           </div>
@@ -94,8 +83,10 @@ export default function Packages({ onOpenBooking }) {
                   <h3 className="package-tier-name">{pkg.name}</h3>
                   <div className="package-subtitle">{pkg.subtitle}</div>
 
-                  <div className="package-price-wrap">
-                    <span className="package-currency">$</span>
+                  <div className="package-price-wrap" style={{ alignItems: 'baseline', gap: '0.35rem' }}>
+                    <span className="package-currency" style={{ fontSize: '1.25rem', fontWeight: 600 }}>
+                      CAD $
+                    </span>
                     <span className="package-price">{pkg.price}</span>
                   </div>
                   <div className="package-sqft">{pkg.sqft}</div>
@@ -126,6 +117,20 @@ export default function Packages({ onOpenBooking }) {
               </div>
             ))}
           </div>
+
+          {/* Rate Sheet Footnote */}
+          <div
+            style={{
+              textAlign: 'center',
+              marginTop: '2rem',
+              fontSize: '0.92rem',
+              color: 'var(--color-fg-muted)',
+              fontStyle: 'italic',
+              lineHeight: 1.5
+            }}
+          >
+            * {COMPANY.pricingFootnote}
+          </div>
         </div>
       </section>
 
@@ -136,7 +141,7 @@ export default function Packages({ onOpenBooking }) {
             <span className="eyebrow">DETAILED COMPARISON</span>
             <h2 className="section-title">Side-by-Side Feature Comparison</h2>
             <p className="section-desc">
-              Understand exactly what is included in each of our professional media packages.
+              Understand exactly what is included in each of our 4 official media packages.
             </p>
           </div>
 
@@ -145,26 +150,68 @@ export default function Packages({ onOpenBooking }) {
               <thead>
                 <tr>
                   <th className="col-feature">Inclusions</th>
-                  <th>Basic ($199)</th>
-                  <th>Basic+ ($249)</th>
-                  <th className="col-popular">Standard ($399) ★</th>
-                  <th>Pro ($599)</th>
+                  <th>Basic Photo (CAD $185)</th>
+                  <th>Premium Photo (CAD $265)</th>
+                  <th className="col-popular">Photo & Regular Video (CAD $280) ★</th>
+                  <th>Photo & Premium Walkthrough (CAD $420)</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><strong>HDR Photos</strong></td>
-                  <td>25–30 Stills</td>
-                  <td>30–35 Stills</td>
-                  <td className="col-popular">35–40 Stills</td>
-                  <td>40–50+ Stills</td>
-                </tr>
-                <tr>
-                  <td><strong>2D Floor Plan with Room Dimensions</strong></td>
+                  <td><strong>High Resolution Still Images</strong></td>
                   <td className="cell-check">✓ Included</td>
                   <td className="cell-check">✓ Included</td>
                   <td className="cell-check col-popular">✓ Included</td>
-                  <td className="cell-check">✓ 2D + 3D</td>
+                  <td className="cell-check">✓ Included</td>
+                </tr>
+                <tr>
+                  <td><strong>Editing & Lighting Style</strong></td>
+                  <td>Standard HDR MLS</td>
+                  <td style={{ color: '#b45309', fontWeight: 600 }}>Magazine Style + HDR & Flash</td>
+                  <td className="col-popular">Standard HDR MLS</td>
+                  <td style={{ color: '#b45309', fontWeight: 600 }}>Magazine Grade Polish</td>
+                </tr>
+                <tr>
+                  <td><strong>Video Tour Included</strong></td>
+                  <td className="cell-check">—</td>
+                  <td className="cell-check">—</td>
+                  <td className="cell-check col-popular">✓ HD Video Tour</td>
+                  <td className="cell-check" style={{ fontWeight: 600 }}>✓ Upgraded Gimbal Walkthrough Video</td>
+                </tr>
+                <tr>
+                  <td><strong>Music Selection</strong></td>
+                  <td className="cell-check">—</td>
+                  <td className="cell-check">—</td>
+                  <td className="cell-check col-popular">Licensed Soundtrack</td>
+                  <td className="cell-check" style={{ fontWeight: 600 }}>Custom Music Selection</td>
+                </tr>
+                <tr>
+                  <td><strong>Unbranded & Branded Webpage</strong></td>
+                  <td className="cell-check">✓ Included</td>
+                  <td className="cell-check">✓ Included</td>
+                  <td className="cell-check col-popular">✓ Included</td>
+                  <td className="cell-check">✓ Included</td>
+                </tr>
+                <tr>
+                  <td><strong>Marketing Kit + Local Map</strong></td>
+                  <td className="cell-check">✓ Included</td>
+                  <td className="cell-check">✓ Included</td>
+                  <td className="cell-check col-popular">✓ Included</td>
+                  <td className="cell-check">✓ Included</td>
+                </tr>
+                <tr>
+                  <td><strong>Photos Ready to Upload to MLS</strong></td>
+                  <td className="cell-check">✓ Included</td>
+                  <td className="cell-check">✓ Included</td>
+                  <td className="cell-check col-popular">✓ Included</td>
+                  <td className="cell-check">✓ Included</td>
+                </tr>
+                <tr>
+                  <td><strong>Facebook, Twitter & WeChat Sharing</strong></td>
+                  <td className="cell-check">✓ Included</td>
+                  <td className="cell-check">✓ Included</td>
+                  <td className="cell-check col-popular">✓ Included</td>
+                  <td className="cell-check">✓ Included</td>
                 </tr>
                 <tr>
                   <td><strong>Turnaround Guarantee</strong></td>
@@ -172,69 +219,6 @@ export default function Packages({ onOpenBooking }) {
                   <td>12–24 Hours</td>
                   <td className="col-popular">12–24 Hours</td>
                   <td>Priority 12 Hours</td>
-                </tr>
-                <tr>
-                  <td><strong>Blue Sky Replacement & Lawn Touchups</strong></td>
-                  <td className="cell-check">✓ Included</td>
-                  <td className="cell-check">✓ Included</td>
-                  <td className="cell-check col-popular">✓ Included</td>
-                  <td className="cell-check">✓ Included</td>
-                </tr>
-                <tr>
-                  <td><strong>Photo Slideshow Video</strong></td>
-                  <td className="cell-check">—</td>
-                  <td className="cell-check">✓ HD Slideshow</td>
-                  <td className="cell-check col-popular">—</td>
-                  <td className="cell-check">—</td>
-                </tr>
-                <tr>
-                  <td><strong>4K Cinematic Video Walkthrough</strong></td>
-                  <td className="cell-check">—</td>
-                  <td className="cell-check">—</td>
-                  <td className="cell-check col-popular">✓ 4K Full Tour</td>
-                  <td className="cell-check">✓ 4K Extended + Agent Intro</td>
-                </tr>
-                <tr>
-                  <td><strong>Aerial Drone Stills & 4K Video</strong></td>
-                  <td className="cell-check">—</td>
-                  <td className="cell-check">—</td>
-                  <td className="cell-check col-popular">✓ Included</td>
-                  <td className="cell-check">✓ Comprehensive Suite</td>
-                </tr>
-                <tr>
-                  <td><strong>Vertical Social Media Reel (9:16)</strong></td>
-                  <td className="cell-check">—</td>
-                  <td className="cell-check">—</td>
-                  <td className="cell-check col-popular">✓ Included</td>
-                  <td className="cell-check">✓ Multiple Formats</td>
-                </tr>
-                <tr>
-                  <td><strong>3D Matterport Interactive Virtual Tour</strong></td>
-                  <td className="cell-check">—</td>
-                  <td className="cell-check">—</td>
-                  <td className="cell-check col-popular">—</td>
-                  <td className="cell-check">✓ 6 Months Hosting</td>
-                </tr>
-                <tr>
-                  <td><strong>Virtual Staging Included</strong></td>
-                  <td className="cell-check">—</td>
-                  <td className="cell-check">—</td>
-                  <td className="cell-check col-popular">—</td>
-                  <td className="cell-check">✓ 3 Rooms Staged</td>
-                </tr>
-                <tr>
-                  <td><strong>Twilight / Dusk Photography</strong></td>
-                  <td className="cell-check">—</td>
-                  <td className="cell-check">—</td>
-                  <td className="cell-check col-popular">—</td>
-                  <td className="cell-check">✓ Real or Virtual</td>
-                </tr>
-                <tr>
-                  <td><strong>Feature Single-Property Website</strong></td>
-                  <td className="cell-check">—</td>
-                  <td className="cell-check">—</td>
-                  <td className="cell-check col-popular">✓ Included</td>
-                  <td className="cell-check">✓ Branded & Unbranded</td>
                 </tr>
                 <tr>
                   <td><strong>Pay After Approval (No Upfront Deposit)</strong></td>
@@ -245,6 +229,19 @@ export default function Packages({ onOpenBooking }) {
                 </tr>
               </tbody>
             </table>
+          </div>
+
+          {/* Rate Sheet Footnote Under Table */}
+          <div
+            style={{
+              textAlign: 'center',
+              marginTop: '1.75rem',
+              fontSize: '0.88rem',
+              color: 'var(--color-fg-muted)',
+              fontStyle: 'italic'
+            }}
+          >
+            * {COMPANY.pricingFootnote}
           </div>
         </div>
       </section>

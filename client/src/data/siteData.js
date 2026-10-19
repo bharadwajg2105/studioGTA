@@ -7,7 +7,8 @@ export const COMPANY = {
   phone: '(647) 300-0315',
   phoneClean: '6473000315',
   phoneFormatted: '647-300-0315',
-  email: 'info@studiogta.ca',
+  email: 'TOUR@STUDIOGTA.CA',
+  emailClean: 'tour@studiogta.ca',
   address: '3601 Highway 7 East, Suite 1005, Unit DOB, Markham ON, L3R 0M3',
   addressLines: [
     '3601 Highway 7 East, Suite 1005, Unit DOB,',
@@ -19,15 +20,8 @@ export const COMPANY = {
   hours: 'Everyday: 7:00 AM – 7:00 PM',
   instagram: 'https://www.instagram.com/studiogta_realestatemedia',
   turnaround: '12-Hour Turnaround',
-  guarantee: '100% Satisfaction Guaranteed (Pay After Approval)'
-};
-
-export const ANNOUNCEMENT_BAR = {
-  active: true,
-  badge: 'NEW CLIENT SPECIAL: 10% OFF',
-  text: 'Get 10% off your first photoshoot — use code WELCOME10 at booking',
-  ctaText: 'Claim 10% Off',
-  ctaLink: '#book'
+  guarantee: '100% Satisfaction Guaranteed (Pay After Approval)',
+  pricingFootnote: 'Quote is for less than 3000 sq ft, every extra 1000 sq ft + CAD 25, Prices are subject to tax.'
 };
 
 export const TRUST_STATS = [
@@ -135,98 +129,79 @@ export const HERO_SLIDES = [
 
 export const PACKAGES = [
   {
-    id: 'basic',
-    name: 'Basic',
-    subtitle: 'Professional HDR Photography Package',
-    originalPrice: 199,
-    price: 199,
-    discountApplied: false,
-    sqft: 'Under 1,500 sqft',
-    sqftLabel: 'Condos & Apartments',
-    duration: '30 mins on-site',
+    id: 'basic-photo',
+    name: 'Basic Photo Package',
+    subtitle: 'High Resolution Still Images & Complete Web Marketing Kit',
+    price: 185,
+    currency: 'CAD',
+    sqft: 'Under 3,000 sq ft',
+    sqftLabel: 'Condos, Townhomes & Detached',
+    duration: '30–45 mins on-site',
     popular: false,
     badge: 'Essential',
-    idealFor: 'Condos, starter homes & quick lease listings',
+    idealFor: 'Condos, starter homes & quick MLS listings',
     features: [
-      'Interior & Exterior Photos (Premium Quality)',
-      '12-Hour Turnaround',
-      'Blue Sky Replacement',
-      '2D Floor Plan (Dimensioned)',
-      'High-Resolution Print & Web MLS Files',
-      'Zero Deposit: Pay After Approval'
+      'High Resolution Still Images',
+      'Unbranded & Branded Webpage',
+      'Marketing Kit + Local Map',
+      'Photos are ready to upload to MLS',
+      'Facebook, Twitter & WeChat Sharing'
     ]
   },
   {
-    id: 'standard',
-    name: 'Standard',
-    subtitle: 'Complete Media Package with Drone + 4K Video',
-    originalPrice: 399,
-    price: 359,
-    discountApplied: true,
-    discountPercent: '10% OFF',
-    sqft: '1,500–2,500 sqft',
-    sqftLabel: 'Townhomes & Semis',
-    duration: '60 mins on-site',
+    id: 'premium-photo',
+    name: 'Premium Photo Package',
+    subtitle: 'Magazine Style Editing + HDR & Flash Photography',
+    price: 265,
+    currency: 'CAD',
+    sqft: 'Under 3,000 sq ft',
+    sqftLabel: 'High-End Detached & Custom Homes',
+    duration: '45–60 mins on-site',
+    popular: false,
+    badge: 'Magazine Quality',
+    idealFor: 'Luxury listings requiring editorial-grade lighting & polish',
+    features: [
+      'Everything from Regular Photo Package Included',
+      'Magazine Style Editing + HDR & Flash'
+    ]
+  },
+  {
+    id: 'photo-regular-video',
+    name: 'Photo & Regular Video Package',
+    subtitle: 'High Resolution Still Images + HD Video Tour & Marketing Kit',
+    price: 280,
+    currency: 'CAD',
+    sqft: 'Under 3,000 sq ft',
+    sqftLabel: 'Single-Family Homes & Townhomes',
+    duration: '60–75 mins on-site',
     popular: true,
     badge: 'MOST POPULAR',
-    idealFor: 'Detached single-family homes & competitive suburban listings',
+    idealFor: 'Top realtors wanting complete photo + video marketing',
     features: [
-      '75% of agents choose this',
-      'Interior & Exterior Photos (35–40)',
-      '4K Cinematic Walkthrough Video',
-      'Drone Aerial Photos & 4K Video',
-      '2D & 3D Floor Plan with Room Dimensions',
-      'Feature Single-Property Website',
-      '12-Hour Turnaround Guarantee',
-      'Zero Deposit: Pay After Approval'
+      'High Resolution Still Images',
+      'HD Video Tour',
+      'Unbranded & Branded Webpage',
+      'Marketing Kit + Local Map',
+      'Photos are ready to upload to MLS',
+      'Facebook, Twitter & WeChat Sharing'
     ]
   },
   {
-    id: 'pro',
-    name: 'Pro',
-    subtitle: 'Premium Package with Virtual Tours + Digital Staging',
-    originalPrice: 599,
-    price: 539,
-    discountApplied: true,
-    discountPercent: '10% OFF',
-    sqft: '2,500–5,000 sqft',
-    sqftLabel: 'Standard & Large Detached',
+    id: 'photo-premium-walkthrough',
+    name: 'Photo & Premium Walkthrough Video Package',
+    subtitle: 'Everything from Regular Video + Upgraded Gimbal Walkthrough',
+    price: 420,
+    currency: 'CAD',
+    sqft: 'Under 3,000 sq ft',
+    sqftLabel: 'Luxury Homes & Large Estates',
     duration: '90 mins on-site',
     popular: false,
-    badge: 'LUXURY SHOWCASE',
-    idealFor: 'Luxury properties, custom builds & waterfront estates',
+    badge: 'PREMIUM SHOWCASE',
+    idealFor: 'Luxury properties and custom showcase homes',
     features: [
-      'Standout luxury marketing package',
-      '40–50+ Magazine-Grade HDR Photos',
-      'Extended 4K Video with Agent Intro',
-      'Full Drone Package (Photos + Video)',
-      '3D Matterport Tour (6 Months Hosting)',
-      '3 Virtually Staged Rooms',
-      'Twilight / Dusk Photography',
-      'Dedicated Custom Listing Website',
-      'Priority Delivery'
-    ]
-  },
-  {
-    id: 'basic-plus',
-    name: 'Basic+',
-    subtitle: 'HDR Photography + Photo Slideshow Video + Floor Plans',
-    originalPrice: 249,
-    price: 249,
-    discountApplied: false,
-    sqft: 'Up to 2,200 sqft',
-    sqftLabel: 'Mid-Sized Detached & Semis',
-    duration: '45 mins on-site',
-    popular: false,
-    badge: 'Popular Upgrade',
-    idealFor: 'Mid-sized detached homes, townhomes & semi-detached',
-    features: [
-      'Interior & Exterior Photos (30–35)',
-      'Photo Slideshow Video with Licensed Music',
-      '2D Floor Plan with Dimensions',
-      '12-Hour Turnaround Guarantee',
-      'Blue Sky & Green Grass Enhancement',
-      'Zero Deposit: Pay After Approval'
+      'Everything from Regular Video Package Included',
+      'Upgraded Walkthrough Video with Gimbal',
+      'Custom Music Selection'
     ]
   }
 ];
@@ -237,7 +212,7 @@ export const SERVICES = [
     name: 'HDR Photography',
     tagline: 'Flawlessly Exposed, Magazine-Quality Stills',
     desc: 'Multi-bracketed high dynamic range photography balanced for crisp interior details, vivid window views, and warm authentic ambiance.',
-    price: 'From $199',
+    price: 'From CAD 185',
     features: [
       'Flawless window pull with clear exterior views',
       'True-to-life color accuracy & warm white balance',
@@ -249,14 +224,14 @@ export const SERVICES = [
   },
   {
     id: 'cinematic-video',
-    name: 'Cinematic 4K Video Tours',
+    name: 'Cinematic Video Tours',
     tagline: 'Emotional, Flowing Walkthroughs That Captivate',
-    desc: 'Filmed on 3-axis stabilized cinema cameras in 4K resolution. Styled with elegant transitions, color grading, and commercial music licensing.',
-    price: 'From $199',
+    desc: 'Filmed on 3-axis stabilized cinema cameras in HD and 4K resolution. Styled with elegant transitions, color grading, and commercial music licensing.',
+    price: 'From CAD 280',
     features: [
       'Smooth gimbal walkthrough showing the natural flow',
       'Licensed premium soundtrack included',
-      'Horizontal 16:9 4K for MLS, YouTube, and Websites',
+      'Horizontal 16:9 for MLS, YouTube, and Websites',
       'Vertical 9:16 optimized for Instagram Reels and TikTok',
       'Optional on-camera realtor introduction & voiceover'
     ],
@@ -267,10 +242,10 @@ export const SERVICES = [
     name: 'Aerial Drone Media',
     tagline: 'Elevated Perspectives & Neighborhood Context',
     desc: 'Showcase lot size, architectural rooflines, surrounding greenery, proximity to parks, schools, and waterfronts from stunning bird’s-eye views.',
-    price: 'From $149',
+    price: 'From CAD 200',
     features: [
       'Transport Canada Compliant & Insured Drone Pilots',
-      'High-altitude 4K aerial video and 20MP stills',
+      'High-altitude aerial video and high-resolution stills',
       'Property boundary lot line overlays available',
       'Scenic neighborhood and sunset flyover shots'
     ],
@@ -278,10 +253,10 @@ export const SERVICES = [
   },
   {
     id: 'matterport',
-    name: '3D Matterport Virtual Tours',
+    name: '3D Matterport & 2D Floor Plans',
     tagline: '24/7 Immersive Open House for Remote Buyers',
     desc: 'Give out-of-town buyers and serious investors an interactive 3D dollhouse model and room-by-room virtual walk through the property.',
-    price: 'From $199',
+    price: 'From CAD 200',
     features: [
       'Accurate 3D dollhouse and overhead floor views',
       'Measurement tool for buyers to verify furniture fit',
@@ -291,44 +266,102 @@ export const SERVICES = [
     turnaround: '24 Hours'
   },
   {
-    id: 'floor-plans',
-    name: 'Laser-Measured Floor Plans',
-    tagline: 'Accurate 2D & 3D Schematics with Room Dimensions',
-    desc: 'Buyers make purchasing decisions based on layout. Our digital floor plans display exact square footage, room names, and layout flow.',
-    price: 'From $99',
+    id: 'twilight',
+    name: 'Twilight Exterior Photography',
+    tagline: 'Dramatic Blue Hour & Sunset Exterior Showcase',
+    desc: 'Capture the architectural drama, landscape lighting, and warm welcoming interior glows of luxury properties at sunset.',
+    price: 'CAD 150',
     features: [
-      'Laser-measured on-site with ±1% accuracy',
-      'Total gross internal area (GIA) calculations',
-      'Branded and unbranded MLS-compliant versions',
-      'Delivered in high-resolution PDF and PNG formats'
+      '2–3 Evening Exterior Photography high-res stills',
+      'Golden hour and blue hour transition shots',
+      'Warm window glow and exterior accent lighting',
+      'Perfect for hero listing and cover photos'
     ],
     turnaround: '12 Hours'
   },
   {
-    id: 'virtual-staging',
-    name: 'Virtual Staging & Twilight',
-    tagline: 'Turn Empty Rooms Into Warm, Buyer-Ready Homes',
-    desc: 'Help buyers visualize potential without spending thousands on physical staging. We stage vacant living rooms, master suites, and patios digitally.',
-    price: '$40 / photo',
+    id: 'feature-sheets',
+    name: 'Feature Sheets & Custom Design',
+    tagline: 'Premium Printed Presentation Materials',
+    desc: 'High-quality tangible print collateral that buyers take home from open houses and showings to keep your listing top of mind.',
+    price: 'From CAD 25',
     features: [
-      'Modern, Scandinavian, or Luxury furnishings',
-      'Photorealistic textures, shadows, and lighting match',
-      'Virtual twilight conversion from daytime photos',
-      'Decluttering & item removal services available'
+      '25 copies 4 pages (CAD 80) or 50 copies 2 pages (CAD 80)',
+      'Custom graphic layout & professional design (CAD 25)',
+      'Heavy premium cardstock with vivid color fidelity',
+      'Fast turnaround delivered ready for open house'
     ],
     turnaround: '24 Hours'
   }
 ];
 
 export const ALACARTE_ADDONS = [
-  { name: 'Virtual Twilight Conversion', price: '$50', unit: 'per photo', desc: 'Convert daytime exterior to dramatic dusk sunset with glowing interior lights.' },
-  { name: 'Real Twilight Photography Shoot', price: '$149', unit: 'on-site', desc: 'On-site golden hour & blue hour photoshoot for breathtaking luxury exteriors.' },
-  { name: 'Virtual Staging', price: '$40', unit: 'per room photo', desc: 'Digitally furnish empty rooms with current designer furniture and decor.' },
-  { name: '2D Measured Floor Plan (Stand-alone)', price: '$99', unit: 'up to 2,500 sq ft', desc: 'Laser accurate measurements with square footage breakdown.' },
-  { name: '3D Matterport Tour (Stand-alone)', price: '$199', unit: 'up to 2,500 sq ft', desc: 'Interactive dollhouse 3D walkthrough with 6 months hosting.' },
-  { name: 'Drone Aerial Photography (Stand-alone)', price: '$149', unit: '8–12 photos', desc: 'Transport Canada certified aerial high-res photos.' },
-  { name: 'Social Media Reel (Vertical 9:16)', price: '$99', unit: 'per reel', desc: 'Fast-paced, hook-driven vertical video for Instagram Reels and TikTok.' },
-  { name: 'Custom Listing Feature Website', price: '$49', unit: 'per listing', desc: 'Dedicated single-property website with custom domain and lead capture form.' }
+  {
+    name: '3D Matterport & 2D Floor Plan (<1,000 sq ft Condo)',
+    price: 'CAD 200',
+    unit: '<1,000 sq ft (Condo)',
+    desc: 'Interactive 3D Matterport walkthrough and laser-accurate 2D schematic floor plan.'
+  },
+  {
+    name: '3D Matterport & 2D Floor Plan (Up to 3,000 sq ft)',
+    price: 'CAD 270',
+    unit: 'up to 3,000 sq ft',
+    desc: 'Interactive 3D virtual tour and dimensioned 2D floor plan for standard homes.'
+  },
+  {
+    name: '3D Matterport & 2D Floor Plan (Up to 4,000 sq ft)',
+    price: 'CAD 350',
+    unit: 'up to 4,000 sq ft',
+    desc: 'Comprehensive 3D walkthrough and detailed 2D floor plan for large homes.'
+  },
+  {
+    name: '3D Matterport & 2D Floor Plan (Up to 5,000 sq ft)',
+    price: 'CAD 400',
+    unit: 'up to 5,000 sq ft',
+    desc: 'Full estate 3D Matterport virtual model and complete laser-measured floor plans.'
+  },
+  {
+    name: '3D Matterport & 2D Floor Plan (Up to 6,000 sq ft)',
+    price: 'CAD 450',
+    unit: 'up to 6,000 sq ft',
+    desc: 'Luxury estate 3D Matterport dollhouse tour and precision 2D floor plans.'
+  },
+  {
+    name: 'Aerial Drone Photography (4 Stills)',
+    price: 'CAD 200',
+    unit: '4 high-res stills',
+    desc: '4 High Resolution Still Images captured by Transport Canada certified drone pilots.'
+  },
+  {
+    name: 'Aerial Drone Photo & HD Video',
+    price: 'CAD 250',
+    unit: '4 stills + HD video',
+    desc: '4 High Res Photo & HD Video aerial cinematography showing lot and neighborhood context.'
+  },
+  {
+    name: 'Twilight Exterior Photography',
+    price: 'CAD 150',
+    unit: '2–3 evening stills',
+    desc: '2–3 Evening Exterior Photography stills captured during sunset blue hour.'
+  },
+  {
+    name: 'Feature Sheets (25 Copies - 4 Pages)',
+    price: 'CAD 80',
+    unit: '25 copies (4 pages)',
+    desc: '25 copies 4 pages premium heavy cardstock printed listing brochures.'
+  },
+  {
+    name: 'Feature Sheets (50 Copies - 2 Pages)',
+    price: 'CAD 80',
+    unit: '50 copies (2 pages)',
+    desc: '50 copies 2 pages double-sided glossy presentation sheets.'
+  },
+  {
+    name: 'Feature Sheets Design',
+    price: 'CAD 25',
+    unit: 'per listing design',
+    desc: 'Custom professional graphic design and layout formatting for feature sheets.'
+  }
 ];
 
 export const GUARANTEES = [
