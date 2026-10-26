@@ -58,7 +58,17 @@ export default function Header({ onOpenBooking, onOpenContact }) {
       <header className={`site-header ${isScrolled ? 'is-scrolled' : ''}`}>
         <div className="container header-inner">
           {/* Brand Logo */}
-          <Link to="/" className="brand-logo" onClick={closeMenu} aria-label="StudioGTA Home">
+          <Link
+            to="/"
+            className="brand-logo"
+            onClick={closeMenu}
+            aria-label="StudioGTA Home"
+            style={{
+              marginRight: '2rem',
+              flexShrink: 0,
+              whiteSpace: 'nowrap'
+            }}
+          >
             <Camera className="brand-icon" strokeWidth={2.2} />
             <span>Studio<span className="logo-accent">GTA</span></span>
           </Link>
@@ -132,20 +142,26 @@ export default function Header({ onOpenBooking, onOpenContact }) {
               href={`tel:${COMPANY.phoneClean}`}
               className="header-phone-link header-desktop-only"
               aria-label={`Call ${COMPANY.phone}`}
+              style={{
+                whiteSpace: 'nowrap',
+                flexShrink: 0
+              }}
             >
-              <Phone size={15} className="icon-gold" />
-              <span>{COMPANY.phone}</span>
+              <Phone size={15} className="icon-gold" style={{ flexShrink: 0 }} />
+              <span style={{ whiteSpace: 'nowrap' }}>{COMPANY.phone}</span>
             </a>
 
             <button
               type="button"
-              className="btn btn-outline btn-sm header-desktop-only"
+              className="btn btn-outline btn-sm header-desktop-only header-btn-secondary"
               onClick={handleBookingClick}
               style={{
                 borderColor: '#e5e3df',
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '0.35rem'
+                gap: '0.35rem',
+                whiteSpace: 'nowrap',
+                flexShrink: 0
               }}
             >
               <span style={{ width: '7px', height: '7px', borderRadius: '50%', backgroundColor: '#10b981' }} />
@@ -156,6 +172,10 @@ export default function Header({ onOpenBooking, onOpenContact }) {
               type="button"
               className="btn btn-primary btn-sm header-desktop-only"
               onClick={handleBookingClick}
+              style={{
+                whiteSpace: 'nowrap',
+                flexShrink: 0
+              }}
             >
               <Calendar size={14} />
               <span>Book Shoot</span>
@@ -287,8 +307,8 @@ export default function Header({ onOpenBooking, onOpenContact }) {
       </div>
 
       <style>{`
-        /* Mobile Navigation Media Query (max-width: 1024px) */
-        @media (max-width: 1024px) {
+        /* Mobile Navigation Media Query (max-width: 1140px) */
+        @media (max-width: 1140px) {
           .desktop-nav,
           .nav-links,
           .header-desktop-only,
@@ -319,10 +339,13 @@ export default function Header({ onOpenBooking, onOpenContact }) {
 
           .brand-logo {
             font-size: 1.35rem;
+            margin-right: 0 !important;
+            padding-right: 0 !important;
+            border-right: none !important;
           }
         }
 
-        @media (min-width: 1025px) {
+        @media (min-width: 1141px) {
           .desktop-nav {
             display: block !important;
           }
@@ -331,6 +354,17 @@ export default function Header({ onOpenBooking, onOpenContact }) {
           }
           .mobile-nav-overlay,
           .mobile-nav-drawer {
+            display: none !important;
+          }
+          .brand-logo {
+            margin-right: 2.25rem !important;
+            padding-right: 1.75rem !important;
+            border-right: 1px solid #e5e7eb !important;
+          }
+        }
+
+        @media (max-width: 1340px) and (min-width: 1141px) {
+          .header-btn-secondary {
             display: none !important;
           }
         }

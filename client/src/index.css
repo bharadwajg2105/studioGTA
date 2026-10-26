@@ -412,11 +412,17 @@ button {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 }
 
+.site-header .container.header-inner {
+  max-width: 1440px;
+  width: 100%;
+}
+
 .header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 72px;
+  gap: 1.5rem;
 }
 
 .brand-logo {
@@ -428,6 +434,9 @@ button {
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--color-dark);
+  margin-right: 2rem;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .brand-logo .logo-accent {
@@ -441,11 +450,24 @@ button {
   color: var(--color-gold);
 }
 
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
 .nav-links {
   display: flex;
   align-items: center;
-  gap: clamp(0.7rem, 1.2vw, 1.25rem);
+  gap: 1.5rem;
   list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .nav-item a {
@@ -476,6 +498,7 @@ button {
   display: flex;
   align-items: center;
   gap: 1rem;
+  flex-shrink: 0;
 }
 
 .header-phone-link {
@@ -485,6 +508,12 @@ button {
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--color-dark);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.header-phone-link span {
+  white-space: nowrap;
 }
 
 .header-phone-link:hover {
@@ -1784,7 +1813,7 @@ button {
    ========================================================================== */
 
 /* Under 1024px (Tablets & Mobile) */
-@media (max-width: 1024px) {
+@media (max-width: 1140px) {
   .desktop-nav,
   .nav-links,
   .header-actions .header-phone-link,
