@@ -1,12 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import {
   Check,
   Calendar,
   ShieldCheck,
   MapPin,
-  ExternalLink,
-  ChevronLeft,
-  ChevronRight
+  ExternalLink
 } from 'lucide-react';
 import {
   PACKAGES,
@@ -18,18 +16,6 @@ import {
 
 export default function Packages({ onOpenBooking }) {
   const [selectedCategoryFilter, setSelectedCategoryFilter] = useState('all');
-
-  const packagesScrollerRef = useRef(null);
-
-  const scrollPackages = (direction) => {
-    if (packagesScrollerRef.current) {
-      const scrollAmount = 344;
-      packagesScrollerRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth'
-      });
-    }
-  };
 
   const filteredPackages = PACKAGES.filter((pkg) => {
     if (selectedCategoryFilter === 'photo') {
@@ -84,17 +70,7 @@ export default function Packages({ onOpenBooking }) {
       {/* Package Cards Grid */}
       <section className="section">
         <div className="container">
-          <div className="sg-carousel-wrapper">
-            <button
-              type="button"
-              className="sg-arrow-btn left"
-              onClick={() => scrollPackages('left')}
-              aria-label="Scroll left"
-            >
-              <ChevronLeft size={20} />
-            </button>
-
-            <div className="sg-scroller" ref={packagesScrollerRef}>
+          <div className="packages-grid">
             {filteredPackages.map((pkg) => (
               <div
                 key={pkg.id}
@@ -141,16 +117,6 @@ export default function Packages({ onOpenBooking }) {
                 </div>
               </div>
             ))}
-            </div>
-
-            <button
-              type="button"
-              className="sg-arrow-btn right"
-              onClick={() => scrollPackages('right')}
-              aria-label="Scroll right"
-            >
-              <ChevronRight size={20} />
-            </button>
           </div>
 
           {/* Rate Sheet Footnote */}
