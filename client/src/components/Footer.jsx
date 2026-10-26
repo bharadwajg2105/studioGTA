@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, ExternalLink } from 'lucide-react';
 import { COMPANY, SERVICE_AREAS } from '../data/siteData';
 
 export default function Footer({ onOpenContact, onOpenBooking }) {
@@ -14,7 +14,7 @@ export default function Footer({ onOpenContact, onOpenBooking }) {
               <span>Studio<span className="logo-accent">GTA</span></span>
             </Link>
             <p className="footer-bio">
-              Ontario’s premier real estate media company. Delivering high-definition HDR photography, 4K cinematic video, drone footage, 3D tours, and floor plans with guaranteed 12-hour turnaround.
+              Ontario’s premier real estate media company. Delivering high-definition HDR photography, 4K cinematic video, drone footage, 3D tours, and floor plans with guaranteed next day morning turnaround.
             </p>
 
             <ul className="footer-contact-list">
@@ -50,8 +50,9 @@ export default function Footer({ onOpenContact, onOpenBooking }) {
               <li><Link to="/services">Aerial Drone Stills & Video</Link></li>
               <li><Link to="/services">3D Matterport Tours</Link></li>
               <li><Link to="/services">2D & 3D Floor Plans</Link></li>
+              <li><Link to="/architectural">Architectural Photography</Link></li>
+              <li><Link to="/hotel">Hotel & Hospitality Media</Link></li>
               <li><Link to="/services">Virtual Staging</Link></li>
-              <li><Link to="/services">Twilight & Sunset Media</Link></li>
             </ul>
           </div>
 
@@ -63,10 +64,13 @@ export default function Footer({ onOpenContact, onOpenBooking }) {
               <li><Link to="/about">About Us</Link></li>
               <li><Link to="/portfolio">Media Portfolio</Link></li>
               <li><Link to="/packages">Packages & Pricing</Link></li>
+              <li><Link to="/architectural">Architectural</Link></li>
+              <li><Link to="/hotel">Hotel & Stays</Link></li>
+              <li><Link to="/faq">Frequently Asked Questions</Link></li>
               <li>
                 <button
                   type="button"
-                  onClick={() => (onOpenBooking ? onOpenBooking() : null)}
+                  onClick={() => (onOpenBooking ? onOpenBooking('photo-premium-walkthrough') : null)}
                   style={{ background: 'none', border: 'none', color: '#9aa0ac', padding: 0, font: 'inherit', cursor: 'pointer' }}
                 >
                   Book Shoot
@@ -81,7 +85,6 @@ export default function Footer({ onOpenContact, onOpenBooking }) {
                   Contact Us
                 </button>
               </li>
-              <li><Link to="/faq">Frequently Asked Questions</Link></li>
             </ul>
           </div>
 
@@ -89,14 +92,40 @@ export default function Footer({ onOpenContact, onOpenBooking }) {
           <div>
             <h4 className="footer-col-title">Coverage Areas</h4>
             <ul className="footer-area-list">
-              {SERVICE_AREAS.map((area, idx) => (
-                <li key={idx}>
-                  <div className="footer-area-region">{area.region}</div>
-                  <div className="footer-area-cities">{area.cities.slice(0, 6).join(', ')}...</div>
-                </li>
-              ))}
-              <li style={{ marginTop: '0.5rem', color: '#cba238', fontSize: '0.8rem', fontWeight: 600 }}>
-                ✓ $0 Travel Fee within Core Zones
+              <li>
+                <div className="footer-area-region" style={{ color: '#10b981', fontWeight: 700 }}>
+                  Greater Toronto Area (GTA)
+                </div>
+                <div className="footer-area-cities" style={{ color: '#d1d5db', fontSize: '0.85rem' }}>
+                  Serving Toronto, Markham, Richmond Hill, Vaughan, Mississauga with NO extra charge.
+                </div>
+              </li>
+              <li style={{ marginTop: '0.75rem' }}>
+                <div className="footer-area-region" style={{ color: '#fbbf24', fontWeight: 700 }}>
+                  Out of Town Regions
+                </div>
+                <div className="footer-area-cities" style={{ color: '#9ca3af', fontSize: '0.85rem' }}>
+                  For all other regions across Ontario, out-of-town travel costs apply.
+                </div>
+              </li>
+              <li style={{ marginTop: '1rem' }}>
+                <a
+                  href="https://www.studiogta.ca/service-area"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.35rem',
+                    color: '#cba238',
+                    fontSize: '0.82rem',
+                    fontWeight: 600,
+                    textDecoration: 'underline'
+                  }}
+                >
+                  <span>Full Service Area Guide</span>
+                  <ExternalLink size={12} />
+                </a>
               </li>
             </ul>
           </div>
@@ -115,7 +144,7 @@ export default function Footer({ onOpenContact, onOpenBooking }) {
             </button>
             <button
               type="button"
-              onClick={() => (onOpenBooking ? onOpenBooking() : null)}
+              onClick={() => (onOpenBooking ? onOpenBooking('photo-premium-walkthrough') : null)}
               style={{ background: 'none', border: 'none', color: 'inherit', font: 'inherit', cursor: 'pointer' }}
             >
               Book Now

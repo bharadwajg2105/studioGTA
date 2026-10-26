@@ -92,6 +92,16 @@ export default function Header({ onOpenBooking, onOpenContact }) {
                 </NavLink>
               </li>
               <li className="nav-item">
+                <NavLink to="/architectural" className={({ isActive }) => (isActive ? 'active' : '')}>
+                  Architectural
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/hotel" className={({ isActive }) => (isActive ? 'active' : '')}>
+                  Hotel
+                </NavLink>
+              </li>
+              <li className="nav-item">
                 <button
                   type="button"
                   onClick={handleContactClick}
@@ -216,6 +226,16 @@ export default function Header({ onOpenBooking, onOpenContact }) {
           <li>
             <NavLink to="/packages" className={({ isActive }) => (isActive ? 'active' : '')} onClick={closeMenu}>
               Packages & Pricing
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/architectural" className={({ isActive }) => (isActive ? 'active' : '')} onClick={closeMenu}>
+              Architectural Media
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/hotel" className={({ isActive }) => (isActive ? 'active' : '')} onClick={closeMenu}>
+              Hotel & Hospitality
             </NavLink>
           </li>
           <li>

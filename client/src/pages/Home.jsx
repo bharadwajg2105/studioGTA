@@ -209,7 +209,7 @@ export default function Home({ onOpenBooking, onOpenContact }) {
           >
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
               <Clock size={15} color="#d97706" />
-              <span>12-Hour Turnaround</span>
+              <span>Next Day Delivery (10am)</span>
             </div>
             <span style={{ color: '#d1d5db' }}>•</span>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
@@ -661,7 +661,7 @@ export default function Home({ onOpenBooking, onOpenContact }) {
 
               <button
                 type="button"
-                onClick={() => onOpenBooking('photo-regular-video')}
+                onClick={() => onOpenBooking('photo-premium-walkthrough')}
                 style={{
                   backgroundColor: '#ffffff',
                   color: '#111827',
@@ -808,9 +808,9 @@ export default function Home({ onOpenBooking, onOpenContact }) {
               <div className="service-icon-box">
                 <Clock size={24} />
               </div>
-              <h3 className="service-title">Guaranteed 12-Hour Turnaround</h3>
+              <h3 className="service-title">On-Time Delivery (10am Next Day)</h3>
               <p className="service-desc">
-                Your listings can’t wait. We deliver fully color-graded, sky-replaced HDR photos by 9:00 AM the following morning so you can launch on MLS without delay.
+                Your listings can’t wait. We deliver fully color-graded, sky-replaced HDR photos by 10:00 AM the next day so you can launch on MLS without delay.
               </p>
             </div>
 
@@ -818,9 +818,9 @@ export default function Home({ onOpenBooking, onOpenContact }) {
               <div className="service-icon-box">
                 <ShieldCheck size={24} />
               </div>
-              <h3 className="service-title">Pay Only After You Approve</h3>
+              <h3 className="service-title">$100 Booking Deposit</h3>
               <p className="service-desc">
-                Zero deposit required to book your shoot. Review watermarked proofs upon delivery and only pay once you are 100% satisfied with the results.
+                Secure your spot with a $100 deposit, fully credited toward your final invoice. Balance due after media review.
               </p>
             </div>
 
@@ -965,7 +965,7 @@ export default function Home({ onOpenBooking, onOpenContact }) {
             Ready to Make Your Next Listing Stand Out?
           </h2>
           <p style={{ fontSize: '1.1rem', marginBottom: '2rem', color: '#9aa2b1' }}>
-            Book your shoot in 60 seconds with zero deposit. Guaranteed 12-hour delivery across Southwest Ontario and the GTA.
+            Book your shoot in 60 seconds with a $100 credited deposit. Guaranteed next day morning turnaround across Southwest Ontario and the GTA.
           </p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <button

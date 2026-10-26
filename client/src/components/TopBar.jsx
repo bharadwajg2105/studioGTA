@@ -36,14 +36,14 @@ export default function TopBar() {
 
           <div className="top-bar-item">
             <Clock size={13} className="icon-gold" aria-hidden="true" />
-            <span>12-Hour Delivery</span>
+            <span>Next Day Delivery</span>
           </div>
 
           <span className="top-bar-separator" aria-hidden="true">•</span>
 
           <div className="top-bar-item">
             <MapPin size={13} className="icon-gold" aria-hidden="true" />
-            <span>SW Ontario & GTA</span>
+            <span>GTA & Ontario</span>
           </div>
         </div>
       </div>

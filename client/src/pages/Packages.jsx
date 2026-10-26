@@ -3,7 +3,8 @@ import {
   Check,
   Calendar,
   ShieldCheck,
-  MapPin
+  MapPin,
+  ExternalLink
 } from 'lucide-react';
 import {
   PACKAGES,
@@ -35,7 +36,7 @@ export default function Packages({ onOpenBooking }) {
             <span className="eyebrow">TRANSPARENT PRICING</span>
             <h1 className="section-title">Packages & Pricing</h1>
             <p className="section-desc">
-              Official marketing media rate sheet for Ontario real estate. Guaranteed 12–24 hour delivery, unlimited revisions, and pay only after you review and approve.
+              Official marketing media rate sheet for Ontario real estate. Guaranteed Next Day Delivery (10:00 AM), 100% satisfaction guarantee, and $100 booking deposit.
             </p>
 
             {/* Package Category Filter */}
@@ -151,81 +152,88 @@ export default function Packages({ onOpenBooking }) {
                 <tr>
                   <th className="col-feature">Inclusions</th>
                   <th>Basic Photo (CAD $185)</th>
+                  <th className="col-popular">Photo & Premium Walkthrough (CAD $420) ★</th>
                   <th>Premium Photo (CAD $265)</th>
-                  <th className="col-popular">Photo & Regular Video (CAD $280) ★</th>
-                  <th>Photo & Premium Walkthrough (CAD $420)</th>
+                  <th>Photo & Regular Video (CAD $280)</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td><strong>High Resolution Still Images</strong></td>
                   <td className="cell-check">✓ Included</td>
-                  <td className="cell-check">✓ Included</td>
                   <td className="cell-check col-popular">✓ Included</td>
+                  <td className="cell-check">✓ Included</td>
                   <td className="cell-check">✓ Included</td>
                 </tr>
                 <tr>
                   <td><strong>Editing & Lighting Style</strong></td>
                   <td>Standard HDR MLS</td>
+                  <td className="col-popular" style={{ color: '#b45309', fontWeight: 600 }}>Magazine Grade Polish</td>
                   <td style={{ color: '#b45309', fontWeight: 600 }}>Magazine Style + HDR & Flash</td>
-                  <td className="col-popular">Standard HDR MLS</td>
-                  <td style={{ color: '#b45309', fontWeight: 600 }}>Magazine Grade Polish</td>
+                  <td>Standard HDR MLS</td>
                 </tr>
                 <tr>
                   <td><strong>Video Tour Included</strong></td>
                   <td className="cell-check">—</td>
+                  <td className="cell-check col-popular" style={{ fontWeight: 600 }}>✓ Upgraded Gimbal Walkthrough Video</td>
                   <td className="cell-check">—</td>
-                  <td className="cell-check col-popular">✓ HD Video Tour</td>
-                  <td className="cell-check" style={{ fontWeight: 600 }}>✓ Upgraded Gimbal Walkthrough Video</td>
+                  <td className="cell-check">✓ HD Video Tour</td>
+                </tr>
+                <tr>
+                  <td><strong>Instagram/TikTok Reel</strong></td>
+                  <td className="cell-check">—</td>
+                  <td className="cell-check col-popular" style={{ fontWeight: 600 }}>✓ Included (Horiz / Vert)</td>
+                  <td className="cell-check">—</td>
+                  <td className="cell-check">Optional Add-on</td>
                 </tr>
                 <tr>
                   <td><strong>Music Selection</strong></td>
                   <td className="cell-check">—</td>
+                  <td className="cell-check col-popular" style={{ fontWeight: 600 }}>Custom Music Selection</td>
                   <td className="cell-check">—</td>
-                  <td className="cell-check col-popular">Licensed Soundtrack</td>
-                  <td className="cell-check" style={{ fontWeight: 600 }}>Custom Music Selection</td>
+                  <td className="cell-check">Licensed Soundtrack</td>
                 </tr>
                 <tr>
                   <td><strong>Unbranded & Branded Webpage</strong></td>
                   <td className="cell-check">✓ Included</td>
-                  <td className="cell-check">✓ Included</td>
                   <td className="cell-check col-popular">✓ Included</td>
+                  <td className="cell-check">✓ Included</td>
                   <td className="cell-check">✓ Included</td>
                 </tr>
                 <tr>
                   <td><strong>Marketing Kit + Local Map</strong></td>
                   <td className="cell-check">✓ Included</td>
-                  <td className="cell-check">✓ Included</td>
                   <td className="cell-check col-popular">✓ Included</td>
+                  <td className="cell-check">✓ Included</td>
                   <td className="cell-check">✓ Included</td>
                 </tr>
                 <tr>
                   <td><strong>Photos Ready to Upload to MLS</strong></td>
                   <td className="cell-check">✓ Included</td>
-                  <td className="cell-check">✓ Included</td>
                   <td className="cell-check col-popular">✓ Included</td>
+                  <td className="cell-check">✓ Included</td>
                   <td className="cell-check">✓ Included</td>
                 </tr>
                 <tr>
                   <td><strong>Facebook, Twitter & WeChat Sharing</strong></td>
                   <td className="cell-check">✓ Included</td>
-                  <td className="cell-check">✓ Included</td>
                   <td className="cell-check col-popular">✓ Included</td>
+                  <td className="cell-check">✓ Included</td>
                   <td className="cell-check">✓ Included</td>
                 </tr>
                 <tr>
                   <td><strong>Turnaround Guarantee</strong></td>
-                  <td>12–24 Hours</td>
-                  <td>12–24 Hours</td>
-                  <td className="col-popular">12–24 Hours</td>
-                  <td>Priority 12 Hours</td>
+                  <td>Next Day Delivery (10am)</td>
+                  <td className="col-popular" style={{ fontWeight: 600 }}>Next Day Delivery (10am)</td>
+                  <td>Next Day Delivery (10am)</td>
+                  <td>Next Day Delivery (10am)</td>
                 </tr>
                 <tr>
-                  <td><strong>Pay After Approval (No Upfront Deposit)</strong></td>
-                  <td className="cell-check">✓</td>
-                  <td className="cell-check">✓</td>
-                  <td className="cell-check col-popular">✓</td>
-                  <td className="cell-check">✓</td>
+                  <td><strong>Deposit & Payment Terms</strong></td>
+                  <td>$100 Deposit</td>
+                  <td className="cell-check col-popular">$100 Deposit</td>
+                  <td>$100 Deposit</td>
+                  <td>$100 Deposit</td>
                 </tr>
               </tbody>
             </table>
@@ -319,7 +327,7 @@ export default function Packages({ onOpenBooking }) {
               <button
                 type="button"
                 className="btn btn-primary"
-                onClick={() => onOpenBooking('standard')}
+                onClick={() => onOpenBooking('photo-premium-walkthrough')}
               >
                 <Calendar size={16} />
                 <span>Book Rental Media Shoot</span>
@@ -344,46 +352,94 @@ export default function Packages({ onOpenBooking }) {
             <span className="eyebrow">REGIONAL COVERAGE</span>
             <h2 className="section-title">Service Areas & Travel Policies</h2>
             <p className="section-desc">
-              We travel directly to your listings across Ontario. $0 travel fees in all core service zones.
+              We travel directly to your listings across Ontario. Serving Toronto, Markham, Richmond Hill, Vaughan, Mississauga with NO extra charge.
             </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
-            {SERVICE_AREAS.map((area, idx) => (
-              <div
-                key={idx}
-                style={{
-                  backgroundColor: '#ffffff',
-                  border: '1px solid var(--color-border)',
-                  borderRadius: 'var(--radius-lg)',
-                  padding: '2rem',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '1rem'
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--color-gold-deep)' }}>
-                  <MapPin size={20} />
-                  <h3 style={{ fontSize: '1.25rem', color: 'var(--color-dark)' }}>{area.region}</h3>
-                </div>
-                <div style={{
-                  display: 'inline-block',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.78rem',
-                  fontWeight: 700,
-                  color: '#065f46',
-                  backgroundColor: '#ecfdf5',
-                  padding: '0.2rem 0.6rem',
-                  borderRadius: 'var(--radius-sm)',
-                  width: 'fit-content'
-                }}>
-                  {area.travelFee}
-                </div>
-                <p style={{ fontSize: '0.88rem', color: 'var(--color-fg-muted)', lineHeight: 1.6 }}>
-                  Serving {area.cities.join(', ')} and surrounding communities.
-                </p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem' }}>
+            {/* GTA Core Region */}
+            <div
+              style={{
+                backgroundColor: '#ffffff',
+                border: '2px solid #10b981',
+                borderRadius: 'var(--radius-lg)',
+                padding: '2rem',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '1rem',
+                boxShadow: '0 4px 12px rgba(16, 185, 129, 0.08)'
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#047857' }}>
+                <MapPin size={22} />
+                <h3 style={{ fontSize: '1.25rem', color: 'var(--color-dark)' }}>Greater Toronto Area (GTA)</h3>
               </div>
-            ))}
+              <div style={{
+                display: 'inline-block',
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.78rem',
+                fontWeight: 700,
+                color: '#065f46',
+                backgroundColor: '#ecfdf5',
+                padding: '0.25rem 0.65rem',
+                borderRadius: 'var(--radius-sm)',
+                width: 'fit-content'
+              }}>
+                NO EXTRA CHARGE
+              </div>
+              <p style={{ fontSize: '0.95rem', color: '#1f2937', fontWeight: 600, lineHeight: 1.6 }}>
+                Serving Toronto, Markham, Richmond Hill, Vaughan, Mississauga with NO extra charge.
+              </p>
+              <p style={{ fontSize: '0.86rem', color: 'var(--color-fg-muted)', lineHeight: 1.5 }}>
+                All core photography, 3D tours, and walkthrough video bookings within these 5 municipalities have zero added travel fees.
+              </p>
+            </div>
+
+            {/* Out of Town Regions */}
+            <div
+              style={{
+                backgroundColor: '#ffffff',
+                border: '1px solid var(--color-border)',
+                borderRadius: 'var(--radius-lg)',
+                padding: '2rem',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '1rem'
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--color-gold-deep)' }}>
+                <MapPin size={22} />
+                <h3 style={{ fontSize: '1.25rem', color: 'var(--color-dark)' }}>All Other Ontario Regions</h3>
+              </div>
+              <div style={{
+                display: 'inline-block',
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.78rem',
+                fontWeight: 700,
+                color: '#92400e',
+                backgroundColor: '#fef3c7',
+                padding: '0.25rem 0.65rem',
+                borderRadius: 'var(--radius-sm)',
+                width: 'fit-content'
+              }}>
+                OUT-OF-TOWN TRAVEL COSTS APPLY
+              </div>
+              <p style={{ fontSize: '0.92rem', color: '#374151', lineHeight: 1.6 }}>
+                For all other regions across Southwestern and Eastern Ontario (including Oakville, Burlington, Brampton, Hamilton, Kitchener-Waterloo, Guelph, Barrie, Oshawa, London, and Niagara), <strong>out-of-town travel costs apply</strong>.
+              </p>
+              <div style={{ marginTop: 'auto', paddingTop: '0.5rem' }}>
+                <a
+                  href="https://www.studiogta.ca/service-area"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-outline btn-sm"
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
+                >
+                  <span>View Full Service Area & Travel Guide</span>
+                  <ExternalLink size={14} />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>

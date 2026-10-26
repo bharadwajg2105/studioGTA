@@ -8,7 +8,7 @@ export default function Contact() {
     name: '',
     email: '',
     phone: '',
-    service: 'Standard Package ($399)',
+    service: 'Photo & Premium Walkthrough Video Package ($420)',
     location: '',
     preferredDate: '',
     message: '',
@@ -188,7 +188,7 @@ export default function Contact() {
                 Send Us a Message
               </h2>
               <p style={{ fontSize: '0.92rem', color: 'var(--color-fg-muted)', marginBottom: '1.75rem' }}>
-                Fill out the form below and we will get back to you promptly.
+                Fill out the form below. Guaranteed next day morning turnaround for all media shoots.
               </p>
 
               {successMsg && (
@@ -289,10 +289,10 @@ export default function Contact() {
                       onChange={handleChange}
                       className="form-select"
                     >
-                      <option value="Basic Package ($199)">Basic Package ($199)</option>
-                      <option value="Basic+ Package ($249)">Basic+ Package ($249)</option>
-                      <option value="Standard Package ($399)">Standard Package ($399) - Most Popular</option>
-                      <option value="Pro Package ($599)">Pro Package ($599) - Luxury</option>
+                      <option value="Basic Photo Package ($185)">Basic Photo Package ($185)</option>
+                      <option value="Photo & Premium Walkthrough Video Package ($420)">Photo & Premium Walkthrough Video Package ($420) - Most Popular</option>
+                      <option value="Premium Photo Package ($265)">Premium Photo Package ($265)</option>
+                      <option value="Photo & Regular Video Package ($280)">Photo & Regular Video Package ($280)</option>
                       <option value="Custom Media / À La Carte">Custom Media / À La Carte</option>
                     </select>
                   </div>

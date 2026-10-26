@@ -40,13 +40,13 @@ export default function About({ onOpenBooking }) {
                 In today's fast-moving real estate market, timing is everything. A listing delay of even 48 hours can mean lost buyer momentum or missed weekend open house traffic.
               </p>
               <p style={{ marginBottom: '1.5rem', lineHeight: 1.7 }}>
-                That's why StudioGTA was built around a 12-hour delivery model. We combine master bracketed HDR photography, certified drone pilots, and dedicated editing teams to guarantee your photos are in your inbox by 9:00 AM the following morning — with zero upfront deposit required.
+                That's why StudioGTA was built around guaranteed next-day morning delivery. We combine master bracketed HDR photography, certified drone pilots, and dedicated editing teams to guarantee your photos are in your inbox by 10:00 AM the next day. We guarantee professional-grade media and a next-day morning delivery so you never miss a listing deadline.
               </p>
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '1.5rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
                   <CheckCircle size={18} color="#cba238" />
-                  <span style={{ fontWeight: 600, fontSize: '0.92rem' }}>100% On-Time Delivery</span>
+                  <span style={{ fontWeight: 600, fontSize: '0.92rem' }}>On-Time Delivery (10am Next Day)</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
                   <CheckCircle size={18} color="#cba238" />
@@ -54,11 +54,11 @@ export default function About({ onOpenBooking }) {
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
                   <CheckCircle size={18} color="#cba238" />
-                  <span style={{ fontWeight: 600, fontSize: '0.92rem' }}>Unlimited Free Revisions</span>
+                  <span style={{ fontWeight: 600, fontSize: '0.92rem' }}>$100 Booking Deposit</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
                   <CheckCircle size={18} color="#cba238" />
-                  <span style={{ fontWeight: 600, fontSize: '0.92rem' }}>Pay After Approval</span>
+                  <span style={{ fontWeight: 600, fontSize: '0.92rem' }}>100% Satisfaction Guarantee</span>
                 </div>
               </div>
             </div>
@@ -145,7 +145,7 @@ export default function About({ onOpenBooking }) {
               onClick={() => onOpenBooking('standard')}
             >
               <Calendar size={18} />
-              <span>Book With Zero Deposit</span>
+              <span>Book a Shoot</span>
             </button>
           </div>
         </div>

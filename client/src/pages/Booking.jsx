@@ -106,7 +106,7 @@ export default function Booking() {
             <span className="eyebrow">INSTANT RESERVATION</span>
             <h1 className="section-title">Book Your Real Estate Media Shoot</h1>
             <p className="section-desc">
-              Schedule your shoot in 60 seconds with zero deposit. Guaranteed next-morning 9:00 AM delivery, unlimited revisions, and pay only after you love the finished product.
+              Schedule your shoot in 60 seconds. Guaranteed next day morning turnaround with a $100 deposit credited toward your final invoice.
             </p>
           </div>
         </div>
@@ -120,7 +120,7 @@ export default function Booking() {
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '0.5rem' }}>
                 <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.75rem' }}>Shoot Details & Logistics</h2>
                 <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', color: '#065f46', backgroundColor: '#ecfdf5', padding: '0.25rem 0.65rem', borderRadius: 'var(--radius-sm)', fontWeight: 700 }}>
-                  ✓ ZERO DEPOSIT REQUIRED
+                  ✓ GUARANTEED NEXT DAY MORNING TURNAROUND
                 </span>
               </div>
 
@@ -314,7 +314,7 @@ export default function Booking() {
                   ) : (
                     <>
                       <Calendar size={18} />
-                      <span>Confirm Booking Request (No Upfront Deposit)</span>
+                      <span>Confirm Booking Request ($100 Deposit)</span>
                     </>
                   )}
                 </button>
@@ -333,7 +333,7 @@ export default function Booking() {
         <div className="container">
           <div className="section-header">
             <span className="eyebrow">GUARANTEED SPEED</span>
-            <h2 className="section-title">12–24 Hour Turnaround Timeline</h2>
+            <h2 className="section-title">Next Day Delivery Timeline (10:00 AM)</h2>
             <p className="section-desc">
               Here is how your shoot progresses from shutter click to live MLS listing.
             </p>
@@ -352,7 +352,7 @@ export default function Booking() {
             </div>
             <div className="step-card">
               <div className="step-number">03</div>
-              <h4 className="step-title">Next Morning by 9:00 AM</h4>
+              <h4 className="step-title">Next Morning by 10:00 AM</h4>
               <p className="step-desc">Your private media delivery link arrives via email with download links for high-res print files and MLS-ready formats.</p>
             </div>
             <div className="step-card">
@@ -437,7 +437,7 @@ export default function Booking() {
               <span>Cancellation & Weather Policy</span>
             </h3>
             <p style={{ lineHeight: 1.7, marginBottom: '1rem', color: 'var(--color-fg-muted)' }}>
-              We understand real estate is unpredictable. You may cancel or reschedule your shoot free of charge up to <strong>12 hours prior</strong> to the scheduled shoot time.
+              We understand real estate is unpredictable. Bookings can be rescheduled or cancelled up to <strong>2 business days prior</strong> – otherwise a fee may apply. In case of heavy rain or snow, we contact clients to provide alternative dates at zero extra charge.
             </p>
             <p style={{ lineHeight: 1.7, color: 'var(--color-fg-muted)' }}>
               In the event of heavy rain or severe weather, exterior drone and photography work can be rescheduled at zero cost, or our photographer can complete the interior shoot and return on the next clear day to finish exterior captures at no extra fee.

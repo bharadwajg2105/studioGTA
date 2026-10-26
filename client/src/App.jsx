@@ -15,6 +15,8 @@ import Packages from './pages/Packages';
 import Contact from './pages/Contact';
 import Booking from './pages/Booking';
 import FAQ from './pages/FAQ';
+import Architectural from './pages/Architectural';
+import Hotel from './pages/Hotel';
 
 function MainRouter({ onOpenBooking, onOpenContact }) {
   const location = useLocation();
@@ -41,6 +43,14 @@ function MainRouter({ onOpenBooking, onOpenContact }) {
         <Route
           path="/packages"
           element={<Packages onOpenBooking={onOpenBooking} />}
+        />
+        <Route
+          path="/architectural"
+          element={<Architectural onOpenBooking={onOpenBooking} />}
+        />
+        <Route
+          path="/hotel"
+          element={<Hotel onOpenBooking={onOpenBooking} />}
         />
         <Route
           path="/booking"

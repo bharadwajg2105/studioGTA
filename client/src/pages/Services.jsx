@@ -81,81 +81,88 @@ export default function Services({ onOpenBooking }) {
                 <tr>
                   <th className="col-feature">Inclusions</th>
                   <th>Basic Photo (CAD $185)</th>
+                  <th className="col-popular">Photo & Premium Walkthrough (CAD $420) ★</th>
                   <th>Premium Photo (CAD $265)</th>
-                  <th className="col-popular">Photo & Regular Video (CAD $280) ★</th>
-                  <th>Photo & Premium Walkthrough (CAD $420)</th>
+                  <th>Photo & Regular Video (CAD $280)</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td><strong>High Resolution Still Images</strong></td>
                   <td className="cell-check">✓ Included</td>
-                  <td className="cell-check">✓ Included</td>
                   <td className="cell-check col-popular">✓ Included</td>
+                  <td className="cell-check">✓ Included</td>
                   <td className="cell-check">✓ Included</td>
                 </tr>
                 <tr>
                   <td><strong>Editing & Lighting Style</strong></td>
                   <td>Standard HDR MLS</td>
+                  <td className="col-popular" style={{ color: '#b45309', fontWeight: 600 }}>Magazine Grade Polish</td>
                   <td style={{ color: '#b45309', fontWeight: 600 }}>Magazine Style + HDR & Flash</td>
-                  <td className="col-popular">Standard HDR MLS</td>
-                  <td style={{ color: '#b45309', fontWeight: 600 }}>Magazine Grade Polish</td>
+                  <td>Standard HDR MLS</td>
                 </tr>
                 <tr>
                   <td><strong>Video Tour Included</strong></td>
                   <td className="cell-check">—</td>
+                  <td className="cell-check col-popular" style={{ fontWeight: 600 }}>✓ Upgraded Gimbal Walkthrough Video</td>
                   <td className="cell-check">—</td>
-                  <td className="cell-check col-popular">✓ HD Video Tour</td>
-                  <td className="cell-check" style={{ fontWeight: 600 }}>✓ Upgraded Gimbal Walkthrough Video</td>
+                  <td className="cell-check">✓ HD Video Tour</td>
+                </tr>
+                <tr>
+                  <td><strong>Instagram/TikTok Reel</strong></td>
+                  <td className="cell-check">—</td>
+                  <td className="cell-check col-popular" style={{ fontWeight: 600 }}>✓ Included (Horiz / Vert)</td>
+                  <td className="cell-check">—</td>
+                  <td className="cell-check">Optional Add-on</td>
                 </tr>
                 <tr>
                   <td><strong>Music Selection</strong></td>
                   <td className="cell-check">—</td>
+                  <td className="cell-check col-popular" style={{ fontWeight: 600 }}>Custom Music Selection</td>
                   <td className="cell-check">—</td>
-                  <td className="cell-check col-popular">Licensed Soundtrack</td>
-                  <td className="cell-check" style={{ fontWeight: 600 }}>Custom Music Selection</td>
+                  <td className="cell-check">Licensed Soundtrack</td>
                 </tr>
                 <tr>
                   <td><strong>Unbranded & Branded Webpage</strong></td>
                   <td className="cell-check">✓ Included</td>
-                  <td className="cell-check">✓ Included</td>
                   <td className="cell-check col-popular">✓ Included</td>
+                  <td className="cell-check">✓ Included</td>
                   <td className="cell-check">✓ Included</td>
                 </tr>
                 <tr>
                   <td><strong>Marketing Kit + Local Map</strong></td>
                   <td className="cell-check">✓ Included</td>
-                  <td className="cell-check">✓ Included</td>
                   <td className="cell-check col-popular">✓ Included</td>
+                  <td className="cell-check">✓ Included</td>
                   <td className="cell-check">✓ Included</td>
                 </tr>
                 <tr>
                   <td><strong>Photos Ready to Upload to MLS</strong></td>
                   <td className="cell-check">✓ Included</td>
-                  <td className="cell-check">✓ Included</td>
                   <td className="cell-check col-popular">✓ Included</td>
+                  <td className="cell-check">✓ Included</td>
                   <td className="cell-check">✓ Included</td>
                 </tr>
                 <tr>
                   <td><strong>Facebook, Twitter & WeChat Sharing</strong></td>
                   <td className="cell-check">✓ Included</td>
-                  <td className="cell-check">✓ Included</td>
                   <td className="cell-check col-popular">✓ Included</td>
+                  <td className="cell-check">✓ Included</td>
                   <td className="cell-check">✓ Included</td>
                 </tr>
                 <tr>
                   <td><strong>Turnaround Guarantee</strong></td>
-                  <td>12–24 Hours</td>
-                  <td>12–24 Hours</td>
-                  <td className="col-popular">12–24 Hours</td>
-                  <td>Priority 12 Hours</td>
+                  <td>Next Day Delivery (10am)</td>
+                  <td className="col-popular" style={{ fontWeight: 600 }}>Next Day Delivery (10am)</td>
+                  <td>Next Day Delivery (10am)</td>
+                  <td>Next Day Delivery (10am)</td>
                 </tr>
                 <tr>
-                  <td><strong>Pay After Approval (No Upfront Deposit)</strong></td>
-                  <td className="cell-check">✓</td>
-                  <td className="cell-check">✓</td>
-                  <td className="cell-check col-popular">✓</td>
-                  <td className="cell-check">✓</td>
+                  <td><strong>Deposit & Payment Terms</strong></td>
+                  <td>$100 Deposit</td>
+                  <td className="cell-check col-popular">$100 Deposit</td>
+                  <td>$100 Deposit</td>
+                  <td>$100 Deposit</td>
                 </tr>
               </tbody>
             </table>

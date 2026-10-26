@@ -214,7 +214,7 @@ export default function BookingModal({
               </h3>
             </div>
             <p style={{ fontSize: '0.82rem', color: 'var(--color-fg-muted)' }}>
-              Zero deposit required • 100% Satisfaction Guarantee • Pay after approval
+              Guaranteed next day morning turnaround • $100 Booking Deposit • 100% Satisfaction Guarantee
             </p>
           </div>
           <button
@@ -458,7 +458,7 @@ export default function BookingModal({
                 <>
                   <Calendar size={16} />
                   <span>
-                    {mode === 'contact' ? 'Send Message' : 'Confirm Shoot Request (Zero Upfront Cost)'}
+                    {mode === 'contact' ? 'Send Message' : 'Confirm Shoot Request ($100 Deposit)'}
                   </span>
                 </>
               )}
@@ -481,7 +481,7 @@ export default function BookingModal({
             }}
           >
             <ShieldCheck size={14} color="#cba238" />
-            <span>Guaranteed 12-hour turnaround • No payment until you approve</span>
+            <span>Guaranteed next day morning turnaround • Balance due after media review</span>
           </div>
         </div>
       </div>

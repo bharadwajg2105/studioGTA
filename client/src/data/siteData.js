@@ -9,27 +9,28 @@ export const COMPANY = {
   phoneFormatted: '647-300-0315',
   email: 'TOUR@STUDIOGTA.CA',
   emailClean: 'tour@studiogta.ca',
-  address: '3601 Highway 7 East, Suite 1005, Unit DOB, Markham ON, L3R 0M3',
+  address: 'Unit D08, 3601 Highway 7 East, Suite 1005, Markham ON, L3R 0M3',
   addressLines: [
-    '3601 Highway 7 East, Suite 1005, Unit DOB,',
+    'Unit D08, 3601 Highway 7 East, Suite 1005,',
     'Markham ON, L3R 0M3'
   ],
-  mapUrl: 'https://maps.google.com/?q=3601+Highway+7+East,+Suite+1005,+Unit+DOB,+Markham+ON+L3R+0M3',
+  mapUrl: 'https://maps.google.com/?q=Unit+D08,+3601+Highway+7+East,+Suite+1005,+Markham+ON+L3R+0M3',
   mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2879.790610363242!2d-79.33644072346743!3d43.84976797109355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4d4681648a313%3A0x6b7724a275464a4b!2s3601%20Hwy%207%2C%20Markham%2C%20ON%20L3R%200M3!5e0!3m2!1sen!2sca!4v1708300000000!5m2!1sen!2sca',
   serviceArea: 'Southwest Ontario & Greater Toronto Area',
+  serviceAreaUrl: 'https://www.studiogta.ca/service-area',
   hours: 'Everyday: 7:00 AM – 7:00 PM',
   instagram: 'https://www.instagram.com/studiogta_realestatemedia',
-  turnaround: '12-Hour Turnaround',
-  guarantee: '100% Satisfaction Guaranteed (Pay After Approval)',
+  turnaround: 'Next Day Delivery (10:00 AM)',
+  guarantee: '100% Satisfaction Guarantee & On-Time Delivery (10am Next Day)',
   pricingFootnote: 'Quote is for less than 3000 sq ft, every extra 1000 sq ft + CAD 25, Prices are subject to tax.'
 };
 
 export const TRUST_STATS = [
   {
-    number: '12',
-    suffix: 'hr',
-    label: 'Turnaround Time',
-    subtext: 'Next-morning 9 AM delivery'
+    number: '10',
+    suffix: ' AM',
+    label: 'Next Day Delivery',
+    subtext: 'Guaranteed morning delivery'
   },
   {
     number: '500',
@@ -45,41 +46,37 @@ export const TRUST_STATS = [
   },
   {
     number: '100',
-    suffix: '%',
-    label: 'Satisfaction Guarantee',
-    subtext: 'Pay only after approval'
+    suffix: '$',
+    label: 'Booking Deposit',
+    subtext: 'Credited toward final invoice'
   }
 ];
 
 export const SERVICE_AREAS = [
   {
     region: 'Greater Toronto Area (GTA)',
-    cities: ['Toronto', 'Markham', 'Richmond Hill', 'Vaughan', 'Mississauga', 'Brampton', 'Oakville', 'Burlington', 'Pickering', 'Ajax'],
-    travelFee: 'Free ($0 Travel)'
+    cities: ['Toronto', 'Markham', 'Richmond Hill', 'Vaughan', 'Mississauga'],
+    travelFee: 'NO EXTRA CHARGE',
+    desc: 'Serving Toronto, Markham, Richmond Hill, Vaughan, Mississauga with NO extra charge.'
   },
   {
-    region: 'Southwestern Ontario',
-    cities: ['London', 'Kitchener-Waterloo', 'Cambridge', 'Guelph', 'Hamilton', 'Brantford', 'Woodstock', 'Windsor'],
-    travelFee: 'Free in Core Zone'
-  },
-  {
-    region: 'Eastern & Northern Ontario',
-    cities: ['Barrie', 'Oshawa', 'Whitby', 'Peterborough', 'Niagara Region', 'St. Catharines'],
-    travelFee: 'Standard Mileage'
+    region: 'Other Ontario Regions & Out-of-Town',
+    cities: ['Oakville', 'Burlington', 'Brampton', 'Hamilton', 'Kitchener-Waterloo', 'Cambridge', 'Guelph', 'Barrie', 'Oshawa', 'London', 'Niagara'],
+    travelFee: 'Travel Costs Apply',
+    desc: 'Out-of-town travel costs apply for all other regions.'
   }
 ];
 
 export const BROKERAGE_LOGOS = [
-  { name: 'Royal LePage', sub: 'Signature & Terrequity' },
-  { name: 'Century 21', sub: 'Leading Edge & Heritage' },
-  { name: 'Coldwell Banker', sub: 'Canada' },
-  { name: 'eXp Realty', sub: 'Brokerage' },
-  { name: "Sotheby's", sub: 'International Realty' },
-  { name: 'Compass', sub: 'Real Estate' },
-  { name: 'Right At Home Realty', sub: 'Brokerage' },
-  { name: 'HomeLife Realty', sub: 'Services Inc.' },
-  { name: 'RE/MAX', sub: 'Realtron & Hallmark' },
-  { name: 'Keller Williams', sub: 'Referred Realty' }
+  { id: 'remax', name: 'RE/MAX', sub: 'Realtron & Hallmark' },
+  { id: 'royallepage', name: 'Royal LePage', sub: 'Signature & Terrequity' },
+  { id: 'century21', name: 'Century 21', sub: 'Leading Edge & Heritage' },
+  { id: 'sothebys', name: "Sotheby's", sub: 'International Realty' },
+  { id: 'coldwellbanker', name: 'Coldwell Banker', sub: 'Canada' },
+  { id: 'exp', name: 'eXp Realty', sub: 'Brokerage' },
+  { id: 'compass', name: 'Compass', sub: 'Real Estate' },
+  { id: 'rightathome', name: 'Right At Home Realty', sub: 'Brokerage' },
+  { id: 'kellerwilliams', name: 'Keller Williams', sub: 'Referred Realty' }
 ];
 
 export const HERO_SLIDES = [
@@ -149,6 +146,25 @@ export const PACKAGES = [
     ]
   },
   {
+    id: 'photo-premium-walkthrough',
+    name: 'Photo & Premium Walkthrough Video Package',
+    subtitle: 'Everything from Regular Video + Upgraded Gimbal Walkthrough',
+    price: 420,
+    currency: 'CAD',
+    sqft: 'Under 3,000 sq ft',
+    sqftLabel: 'Luxury Homes & Large Estates',
+    duration: '90 mins on-site',
+    popular: true,
+    badge: 'MOST POPULAR',
+    idealFor: 'Luxury properties, social reels & custom showcase homes',
+    features: [
+      'Everything from Regular Video Package Included',
+      'Upgraded Walkthrough Video with Gimbal',
+      'Instagram/TikTok Reel (Choose Horizontal or Vertical)',
+      'Custom Music Selection'
+    ]
+  },
+  {
     id: 'premium-photo',
     name: 'Premium Photo Package',
     subtitle: 'Magazine Style Editing + HDR & Flash Photography',
@@ -174,8 +190,8 @@ export const PACKAGES = [
     sqft: 'Under 3,000 sq ft',
     sqftLabel: 'Single-Family Homes & Townhomes',
     duration: '60–75 mins on-site',
-    popular: true,
-    badge: 'MOST POPULAR',
+    popular: false,
+    badge: 'Photo & Video',
     idealFor: 'Top realtors wanting complete photo + video marketing',
     features: [
       'High Resolution Still Images',
@@ -184,24 +200,6 @@ export const PACKAGES = [
       'Marketing Kit + Local Map',
       'Photos are ready to upload to MLS',
       'Facebook, Twitter & WeChat Sharing'
-    ]
-  },
-  {
-    id: 'photo-premium-walkthrough',
-    name: 'Photo & Premium Walkthrough Video Package',
-    subtitle: 'Everything from Regular Video + Upgraded Gimbal Walkthrough',
-    price: 420,
-    currency: 'CAD',
-    sqft: 'Under 3,000 sq ft',
-    sqftLabel: 'Luxury Homes & Large Estates',
-    duration: '90 mins on-site',
-    popular: false,
-    badge: 'PREMIUM SHOWCASE',
-    idealFor: 'Luxury properties and custom showcase homes',
-    features: [
-      'Everything from Regular Video Package Included',
-      'Upgraded Walkthrough Video with Gimbal',
-      'Custom Music Selection'
     ]
   }
 ];
@@ -220,7 +218,7 @@ export const SERVICES = [
       'Fireplace fire insertion & TV screen enhancement',
       'Delivered in MLS-ready (2048px) and print-res (300dpi)'
     ],
-    turnaround: '12 Hours'
+    turnaround: 'Next Day Delivery (10am)'
   },
   {
     id: 'cinematic-video',
@@ -235,7 +233,7 @@ export const SERVICES = [
       'Vertical 9:16 optimized for Instagram Reels and TikTok',
       'Optional on-camera realtor introduction & voiceover'
     ],
-    turnaround: '12–24 Hours'
+    turnaround: 'Next Day Delivery (10am)'
   },
   {
     id: 'drone',
@@ -249,7 +247,7 @@ export const SERVICES = [
       'Property boundary lot line overlays available',
       'Scenic neighborhood and sunset flyover shots'
     ],
-    turnaround: '12 Hours'
+    turnaround: 'Next Day Delivery (10am)'
   },
   {
     id: 'matterport',
@@ -263,7 +261,7 @@ export const SERVICES = [
       '6 months of cloud hosting included',
       'Embeddable in MLS, Realtor.ca, and social media'
     ],
-    turnaround: '24 Hours'
+    turnaround: 'Next Day Delivery'
   },
   {
     id: 'twilight',
@@ -277,25 +275,73 @@ export const SERVICES = [
       'Warm window glow and exterior accent lighting',
       'Perfect for hero listing and cover photos'
     ],
-    turnaround: '12 Hours'
+    turnaround: 'Next Day Delivery (10am)'
   },
   {
     id: 'feature-sheets',
     name: 'Feature Sheets & Custom Design',
     tagline: 'Premium Printed Presentation Materials',
     desc: 'High-quality tangible print collateral that buyers take home from open houses and showings to keep your listing top of mind.',
-    price: 'From CAD 25',
+    price: 'From CAD 30',
     features: [
       '25 copies 4 pages (CAD 80) or 50 copies 2 pages (CAD 80)',
-      'Custom graphic layout & professional design (CAD 25)',
+      'Custom graphic layout & professional design (CAD 30)',
       'Heavy premium cardstock with vivid color fidelity',
       'Fast turnaround delivered ready for open house'
     ],
-    turnaround: '24 Hours'
+    turnaround: 'Next Day Delivery'
   }
 ];
 
 export const ALACARTE_ADDONS = [
+  {
+    name: 'Extra Horizontal / Vertical Video',
+    price: 'CAD 150',
+    unit: 'per video format',
+    desc: 'Additional edited horizontal or vertical format video ready for social media & MLS.'
+  },
+  {
+    name: 'Drone Photo & Video',
+    price: 'CAD 250',
+    unit: 'photo + 4K video',
+    desc: '4 High Res Aerial Photos + 4K Drone Video cinematography by Transport Canada certified pilots.'
+  },
+  {
+    name: 'Same Day Delivery',
+    price: 'CAD 30',
+    unit: 'rush add-on',
+    desc: 'Priority expedited turnaround delivering edited media by end-of-day.'
+  },
+  {
+    name: '1 Hour Photo Delivery',
+    price: 'CAD 100',
+    unit: 'express rush',
+    desc: 'Ultra-fast 1-hour photo post-processing delivery immediately following the shoot.'
+  },
+  {
+    name: 'Chief Photographer Herman',
+    price: 'CAD 100',
+    unit: 'lead booking',
+    desc: 'Direct booking and on-site direction by StudioGTA Chief Photographer Herman.'
+  },
+  {
+    name: 'Feature Sheet Design',
+    price: 'CAD 30',
+    unit: 'per listing design',
+    desc: 'Custom professional graphic design and print-ready layout formatting for feature sheets.'
+  },
+  {
+    name: 'Feature Sheets (25 Copies - 4 Pages)',
+    price: 'CAD 80',
+    unit: '25 copies (4 pages)',
+    desc: '25 copies 4 pages premium heavy cardstock printed listing brochures.'
+  },
+  {
+    name: 'Feature Sheets (50 Copies - 2 Pages)',
+    price: 'CAD 80',
+    unit: '50 copies (2 pages)',
+    desc: '50 copies 2 pages double-sided glossy presentation sheets.'
+  },
   {
     name: '3D Matterport & 2D Floor Plan (<1,000 sq ft Condo)',
     price: 'CAD 200',
@@ -333,34 +379,10 @@ export const ALACARTE_ADDONS = [
     desc: '4 High Resolution Still Images captured by Transport Canada certified drone pilots.'
   },
   {
-    name: 'Aerial Drone Photo & HD Video',
-    price: 'CAD 250',
-    unit: '4 stills + HD video',
-    desc: '4 High Res Photo & HD Video aerial cinematography showing lot and neighborhood context.'
-  },
-  {
     name: 'Twilight Exterior Photography',
     price: 'CAD 150',
     unit: '2–3 evening stills',
     desc: '2–3 Evening Exterior Photography stills captured during sunset blue hour.'
-  },
-  {
-    name: 'Feature Sheets (25 Copies - 4 Pages)',
-    price: 'CAD 80',
-    unit: '25 copies (4 pages)',
-    desc: '25 copies 4 pages premium heavy cardstock printed listing brochures.'
-  },
-  {
-    name: 'Feature Sheets (50 Copies - 2 Pages)',
-    price: 'CAD 80',
-    unit: '50 copies (2 pages)',
-    desc: '50 copies 2 pages double-sided glossy presentation sheets.'
-  },
-  {
-    name: 'Feature Sheets Design',
-    price: 'CAD 25',
-    unit: 'per listing design',
-    desc: 'Custom professional graphic design and layout formatting for feature sheets.'
   }
 ];
 
@@ -370,16 +392,12 @@ export const GUARANTEES = [
     desc: 'We are confident you will love your media. If anything does not meet your high standards, we will reshoot or re-edit until you are thrilled.'
   },
   {
-    title: 'On-Time Delivery Guarantee',
-    desc: 'Your photos will be ready in your inbox within 12 hours (guaranteed by 9:00 AM next morning). If we are ever late, you receive 50% off.'
+    title: 'On-Time Delivery (10am Next Day)',
+    desc: 'Your photos and media will be ready in your inbox by 10:00 AM the next day. Guaranteed.'
   },
   {
-    title: 'Pay After Approval',
-    desc: 'Zero upfront deposit required. We shoot, edit, and send watermarked previews. You only pay once you review and approve the final product.'
-  },
-  {
-    title: 'Unlimited Free Revisions',
-    desc: 'Need a sky change, grass greener, exposure adjusted, or a photo re-ordered? We perform adjustments quickly at no additional charge.'
+    title: '$100 Booking Deposit',
+    desc: 'Secure your spot with a $100 deposit, fully credited toward your final invoice. Balance due after media review.'
   }
 ];
 
@@ -387,7 +405,7 @@ export const HOW_IT_WORKS_STEPS = [
   {
     step: '01',
     title: 'Book in 60 Seconds',
-    desc: 'Choose your package, pick your preferred shoot date and time, and enter the property address. No deposit required.'
+    desc: 'Choose your package, pick your preferred shoot date and time, and confirm with a $100 deposit credited to your invoice.'
   },
   {
     step: '02',
@@ -396,33 +414,33 @@ export const HOW_IT_WORKS_STEPS = [
   },
   {
     step: '03',
-    title: '12-Hour Professional Editing',
-    desc: 'Our in-house editorial team balances exposures, performs sky replacements, color grades video, and builds floor plans overnight.'
+    title: 'Next-Day Morning Professional Editing',
+    desc: 'Our in-house editorial team balances exposures, performs sky replacements, color grades video, and delivers by 10:00 AM the next day.'
   },
   {
     step: '04',
-    title: 'Review, Approve & Launch',
-    desc: 'Download your high-resolution print files and MLS-optimized photos ready to upload immediately.'
+    title: 'Review & Launch',
+    desc: 'Review your media, settle your remaining balance after review, and download MLS-ready and high-resolution print files.'
   }
 ];
 
 export const TESTIMONIALS = [
   {
-    quote: 'StudioGTA has been a game-changer for my listings. The 12-hour turnaround is real — I shot a luxury detached home at 3 PM and had high-res photos and drone footage ready to upload by 8:30 AM the next day.',
+    quote: 'StudioGTA has been a game-changer for my listings. The next-day morning delivery is real — I shot a luxury detached home at 3 PM and had high-res photos and drone footage ready to upload by 9:30 AM the next morning.',
     author: 'David Chen',
     brokerage: 'RE/MAX Realtron Realty Inc.',
     location: 'Markham / Richmond Hill',
     rating: 5
   },
   {
-    quote: 'The video quality is cinema-grade. The property sold in 4 days with multiple offers, and the buyers specifically mentioned the video walkthrough in their decision. Pay after approval gives me complete peace of mind.',
+    quote: 'The video quality is cinema-grade. The property sold in 4 days with multiple offers, and the buyers specifically mentioned the video walkthrough in their decision. The $100 deposit process gives me complete confidence.',
     author: 'Sarah Jenkins',
     brokerage: 'Royal LePage Signature Realty',
     location: 'Toronto / GTA',
     rating: 5
   },
   {
-    quote: 'I used to struggle with photographers missing deadlines or delivering dark photos. StudioGTA’s HDR photos are vibrant, windows are clear, and customer service is always responsive.',
+    quote: 'I used to struggle with photographers missing deadlines or delivering dark photos. StudioGTA’s HDR photos are vibrant, windows are clear, and delivery is guaranteed by 10:00 AM next day.',
     author: 'Michael Tremblay',
     brokerage: 'Century 21 Heritage Group',
     location: 'London & Southwestern ON',
@@ -432,23 +450,28 @@ export const TESTIMONIALS = [
 
 export const FAQS = [
   {
-    category: 'Booking & Scheduling',
-    q: 'How far in advance do I need to book a shoot?',
-    a: 'We typically recommend booking 24 to 48 hours in advance. However, we keep dedicated emergency slots open for last-minute same-day shoots.'
+    category: 'Commonly Asked Booking Questions',
+    q: 'Cancellation Policy',
+    a: 'Bookings can be re-scheduled or cancelled up to 2 business days prior – otherwise a fee may apply. You can reschedule online, by email or phone within your cancellation time period.'
   },
   {
-    category: 'Booking & Scheduling',
-    q: 'What is your cancellation and weather policy?',
-    a: 'You can cancel or reschedule free of charge up to 12 hours prior to the appointment. If adverse weather impacts exterior or drone work, we will return for exteriors at no charge or reschedule free of charge.'
+    category: 'Commonly Asked Booking Questions',
+    q: 'What if the weather is bad?',
+    a: 'Unfortunately, we can’t control the weather. However, we do offer free sky replacements for those gloomy, overcast days wherever possible. In case of heavy rain or snow, we always contact our client and provide them with an alternative date to reschedule, and in this case we do not charge any fee as long as all services are rescheduled to an alternative date and time.'
   },
   {
-    category: 'Turnaround & Delivery',
-    q: 'What is your turnaround time?',
-    a: 'HDR photography and floor plans are delivered within 12 hours (guaranteed by 9:00 AM the following morning). Cinematic video walkthroughs and 3D Matterport tours are delivered within 12–24 hours.'
+    category: 'Commonly Asked Booking Questions',
+    q: 'How much notice do you need for bookings?',
+    a: 'Booking notice varies and depends on how busy we get, and since we offer an online booking system, we can’t always provide you with definite availability. Best practice is to always book ahead of time to make sure you have your spot on our service calendar.'
   },
   {
-    category: 'Pricing & Payment',
-    q: 'Do you require a deposit before shooting?',
-    a: 'No! Zero upfront deposit required. We capture and edit the media, send you watermarked previews, and you only pay once you review and approve the final product.'
+    category: 'Commonly Asked Booking Questions',
+    q: 'Do you take bookings on Sundays?',
+    a: 'We are closed on Sundays and generally our photographers are resting too! However, if you really need a Sunday booking, we’ll try our best to make it happen. Keep in mind that Sunday bookings come with a $50 surcharge, as it’s an extra special arrangement for our team. To request a Sunday booking, just shoot us an email or give us a call. We’re here to help!'
+  },
+  {
+    category: 'Commonly Asked Booking Questions',
+    q: 'How long will my appointment take?',
+    a: 'This depends on the services requested and the size of the home. For listings up to 3,000 sq ft, we recommend the following:\n• Photos: 1 hour\n• Videos: 1 hour (or more if the agent is in the video)\n• Aerial Drone: 30 minutes\n• Matterport / iGuide: 1 hour\n• Twilights: 30 minutes'
   }
 ];

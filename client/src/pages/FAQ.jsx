@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronDown, Phone } from 'lucide-react';
+import { ChevronDown, Phone, Mail, Calendar } from 'lucide-react';
 import { FAQS, COMPANY } from '../data/siteData';
 
 export default function FAQ({ onOpenBooking }) {
   const [openIndex, setOpenIndex] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState('All');
 
-  const categories = ['All', 'Booking & Scheduling', 'Turnaround & Delivery', 'Pricing & Payment', 'Drone & Regulations', 'Property Preparation'];
+  const categories = ['All', 'Commonly Asked Booking Questions'];
 
   const filteredFaqs = FAQS.filter((faq) => {
     if (selectedCategory === 'All') return true;
@@ -24,10 +24,10 @@ export default function FAQ({ onOpenBooking }) {
       <section className="section section-muted" style={{ paddingBottom: '3.5rem' }}>
         <div className="container">
           <div className="section-header">
-            <span className="eyebrow">COMMON QUESTIONS</span>
-            <h1 className="section-title">Frequently Asked Questions</h1>
+            <span className="eyebrow">FREQUENTLY ASKED QUESTIONS</span>
+            <h1 className="section-title">We’re Here to Help You Get the Best Out of Your Listing</h1>
             <p className="section-desc">
-              Everything you need to know about our real estate media services, turnaround guarantees, drone pilot certifications, and zero-deposit payment terms.
+              Below are answers to our most frequently asked questions. Please let us know if you can’t find what you need.
             </p>
 
             {/* Category Filter Pills */}
@@ -53,7 +53,20 @@ export default function FAQ({ onOpenBooking }) {
       {/* Accordion Section */}
       <section className="section">
         <div className="container">
-          <div className="faq-accordion">
+          <div className="faq-accordion" style={{ maxWidth: '840px', margin: '0 auto' }}>
+            <div style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
+              <span style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.8rem',
+                fontWeight: 700,
+                textTransform: 'uppercase',
+                letterSpacing: '0.08em',
+                color: 'var(--color-gold-deep)'
+              }}>
+                Commonly Asked Booking Questions
+              </span>
+            </div>
+
             {filteredFaqs.map((faq, idx) => {
               const isOpen = openIndex === idx;
               return (
@@ -63,13 +76,47 @@ export default function FAQ({ onOpenBooking }) {
                     className="faq-question"
                     onClick={() => toggleAccordion(idx)}
                     aria-expanded={isOpen}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      width: '100%',
+                      padding: '1.25rem 1.5rem',
+                      background: 'none',
+                      border: 'none',
+                      cursor: 'pointer',
+                      textAlign: 'left',
+                      fontFamily: 'var(--font-sans)',
+                      fontSize: '1.1rem',
+                      fontWeight: 600,
+                      color: isOpen ? 'var(--color-gold-deep)' : 'var(--color-dark)'
+                    }}
                   >
                     <span>{faq.q}</span>
-                    <ChevronDown size={18} className="faq-icon" />
+                    <ChevronDown
+                      size={20}
+                      className="faq-icon"
+                      style={{
+                        transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                        transition: 'transform 0.25s ease',
+                        flexShrink: 0,
+                        marginLeft: '1rem',
+                        color: isOpen ? 'var(--color-gold-deep)' : '#9ca3af'
+                      }}
+                    />
                   </button>
                   {isOpen && (
-                    <div className="faq-answer">
-                      <p>{faq.a}</p>
+                    <div
+                      className="faq-answer"
+                      style={{
+                        padding: '0 1.5rem 1.5rem 1.5rem',
+                        color: '#4b5563',
+                        fontSize: '0.96rem',
+                        lineHeight: 1.7,
+                        whiteSpace: 'pre-line'
+                      }}
+                    >
+                      <p style={{ margin: 0 }}>{faq.a}</p>
                     </div>
                   )}
                 </div>
@@ -91,14 +138,15 @@ export default function FAQ({ onOpenBooking }) {
               Still have a question?
             </h3>
             <p style={{ color: 'var(--color-fg-muted)', marginBottom: '1.75rem' }}>
-              We are here to assist you anytime. Call us directly or send a message and our team will get back to you within 30 minutes.
+              We are here to assist you anytime. Call us directly or send a message and our team will get back to you promptly.
             </p>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
               <button
                 type="button"
                 className="btn btn-primary"
-                onClick={() => onOpenBooking('standard')}
+                onClick={() => onOpenBooking('photo-premium-walkthrough')}
               >
+                <Calendar size={15} />
                 <span>Book a Shoot</span>
               </button>
               <a href={`tel:${COMPANY.phoneClean}`} className="btn btn-outline">
@@ -106,6 +154,7 @@ export default function FAQ({ onOpenBooking }) {
                 <span>Call {COMPANY.phone}</span>
               </a>
               <Link to="/contact" className="btn btn-outline">
+                <Mail size={15} />
                 <span>Contact Our Team</span>
               </Link>
             </div>
