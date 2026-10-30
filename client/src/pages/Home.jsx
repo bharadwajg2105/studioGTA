@@ -85,6 +85,18 @@ export default function Home({ onOpenBooking, onOpenContact }) {
   // Property size filter in pricing section
   const [selectedSizeFilter, setSelectedSizeFilter] = useState('all');
 
+  const pricingScrollerRef = useRef(null);
+
+  const scrollPricing = (direction) => {
+    if (pricingScrollerRef.current) {
+      const scrollAmount = 320;
+      pricingScrollerRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   const scrollToPricing = (e) => {
     e.preventDefault();
     const el = document.getElementById('pricing-preview');
@@ -680,7 +692,17 @@ export default function Home({ onOpenBooking, onOpenContact }) {
           </div>
 
           {/* Four Pricing Cards Grid */}
-          <div className="packages-grid" style={{ marginTop: '2.5rem' }}>
+          <div className="sg-carousel-wrapper" style={{ marginTop: '2.5rem' }}>
+            <button
+              type="button"
+              className="sg-arrow-btn left"
+              onClick={() => scrollPricing('left')}
+              aria-label="Scroll left"
+            >
+              <ChevronLeft size={20} />
+            </button>
+
+            <div className="sg-scroller" ref={pricingScrollerRef}>
             {PACKAGES.map((pkg) => (
               <div
                 key={pkg.id}
@@ -762,6 +784,16 @@ export default function Home({ onOpenBooking, onOpenContact }) {
                 </div>
               </div>
             ))}
+            </div>
+
+            <button
+              type="button"
+              className="sg-arrow-btn right"
+              onClick={() => scrollPricing('right')}
+              aria-label="Scroll right"
+            >
+              <ChevronRight size={20} />
+            </button>
           </div>
 
           {/* Rate Sheet Footnote */}
