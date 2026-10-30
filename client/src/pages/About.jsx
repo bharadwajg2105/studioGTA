@@ -25,7 +25,7 @@ export default function About({ onOpenBooking }) {
       {/* Founder Story & Mission */}
       <section className="section">
         <div className="container">
-          <div style={{
+          <div className="about-story-grid" style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
             gap: '3.5rem',
@@ -43,7 +43,7 @@ export default function About({ onOpenBooking }) {
                 That's why StudioGTA was built around guaranteed next-day morning delivery. We combine master bracketed HDR photography, certified drone pilots, and dedicated editing teams to guarantee your photos are in your inbox by 10:00 AM the next day. We guarantee professional-grade media and a next-day morning delivery so you never miss a listing deadline.
               </p>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '1.5rem' }}>
+              <div className="about-highlights-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '1.5rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
                   <CheckCircle size={18} color="#cba238" />
                   <span style={{ fontWeight: 600, fontSize: '0.92rem' }}>On-Time Delivery (10am Next Day)</span>

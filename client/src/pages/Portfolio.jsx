@@ -196,20 +196,18 @@ export default function Portfolio({ onOpenBooking }) {
             <div
               style={{
                 position: 'absolute',
-                top: 0,
-                left: 0,
-                bottom: 0,
-                width: `${sliderPosition}%`,
-                overflow: 'hidden',
-                borderRight: '2px solid #ffffff'
+                inset: 0,
+                width: '100%',
+                height: '100%',
+                clipPath: `inset(0 ${100 - sliderPosition}% 0 0)`,
+                WebkitClipPath: `inset(0 ${100 - sliderPosition}% 0 0)`
               }}
             >
               <img
                 src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1200&auto=format&fit=crop"
                 alt="Original Daytime Property"
                 style={{
-                  width: '880px',
-                  maxWidth: 'none',
+                  width: '100%',
                   height: '100%',
                   objectFit: 'cover'
                 }}
@@ -229,6 +227,20 @@ export default function Portfolio({ onOpenBooking }) {
                 ORIGINAL DAYTIME
               </span>
             </div>
+
+            {/* Slider Divider Line */}
+            <div
+              style={{
+                position: 'absolute',
+                top: 0,
+                bottom: 0,
+                left: `${sliderPosition}%`,
+                width: '2px',
+                backgroundColor: '#ffffff',
+                boxShadow: '0 0 8px rgba(0,0,0,0.4)',
+                pointerEvents: 'none'
+              }}
+            />
 
             {/* After Tag */}
             <span style={{

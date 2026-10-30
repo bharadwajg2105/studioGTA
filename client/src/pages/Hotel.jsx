@@ -132,7 +132,7 @@ export default function Hotel({ onOpenBooking }) {
             </p>
           </div>
 
-          <div style={{
+          <div className="hotel-showcase-grid" style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
             gap: '2rem'

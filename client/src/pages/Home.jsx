@@ -196,6 +196,7 @@ export default function Home({ onOpenBooking, onOpenContact }) {
 
           {/* Trust Points */}
           <div
+            className="hero-trust-points"
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -211,7 +212,7 @@ export default function Home({ onOpenBooking, onOpenContact }) {
               <Clock size={15} color="#d97706" />
               <span>Next Day Delivery (10am)</span>
             </div>
-            <span style={{ color: '#d1d5db' }}>•</span>
+            <span className="hero-trust-separator" style={{ color: '#d1d5db' }}>•</span>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
               <Star size={15} fill="#d97706" stroke="#d97706" />
               <span>500+ 5-Star Reviews</span>

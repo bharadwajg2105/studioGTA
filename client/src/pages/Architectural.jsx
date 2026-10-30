@@ -132,7 +132,7 @@ export default function Architectural({ onOpenBooking }) {
             </p>
           </div>
 
-          <div style={{
+          <div className="architectural-showcase-grid" style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
             gap: '2rem'

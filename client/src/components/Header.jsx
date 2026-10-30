@@ -307,8 +307,8 @@ export default function Header({ onOpenBooking, onOpenContact }) {
       </div>
 
       <style>{`
-        /* Mobile Navigation Media Query (max-width: 1140px) */
-        @media (max-width: 1140px) {
+        /* Mobile Navigation Media Query (max-width: 1024px) */
+        @media (max-width: 1024px) {
           .desktop-nav,
           .nav-links,
           .header-desktop-only,
@@ -345,7 +345,7 @@ export default function Header({ onOpenBooking, onOpenContact }) {
           }
         }
 
-        @media (min-width: 1141px) {
+        @media (min-width: 1025px) {
           .desktop-nav {
             display: block !important;
           }
@@ -363,7 +363,7 @@ export default function Header({ onOpenBooking, onOpenContact }) {
           }
         }
 
-        @media (max-width: 1340px) and (min-width: 1141px) {
+        @media (max-width: 1280px) and (min-width: 1025px) {
           .header-btn-secondary {
             display: none !important;
           }
