@@ -883,6 +883,7 @@ button {
   overflow-wrap: break-word;
   word-break: break-word;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .package-card:hover {
@@ -904,7 +905,7 @@ button {
 
 .package-badge-tag {
   position: absolute;
-  top: -12px;
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
   background: linear-gradient(135deg, #cba238 0%, #aa8420 100%);
@@ -913,13 +914,14 @@ button {
   font-size: 0.72rem;
   font-weight: 700;
   padding: 0.25rem 0.85rem;
-  border-radius: var(--radius-full);
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   white-space: nowrap;
   max-width: 90%;
   text-align: center;
   box-sizing: border-box;
+  z-index: 2;
 }
 
 .package-header {
@@ -1001,6 +1003,36 @@ button {
 
 .package-card-footer {
   margin-top: auto;
+  width: 100%;
+}
+
+.package-card-footer .btn {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  white-space: normal; /* Allows text to wrap to the next line */
+  text-align: center;
+  height: auto;
+  min-height: 48px;
+  padding: 0.75rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  line-height: 1.35;
+  gap: 0.5rem;
+}
+
+.package-card-footer .btn span {
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.package-card-footer .btn svg {
+  flex-shrink: 0;
 }
 
 /* ==========================================================================
@@ -2265,7 +2297,7 @@ button {
   box-sizing: border-box;
 }
 
-/* Ensure buttons are visible and positioned correctly */
+/* Arrow buttons styling */
 .sg-arrow-btn {
   display: flex;
   position: absolute;
@@ -2298,12 +2330,10 @@ button {
   right: -10px;
 }
 
-@media (max-width: 480px) {
-  .sg-arrow-btn.left {
-    left: 2px;
-  }
-  .sg-arrow-btn.right {
-    right: 2px;
+/* TASK 2: Hide Arrow Buttons on Mobile and Tablet Screens */
+@media (max-width: 1024px) {
+  .sg-arrow-btn {
+    display: none !important; /* Hides the arrows completely */
   }
 }
 
