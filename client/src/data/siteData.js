@@ -33,9 +33,9 @@ export const TRUST_STATS = [
     subtext: 'Guaranteed morning delivery'
   },
   {
-    number: '500',
-    suffix: '+',
-    label: '5-Star Reviews',
+    number: '5',
+    suffix: '★',
+    label: '5 Star Reviews',
     subtext: 'Top realtor satisfaction'
   },
   {
@@ -46,9 +46,9 @@ export const TRUST_STATS = [
   },
   {
     number: '100',
-    suffix: '$',
-    label: 'Booking Deposit',
-    subtext: 'Credited toward final invoice'
+    suffix: '%',
+    label: 'Quality Guarantee',
+    subtext: 'Top-tier HDR editing standard'
   }
 ];
 
@@ -160,7 +160,8 @@ export const PACKAGES = [
     features: [
       'Everything from Regular Video Package Included',
       'Upgraded Walkthrough Video with Gimbal',
-      'Instagram/TikTok Reel (Choose Horizontal or Vertical)',
+      'Instagram/TikTok Reel (Choose Horizontal OR Vertical - Not Both)',
+      'Standard HDR for editing lighting style',
       'Custom Music Selection'
     ]
   },
@@ -200,6 +201,29 @@ export const PACKAGES = [
       'Marketing Kit + Local Map',
       'Photos are ready to upload to MLS',
       'Facebook, Twitter & WeChat Sharing'
+    ]
+  },
+  {
+    id: 'deluxe-photo-walkthrough',
+    name: 'Deluxe Photo & Walkthrough',
+    subtitle: 'Magazine Grade Polish + Everything from Premium Walkthrough',
+    price: 700,
+    currency: 'CAD',
+    sqft: 'Under 3,000 sq ft',
+    sqftLabel: 'Luxury Estates & Flagship Homes',
+    duration: '120 mins on-site',
+    popular: false,
+    badge: 'Deluxe Tier',
+    idealFor: 'Ultra-luxury estates, flagship listings & bespoke architectural video',
+    features: [
+      'Magazine Grade Polish for editing & lighting style',
+      'Everything from Photo & Premium Walkthrough Video Package Included',
+      'High Resolution Still Images (Magazine Grade Polish)',
+      'Upgraded Walkthrough Video with Gimbal',
+      'Instagram/TikTok Reel (Choose Horizontal OR Vertical - Not Both)',
+      'Custom Music Selection',
+      'Unbranded & Branded Webpage + Marketing Kit',
+      'Photos are ready to upload to MLS'
     ]
   }
 ];
@@ -396,8 +420,8 @@ export const GUARANTEES = [
     desc: 'Your photos and media will be ready in your inbox by 10:00 AM the next day. Guaranteed.'
   },
   {
-    title: '$100 Booking Deposit',
-    desc: 'Secure your spot with a $100 deposit, fully credited toward your final invoice. Balance due after media review.'
+    title: 'Premium Quality Guarantee',
+    desc: 'We use top-tier HDR editing and industry-standard techniques to ensure every property looks its absolute best.'
   }
 ];
 

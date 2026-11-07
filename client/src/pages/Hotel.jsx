@@ -6,9 +6,11 @@ import {
   CheckCircle,
   Calendar,
   Phone,
-  ShieldCheck,
   Star,
-  Camera
+  Camera,
+  TrendingUp,
+  Layers,
+  Award
 } from 'lucide-react';
 import { COMPANY, GUARANTEES } from '../data/siteData';
 
@@ -45,24 +47,34 @@ const HOTEL_SHOWCASE = [
 
 const HOTEL_PILLARS = [
   {
-    icon: <Sparkles size={24} />,
-    title: 'Emotional Guest Visuals',
-    desc: 'Guests buy an experience before they book a room. We craft warm, aspirational compositions that communicate luxury comfort and effortless relaxation.'
+    icon: <TrendingUp size={24} />,
+    title: 'Elevated Room Booking Conversions',
+    desc: 'Captivating, professional imagery immediately grabs attention on booking engines, keeping potential guests on your listing longer and directly translating digital views into confirmed hotel room reservations.'
   },
   {
-    icon: <Coffee size={24} />,
-    title: 'Amenity & Dining Storytelling',
-    desc: 'Capturing the fine details: chef-plated culinary creations, artisan coffee stations, plush robes, and inviting lounge seating that differentiate your property.'
+    icon: <Star size={24} />,
+    title: 'Premium Hotel Brand Positioning',
+    desc: 'Exceptional photography highlights your attention to detail and elevates the perceived luxury of your hotel rooms, allowing you to confidently command and justify higher average daily rates.'
   },
   {
     icon: <Camera size={24} />,
-    title: 'OTA & Brand Standards',
-    desc: 'Deliverables formatted for high-conversion performance on Marriott, Hilton, Leading Hotels of the World, Expedia VIP, Booking.com, and direct booking web engines.'
+    title: 'Accurate Hotel Room Representation',
+    desc: 'Specialized lenses and strategic angles showcase the true size, layout, and flow of your guest suites and hotel rooms, setting accurate expectations and protecting your property from negative reviews.'
   },
   {
-    icon: <ShieldCheck size={24} />,
-    title: 'Next-Day Fast Delivery',
-    desc: 'Guaranteed next day morning turnaround so your revenue and marketing teams can launch seasonal campaigns and promo packages without delay.'
+    icon: <Coffee size={24} />,
+    title: 'The Complete Hospitality Experience',
+    desc: 'Beyond the hotel rooms, strategic photography captures the vibrant atmosphere of your unique amenities—like spas, pools, and dining areas—selling the complete lifestyle of your property.'
+  },
+  {
+    icon: <Layers size={24} />,
+    title: 'Versatile Room Marketing Assets',
+    desc: 'Equip your team with a comprehensive portfolio of high-resolution, meticulously edited hotel room images for a consistent, high-impact visual identity across social media, email campaigns, and online travel agencies (OTAs).'
+  },
+  {
+    icon: <Award size={24} />,
+    title: 'Rapid Return on Investment',
+    desc: 'The immediate boost in nightly occupancy means the one-time cost of a professional hotel room photoshoot is typically recovered within just a handful of new room bookings.'
   }
 ];
 
@@ -198,7 +210,7 @@ export default function Hotel({ onOpenBooking }) {
             Ready to Elevate Your Property’s Visual Presence?
           </h2>
           <p style={{ fontSize: '1.05rem', color: '#9ca3af', marginBottom: '2rem', lineHeight: 1.6 }}>
-            Guaranteed next day morning turnaround with a $100 credited booking deposit. Minimal disruption to your in-house guests during production.
+            Customized scheduling with minimal disruption to your in-house guests and hotel operations.
           </p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <button
@@ -213,6 +225,15 @@ export default function Hotel({ onOpenBooking }) {
               <span>Contact Hospitality Specialist</span>
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* SEO Keywords */}
+      <section style={{ padding: '2rem 1rem', backgroundColor: '#fcfbf9', borderTop: '1px solid #e5e7eb', textAlign: 'center' }}>
+        <div className="container">
+          <p style={{ fontSize: '0.85rem', color: '#6b7280', margin: 0, lineHeight: 1.6 }}>
+            Keywords: Hotel Photography, Hospitality Media, Resort Photography, Boutique Hotel Marketing, Hotel Room Shoots.
+          </p>
         </div>
       </section>
     </div>

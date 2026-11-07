@@ -6,9 +6,9 @@ import {
   Sun,
   Award,
   Calendar,
-  CheckCircle,
   Phone,
-  ShieldCheck
+  TrendingUp,
+  Sparkles
 } from 'lucide-react';
 import { COMPANY, GUARANTEES } from '../data/siteData';
 
@@ -46,23 +46,33 @@ const ARCHITECTURAL_SHOWCASE = [
 const ARCHITECTURAL_PILLARS = [
   {
     icon: <Layers size={24} />,
-    title: 'Perspective & Line Correction',
-    desc: 'Eliminating optical distortion and converging vertical lines. We capture true 90-degree elevations and rectilinear alignment essential for portfolio and award standards.'
+    title: 'Showcase Architectural & Interior Design Intent',
+    desc: 'Carefully selected angles and focal lengths translate three-dimensional spaces into a 2D medium, highlighting the exact structural details, flow, and material choices envisioned by architecture companies and interior designers.'
+  },
+  {
+    icon: <TrendingUp size={24} />,
+    title: 'Maximize Condo & Property Value',
+    desc: 'Striking architectural photography elevates perceived value, allowing condo developers and real estate agents to justify premium pricing and luxury market positioning before a buyer ever steps inside.'
   },
   {
     icon: <Sun size={24} />,
-    title: 'Materiality & Authentic Textures',
-    desc: 'High-fidelity capture of tactile surfaces: hand-scraped hardwoods, polished aggregate concrete, Venetian plaster, and natural stone vein patterns without harsh artificial glare.'
+    title: 'Masterful Lighting for Interior Designers',
+    desc: 'Expert exposure blending and perspective correction balance natural daylight with intricate fixtures, ensuring spaces curated by an interior designer appear expansive, inviting, and architecturally accurate.'
   },
   {
-    icon: <Camera size={24} />,
-    title: 'Ambient & Architectural Lighting',
-    desc: 'Carefully staged natural lighting blended with subtle fill flash to showcase how light sculpts volumes and spaces throughout the day.'
+    icon: <Sparkles size={24} />,
+    title: 'Accelerate New Build Sales & Leasing',
+    desc: 'Magazine-quality interior photography captures immediate online attention, driving higher listing click-through rates and shortening the time a newly designed building sits on the market.'
   },
   {
     icon: <Award size={24} />,
-    title: 'Award & Publication Ready',
-    desc: 'Delivered in full uncompressed 300 DPI TIFF and high-res JPEG formats tailored for OAA awards, architectural digest submissions, and design monograph printing.'
+    title: 'Elevate Portfolios for Architecture Companies',
+    desc: 'Polished images serve as high-caliber marketing assets for architecture companies and designers, providing the exact content needed for award submissions, social campaigns, and winning the next major project.'
+  },
+  {
+    icon: <Camera size={24} />,
+    title: 'Advanced Retouching for Design Firms',
+    desc: 'Precise perspective alignment and structural retouching remove lingering construction artifacts, presenting a flawless environment that represents your interior design or architectural firm’s project at its absolute best.'
   }
 ];
 

@@ -36,7 +36,7 @@ export default function Packages({ onOpenBooking }) {
       return pkg.id === 'basic-photo' || pkg.id === 'premium-photo';
     }
     if (selectedCategoryFilter === 'video') {
-      return pkg.id === 'photo-regular-video' || pkg.id === 'photo-premium-walkthrough';
+      return pkg.id === 'photo-regular-video' || pkg.id === 'photo-premium-walkthrough' || pkg.id === 'deluxe-photo-walkthrough';
     }
     return true;
   });
@@ -60,7 +60,7 @@ export default function Packages({ onOpenBooking }) {
                 className={`filter-btn ${selectedCategoryFilter === 'all' ? 'active' : ''}`}
                 onClick={() => setSelectedCategoryFilter('all')}
               >
-                All Packages (4)
+                All Packages (5)
               </button>
               <button
                 type="button"
@@ -176,7 +176,7 @@ export default function Packages({ onOpenBooking }) {
             <span className="eyebrow">DETAILED COMPARISON</span>
             <h2 className="section-title">Side-by-Side Feature Comparison</h2>
             <p className="section-desc">
-              Understand exactly what is included in each of our 4 official media packages.
+              Understand exactly what is included in each of our 5 official media packages.
             </p>
           </div>
 
@@ -189,6 +189,7 @@ export default function Packages({ onOpenBooking }) {
                   <th className="col-popular">Photo & Premium Walkthrough (CAD $420) ★</th>
                   <th>Premium Photo (CAD $265)</th>
                   <th>Photo & Regular Video (CAD $280)</th>
+                  <th>Deluxe Photo & Walkthrough (CAD $700)</th>
                 </tr>
               </thead>
               <tbody>
@@ -198,13 +199,15 @@ export default function Packages({ onOpenBooking }) {
                   <td className="cell-check col-popular">✓ Included</td>
                   <td className="cell-check">✓ Included</td>
                   <td className="cell-check">✓ Included</td>
+                  <td className="cell-check">✓ Included</td>
                 </tr>
                 <tr>
                   <td><strong>Editing & Lighting Style</strong></td>
                   <td>Standard HDR MLS</td>
-                  <td className="col-popular" style={{ color: '#b45309', fontWeight: 600 }}>Magazine Grade Polish</td>
+                  <td className="col-popular" style={{ color: '#b45309', fontWeight: 600 }}>Standard HDR for editing lighting style</td>
                   <td style={{ color: '#b45309', fontWeight: 600 }}>Magazine Style + HDR & Flash</td>
                   <td>Standard HDR MLS</td>
+                  <td style={{ color: '#b45309', fontWeight: 600 }}>Magazine Grade Polish</td>
                 </tr>
                 <tr>
                   <td><strong>Video Tour Included</strong></td>
@@ -212,13 +215,15 @@ export default function Packages({ onOpenBooking }) {
                   <td className="cell-check col-popular" style={{ fontWeight: 600 }}>✓ Upgraded Gimbal Walkthrough Video</td>
                   <td className="cell-check">—</td>
                   <td className="cell-check">✓ HD Video Tour</td>
+                  <td className="cell-check" style={{ fontWeight: 600 }}>✓ Upgraded Gimbal Walkthrough Video</td>
                 </tr>
                 <tr>
                   <td><strong>Instagram/TikTok Reel</strong></td>
                   <td className="cell-check">—</td>
-                  <td className="cell-check col-popular" style={{ fontWeight: 600 }}>✓ Included (Horiz / Vert)</td>
+                  <td className="cell-check col-popular" style={{ fontWeight: 600 }}>✓ Included (Choose Horiz OR Vert - Not Both)</td>
                   <td className="cell-check">—</td>
                   <td className="cell-check">Optional Add-on</td>
+                  <td className="cell-check" style={{ fontWeight: 600 }}>✓ Included (Choose Horiz OR Vert - Not Both)</td>
                 </tr>
                 <tr>
                   <td><strong>Music Selection</strong></td>
@@ -226,11 +231,13 @@ export default function Packages({ onOpenBooking }) {
                   <td className="cell-check col-popular" style={{ fontWeight: 600 }}>Custom Music Selection</td>
                   <td className="cell-check">—</td>
                   <td className="cell-check">Licensed Soundtrack</td>
+                  <td className="cell-check" style={{ fontWeight: 600 }}>Custom Music Selection</td>
                 </tr>
                 <tr>
                   <td><strong>Unbranded & Branded Webpage</strong></td>
                   <td className="cell-check">✓ Included</td>
                   <td className="cell-check col-popular">✓ Included</td>
+                  <td className="cell-check">✓ Included</td>
                   <td className="cell-check">✓ Included</td>
                   <td className="cell-check">✓ Included</td>
                 </tr>
@@ -240,11 +247,13 @@ export default function Packages({ onOpenBooking }) {
                   <td className="cell-check col-popular">✓ Included</td>
                   <td className="cell-check">✓ Included</td>
                   <td className="cell-check">✓ Included</td>
+                  <td className="cell-check">✓ Included</td>
                 </tr>
                 <tr>
                   <td><strong>Photos Ready to Upload to MLS</strong></td>
                   <td className="cell-check">✓ Included</td>
                   <td className="cell-check col-popular">✓ Included</td>
+                  <td className="cell-check">✓ Included</td>
                   <td className="cell-check">✓ Included</td>
                   <td className="cell-check">✓ Included</td>
                 </tr>
@@ -254,6 +263,7 @@ export default function Packages({ onOpenBooking }) {
                   <td className="cell-check col-popular">✓ Included</td>
                   <td className="cell-check">✓ Included</td>
                   <td className="cell-check">✓ Included</td>
+                  <td className="cell-check">✓ Included</td>
                 </tr>
                 <tr>
                   <td><strong>Turnaround Guarantee</strong></td>
@@ -261,11 +271,13 @@ export default function Packages({ onOpenBooking }) {
                   <td className="col-popular" style={{ fontWeight: 600 }}>Next Day Delivery (10am)</td>
                   <td>Next Day Delivery (10am)</td>
                   <td>Next Day Delivery (10am)</td>
+                  <td>Next Day Delivery (10am)</td>
                 </tr>
                 <tr>
                   <td><strong>Deposit & Payment Terms</strong></td>
                   <td>$100 Deposit</td>
                   <td className="cell-check col-popular">$100 Deposit</td>
+                  <td>$100 Deposit</td>
                   <td>$100 Deposit</td>
                   <td>$100 Deposit</td>
                 </tr>

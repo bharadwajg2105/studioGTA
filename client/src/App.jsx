@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-route
 import Header from './components/Header';
 import Footer from './components/Footer';
 import BookingModal from './components/BookingModal';
+import CouponPopup from './components/CouponPopup';
 import ScrollToTop from './components/ScrollToTop';
 import ErrorBoundary from './components/ErrorBoundary';
 
@@ -128,6 +129,9 @@ export default function App() {
             initialPackageId={selectedPackageId}
             formMode={formMode}
           />
+
+          {/* Global 10% Off Coupon Popup (3s Delay, Once Per Session) */}
+          <CouponPopup onOpenBooking={handleOpenBooking} />
         </div>
       </BrowserRouter>
     </ErrorBoundary>

@@ -54,7 +54,7 @@ export default function About({ onOpenBooking }) {
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
                   <CheckCircle size={18} color="#cba238" />
-                  <span style={{ fontWeight: 600, fontSize: '0.92rem' }}>$100 Booking Deposit</span>
+                  <span style={{ fontWeight: 600, fontSize: '0.92rem' }}>Premium Quality Guarantee</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
                   <CheckCircle size={18} color="#cba238" />
