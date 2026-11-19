@@ -71,7 +71,17 @@ export default function Portfolio({ onOpenBooking }) {
         <div className="container">
           <div className="gallery-grid">
             {filteredItems.map((item) => (
-              <div key={item.id} className="gallery-item">
+              <div
+                key={item.id}
+                className="gallery-item"
+                style={{
+                  position: 'relative',
+                  height: '250px',
+                  width: '100%',
+                  overflow: 'hidden',
+                  backgroundColor: '#1f2937'
+                }}
+              >
                 {/* Visible badge showing Category and Location */}
                 <div
                   style={{
@@ -98,7 +108,16 @@ export default function Portfolio({ onOpenBooking }) {
                   src={item.src}
                   alt={item.title}
                   loading="lazy"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  decoding="async"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                  }}
+                  style={{
+                    width: '100%',
+                    height: '250px',
+                    objectFit: 'cover',
+                    display: 'block'
+                  }}
                 />
 
                 <div className="gallery-overlay">
@@ -131,12 +150,16 @@ export default function Portfolio({ onOpenBooking }) {
             aspectRatio: '16 / 10',
             boxShadow: 'var(--shadow-card)',
             border: '1px solid var(--color-border)',
-            userSelect: 'none'
+            userSelect: 'none',
+            backgroundColor: '#1f2937'
           }}>
             {/* After Image (Twilight Enhanced) */}
             <img
               src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop"
               alt="Twilight Enhanced Property"
+              loading="lazy"
+              decoding="async"
+              onError={(e) => { e.currentTarget.style.display = 'none'; }}
               style={{
                 position: 'absolute',
                 inset: 0,
@@ -160,6 +183,9 @@ export default function Portfolio({ onOpenBooking }) {
               <img
                 src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1200&auto=format&fit=crop"
                 alt="Original Daytime Property"
+                loading="lazy"
+                decoding="async"
+                onError={(e) => { e.currentTarget.style.display = 'none'; }}
                 style={{
                   width: '100%',
                   height: '100%',

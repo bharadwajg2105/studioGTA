@@ -384,6 +384,11 @@ export default function Packages({ onOpenBooking }) {
               <img
                 src="https://images.unsplash.com/photo-1540518614846-7ede433c4550?q=80&w=900&auto=format&fit=crop"
                 alt="Airbnb Vacation Rental Interior"
+                loading="lazy"
+                decoding="async"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                }}
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
             </div>

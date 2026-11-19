@@ -93,7 +93,11 @@ export default function Architectural({ onOpenBooking }) {
             <img
               src={HERO_ARCH_IMAGE.src}
               alt="Architectural Media - Allenbury"
-              loading="eager"
+              loading="lazy"
+              decoding="async"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+              }}
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
             <div
@@ -174,12 +178,16 @@ export default function Architectural({ onOpenBooking }) {
                   flexDirection: 'column'
                 }}
               >
-                <div style={{ height: '240px', overflow: 'hidden', position: 'relative' }}>
+                <div style={{ height: '250px', overflow: 'hidden', position: 'relative', backgroundColor: '#1f2937' }}>
                   <img
                     src={item.src}
                     alt={item.title}
                     loading="lazy"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    decoding="async"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                    }}
+                    style={{ width: '100%', height: '250px', objectFit: 'cover', display: 'block' }}
                   />
                   <div style={{
                     position: 'absolute',

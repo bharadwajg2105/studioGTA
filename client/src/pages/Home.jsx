@@ -264,12 +264,17 @@ export default function Home({ onOpenBooking, onOpenContact }) {
                   <img
                     src={slide.image}
                     alt={slide.title}
+                    loading={idx === 0 ? 'eager' : 'lazy'}
+                    fetchPriority={idx === 0 ? 'high' : 'low'}
+                    decoding={idx === 0 ? 'sync' : 'async'}
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                    }}
                     style={{
                       width: '100%',
                       height: '100%',
                       objectFit: 'cover'
                     }}
-                    loading={idx === 0 ? 'eager' : 'lazy'}
                   />
                   {/* Subtle Gradient Overlay */}
                   <div
