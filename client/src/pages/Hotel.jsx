@@ -13,37 +13,7 @@ import {
   Award
 } from 'lucide-react';
 import { COMPANY, GUARANTEES } from '../data/siteData';
-
-const HOTEL_SHOWCASE = [
-  {
-    title: 'Executive Suite & Living Lounge',
-    category: 'Luxury Guest Room',
-    location: 'Downtown Toronto, ON',
-    image: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1200&auto=format&fit=crop',
-    desc: 'Crisp layered textures, soft morning window lighting, and plush bedding compositions that inspire restful stays.'
-  },
-  {
-    title: 'Boutique Lobby & Cocktail Bar',
-    category: 'Public Spaces & F&B',
-    location: 'Yorkville, Toronto, ON',
-    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop',
-    desc: 'Warm evening ambiance, custom brass finishes, and curated bar lighting capturing the hotel’s vibrant nightlife vibe.'
-  },
-  {
-    title: 'Resort Pool & Sunset Terrace',
-    category: 'Amenities & Grounds',
-    location: 'Niagara-on-the-Lake, ON',
-    image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1200&auto=format&fit=crop',
-    desc: 'Pristine water reflections, poolside cabanas, and twilight exterior lighting highlighting outdoor relaxation amenities.'
-  },
-  {
-    title: 'Spa & Wellness Sanctuary',
-    category: 'Wellness & Relaxation',
-    location: 'Muskoka / GTA, ON',
-    image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=1200&auto=format&fit=crop',
-    desc: 'Calming earthy tones, steam ambiance, and serene vignette compositions that convey pure luxury and rejuvenation.'
-  }
-];
+import { HOTEL_IMAGES } from '../data/imageData';
 
 const HOTEL_PILLARS = [
   {
@@ -149,9 +119,9 @@ export default function Hotel({ onOpenBooking }) {
             gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
             gap: '2rem'
           }}>
-            {HOTEL_SHOWCASE.map((item, idx) => (
+            {HOTEL_IMAGES.map((item) => (
               <div
-                key={idx}
+                key={item.id}
                 style={{
                   backgroundColor: '#ffffff',
                   borderRadius: 'var(--radius-lg)',
@@ -164,8 +134,9 @@ export default function Hotel({ onOpenBooking }) {
               >
                 <div style={{ height: '240px', overflow: 'hidden', position: 'relative' }}>
                   <img
-                    src={item.image}
+                    src={item.src}
                     alt={item.title}
+                    loading="lazy"
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />
                   <div style={{
@@ -181,19 +152,19 @@ export default function Hotel({ onOpenBooking }) {
                     borderRadius: '4px',
                     textTransform: 'uppercase'
                   }}>
-                    {item.category}
+                    {item.badge}
                   </div>
                 </div>
 
                 <div style={{ padding: '1.5rem', flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
                   <div style={{ fontSize: '0.78rem', color: 'var(--color-gold-deep)', fontWeight: 600, marginBottom: '0.25rem' }}>
-                    {item.location}
+                    {item.locationName}, ON
                   </div>
                   <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', color: 'var(--color-dark)' }}>
                     {item.title}
                   </h3>
                   <p style={{ fontSize: '0.88rem', color: 'var(--color-fg-muted)', lineHeight: 1.6, marginTop: 'auto' }}>
-                    {item.desc}
+                    High-end hospitality imagery capturing guest suites, public amenities, and ambient boutique experiences.
                   </p>
                 </div>
               </div>

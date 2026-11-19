@@ -11,37 +11,7 @@ import {
   Sparkles
 } from 'lucide-react';
 import { COMPANY, GUARANTEES } from '../data/siteData';
-
-const ARCHITECTURAL_SHOWCASE = [
-  {
-    title: 'Modern Minimalist Detached Residence',
-    category: 'Custom Residential Build',
-    location: 'Oakville, ON',
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop',
-    details: 'Framing sharp geometric lines, continuous glass curtain walls, and natural cedar cladding.'
-  },
-  {
-    title: 'Urban Structural Infill & Atrium',
-    category: 'Commercial Architecture',
-    location: 'Downtown Toronto, ON',
-    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1200&auto=format&fit=crop',
-    details: 'Multi-story natural light well, exposed concrete finishes, and floating steel staircases.'
-  },
-  {
-    title: 'Contemporary Luxury Estate Elevation',
-    category: 'Architectural Exterior',
-    location: 'Markham / Unionville, ON',
-    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1200&auto=format&fit=crop',
-    details: 'Golden hour twilight balance highlighting exterior architectural accents and cantilevered roofs.'
-  },
-  {
-    title: 'Refined Interior Millwork & Textures',
-    category: 'Interior Design & Detailing',
-    location: 'Richmond Hill, ON',
-    image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1200&auto=format&fit=crop',
-    details: 'Macro texture documentation of white-oak cabinetry, book-matched marble, and ambient cove lighting.'
-  }
-];
+import { ARCHITECTURE_IMAGES, HERO_ARCH_IMAGE } from '../data/imageData';
 
 const ARCHITECTURAL_PILLARS = [
   {
@@ -103,6 +73,50 @@ export default function Architectural({ onOpenBooking }) {
               </a>
             </div>
           </div>
+
+          {/* Hero Section Featured Image Showcase */}
+          <div
+            style={{
+              marginTop: '2.5rem',
+              maxWidth: '1000px',
+              marginInline: 'auto',
+              borderRadius: '16px',
+              overflow: 'hidden',
+              boxShadow: '0 20px 40px rgba(0,0,0,0.12)',
+              border: '1px solid rgba(0,0,0,0.08)',
+              position: 'relative',
+              aspectRatio: '16 / 9',
+              maxHeight: '520px',
+              backgroundColor: '#1f2937'
+            }}
+          >
+            <img
+              src={HERO_ARCH_IMAGE.src}
+              alt="Architectural Media - Allenbury"
+              loading="eager"
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
+            <div
+              style={{
+                position: 'absolute',
+                bottom: '1.25rem',
+                left: '1.25rem',
+                backgroundColor: 'rgba(17, 24, 39, 0.85)',
+                backdropFilter: 'blur(6px)',
+                color: '#ffffff',
+                padding: '0.5rem 1rem',
+                borderRadius: '8px',
+                fontSize: '0.85rem',
+                fontWeight: 600,
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem'
+              }}
+            >
+              <span style={{ color: 'var(--color-gold)' }}>Featured:</span>
+              <span>Architecture • Allenbury</span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -147,9 +161,9 @@ export default function Architectural({ onOpenBooking }) {
             gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
             gap: '2rem'
           }}>
-            {ARCHITECTURAL_SHOWCASE.map((item, idx) => (
+            {ARCHITECTURE_IMAGES.map((item) => (
               <div
-                key={idx}
+                key={item.id}
                 style={{
                   backgroundColor: '#ffffff',
                   borderRadius: 'var(--radius-lg)',
@@ -162,8 +176,9 @@ export default function Architectural({ onOpenBooking }) {
               >
                 <div style={{ height: '240px', overflow: 'hidden', position: 'relative' }}>
                   <img
-                    src={item.image}
+                    src={item.src}
                     alt={item.title}
+                    loading="lazy"
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />
                   <div style={{
@@ -179,19 +194,19 @@ export default function Architectural({ onOpenBooking }) {
                     borderRadius: '4px',
                     textTransform: 'uppercase'
                   }}>
-                    {item.category}
+                    {item.badge}
                   </div>
                 </div>
 
                 <div style={{ padding: '1.5rem', flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
                   <div style={{ fontSize: '0.78rem', color: 'var(--color-gold-deep)', fontWeight: 600, marginBottom: '0.25rem' }}>
-                    {item.location}
+                    {item.locationName}, ON
                   </div>
                   <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', color: 'var(--color-dark)' }}>
                     {item.title}
                   </h3>
                   <p style={{ fontSize: '0.88rem', color: 'var(--color-fg-muted)', lineHeight: 1.6, marginTop: 'auto' }}>
-                    {item.details}
+                    Precision architectural perspective alignment, distortion correction, and premium lighting documentation.
                   </p>
                 </div>
               </div>

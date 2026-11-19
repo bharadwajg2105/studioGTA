@@ -1,87 +1,13 @@
 import React, { useState } from 'react';
 import { Star, Calendar } from 'lucide-react';
 import { TESTIMONIALS } from '../data/siteData';
-
-const PORTFOLIO_ITEMS = [
-  {
-    id: 1,
-    title: 'Modern Architecture Living Room',
-    category: 'photography',
-    categoryName: 'HDR Photography',
-    img: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1000&auto=format&fit=crop',
-    location: 'Oakville, ON'
-  },
-  {
-    id: 2,
-    title: 'Custom Waterfront Estate Aerial',
-    category: 'drone',
-    categoryName: 'Aerial Drone',
-    img: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1000&auto=format&fit=crop',
-    location: 'Burlington, ON'
-  },
-  {
-    id: 3,
-    title: 'Minimalist Chef Kitchen & Island',
-    category: 'photography',
-    categoryName: 'HDR Photography',
-    img: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1000&auto=format&fit=crop',
-    location: 'Toronto, ON'
-  },
-  {
-    id: 4,
-    title: 'Virtually Staged Primary Suite',
-    category: 'staging',
-    categoryName: 'Virtual Staging',
-    img: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1000&auto=format&fit=crop',
-    location: 'Markham, ON'
-  },
-  {
-    id: 5,
-    title: 'Twilight Luxury Backyard Oasis',
-    category: 'photography',
-    categoryName: 'Twilight Stills',
-    img: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1000&auto=format&fit=crop',
-    location: 'Richmond Hill, ON'
-  },
-  {
-    id: 6,
-    title: 'High-Altitude Suburban Panorama',
-    category: 'drone',
-    categoryName: 'Aerial Drone',
-    img: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=1000&auto=format&fit=crop',
-    location: 'London, ON'
-  },
-  {
-    id: 7,
-    title: 'Spa-Inspired Ensuite Bathroom',
-    category: 'photography',
-    categoryName: 'HDR Photography',
-    img: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?q=80&w=1000&auto=format&fit=crop',
-    location: 'Mississauga, ON'
-  },
-  {
-    id: 8,
-    title: 'Virtually Staged Open Concept Living',
-    category: 'staging',
-    categoryName: 'Virtual Staging',
-    img: 'https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?q=80&w=1000&auto=format&fit=crop',
-    location: 'Vaughan, ON'
-  },
-  {
-    id: 9,
-    title: 'Cinematic Walkthrough Feature',
-    category: 'video',
-    categoryName: '4K Cinema Video',
-    img: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1000&auto=format&fit=crop',
-    location: 'Kitchener-Waterloo, ON'
-  }
-];
+import { ALL_CLIENT_IMAGES } from '../data/imageData';
 
 export default function Portfolio({ onOpenBooking }) {
   const [activeFilter, setActiveFilter] = useState('all');
   const [sliderPosition, setSliderPosition] = useState(50);
 
-  const filteredItems = PORTFOLIO_ITEMS.filter((item) => {
+  const filteredItems = ALL_CLIENT_IMAGES.filter((item) => {
     if (activeFilter === 'all') return true;
     return item.category === activeFilter;
   });
@@ -95,7 +21,7 @@ export default function Portfolio({ onOpenBooking }) {
             <span className="eyebrow">FEATURED WORK</span>
             <h1 className="section-title">Media Portfolio</h1>
             <p className="section-desc">
-              Explore our recent photography, aerial drone cinematography, and virtual staging productions across Southwest Ontario and the Greater Toronto Area.
+              Explore our recent photography across Architecture, Commercial spaces, Hotels, and Residential properties throughout Ontario and the Greater Toronto Area.
             </p>
           </div>
 
@@ -110,31 +36,31 @@ export default function Portfolio({ onOpenBooking }) {
             </button>
             <button
               type="button"
-              className={`filter-btn ${activeFilter === 'photography' ? 'active' : ''}`}
-              onClick={() => setActiveFilter('photography')}
+              className={`filter-btn ${activeFilter === 'architecture' ? 'active' : ''}`}
+              onClick={() => setActiveFilter('architecture')}
             >
-              HDR Photography
+              Architecture
             </button>
             <button
               type="button"
-              className={`filter-btn ${activeFilter === 'drone' ? 'active' : ''}`}
-              onClick={() => setActiveFilter('drone')}
+              className={`filter-btn ${activeFilter === 'commercial' ? 'active' : ''}`}
+              onClick={() => setActiveFilter('commercial')}
             >
-              Aerial Drone
+              Commercial
             </button>
             <button
               type="button"
-              className={`filter-btn ${activeFilter === 'staging' ? 'active' : ''}`}
-              onClick={() => setActiveFilter('staging')}
+              className={`filter-btn ${activeFilter === 'hotel' ? 'active' : ''}`}
+              onClick={() => setActiveFilter('hotel')}
             >
-              Virtual Staging
+              Hotel
             </button>
             <button
               type="button"
-              className={`filter-btn ${activeFilter === 'video' ? 'active' : ''}`}
-              onClick={() => setActiveFilter('video')}
+              className={`filter-btn ${activeFilter === 'residential' ? 'active' : ''}`}
+              onClick={() => setActiveFilter('residential')}
             >
-              Cinematic Video
+              Residential
             </button>
           </div>
         </div>
@@ -146,9 +72,37 @@ export default function Portfolio({ onOpenBooking }) {
           <div className="gallery-grid">
             {filteredItems.map((item) => (
               <div key={item.id} className="gallery-item">
-                <img src={item.img} alt={item.title} loading="lazy" />
+                {/* Visible badge showing Category and Location */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: '0.75rem',
+                    left: '0.75rem',
+                    backgroundColor: 'rgba(17, 24, 39, 0.85)',
+                    backdropFilter: 'blur(4px)',
+                    color: '#f9fafb',
+                    fontSize: '0.72rem',
+                    fontFamily: 'var(--font-mono)',
+                    fontWeight: 600,
+                    padding: '0.25rem 0.6rem',
+                    borderRadius: '4px',
+                    zIndex: 2,
+                    letterSpacing: '0.02em',
+                    boxShadow: '0 2px 6px rgba(0,0,0,0.3)'
+                  }}
+                >
+                  {item.badge}
+                </div>
+
+                <img
+                  src={item.src}
+                  alt={item.title}
+                  loading="lazy"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+
                 <div className="gallery-overlay">
-                  <span className="gallery-caption-sub">{item.categoryName} • {item.location}</span>
+                  <span className="gallery-caption-sub">{item.badge}</span>
                   <div className="gallery-caption-title">{item.title}</div>
                 </div>
               </div>

@@ -20,9 +20,9 @@ import {
   GUARANTEES,
   HOW_IT_WORKS_STEPS,
   TESTIMONIALS,
-  COMPANY,
-  HERO_SLIDES
+  COMPANY
 } from '../data/siteData';
+import { HOME_HERO_SLIDES } from '../data/imageData';
 import BrokerageLogoRow from '../components/BrokerageLogoRow';
 
 const ROTATING_LOCATIONS = [
@@ -54,9 +54,10 @@ export default function Home({ onOpenBooking, onOpenContact }) {
     return () => clearInterval(interval);
   }, []);
 
-  // Sliding Hero Carousel state
+  // Sliding Hero Carousel state (Best 3 client images from architecture & residential)
+  const heroSlides = HOME_HERO_SLIDES;
   const [currentSlide, setCurrentSlide] = useState(0);
-  const totalSlides = HERO_SLIDES.length;
+  const totalSlides = heroSlides.length;
   const slideTimerRef = useRef(null);
 
   const nextSlide = () => {
@@ -74,12 +75,8 @@ export default function Home({ onOpenBooking, onOpenContact }) {
     return () => clearInterval(slideTimerRef.current);
   }, [totalSlides]);
 
-  const handleSelectCategory = (cat) => {
-    const idx = HERO_SLIDES.findIndex(
-      (s) => s.category.toLowerCase() === cat.toLowerCase()
-    );
-    if (idx !== -1) setCurrentSlide(idx);
-    else setCurrentSlide(0);
+  const handleSelectCategory = (index) => {
+    setCurrentSlide(index);
   };
 
   // Property size filter in pricing section
@@ -254,7 +251,7 @@ export default function Home({ onOpenBooking, onOpenContact }) {
                 transition: 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)'
               }}
             >
-              {HERO_SLIDES.map((slide, idx) => (
+              {heroSlides.map((slide, idx) => (
                 <div
                   key={slide.id}
                   style={{
@@ -305,7 +302,7 @@ export default function Home({ onOpenBooking, onOpenContact }) {
                 textTransform: 'uppercase'
               }}
             >
-              {HERO_SLIDES[currentSlide]?.tag || 'FEATURED'}
+              {heroSlides[currentSlide]?.tag || 'FEATURED'}
             </div>
 
             {/* Top-Right "Get Quote" Button */}
@@ -354,7 +351,7 @@ export default function Home({ onOpenBooking, onOpenContact }) {
                   textShadow: '0 2px 4px rgba(0,0,0,0.5)'
                 }}
               >
-                {HERO_SLIDES[currentSlide]?.title}
+                {heroSlides[currentSlide]?.title}
               </div>
             </div>
 
@@ -450,23 +447,13 @@ export default function Home({ onOpenBooking, onOpenContact }) {
               marginBottom: '0.75rem'
             }}
           >
-            {[
-              'Featured',
-              'Photography',
-              'Virtual Staging',
-              'Drone',
-              'Virtual Tour',
-              'Commercial',
-              'Floor Plans'
-            ].map((cat) => {
-              const active =
-                HERO_SLIDES[currentSlide]?.category.toLowerCase() ===
-                cat.toLowerCase();
+            {heroSlides.map((slide, idx) => {
+              const active = currentSlide === idx;
               return (
                 <button
-                  key={cat}
+                  key={slide.id}
                   type="button"
-                  onClick={() => handleSelectCategory(cat)}
+                  onClick={() => handleSelectCategory(idx)}
                   style={{
                     fontSize: '0.82rem',
                     fontWeight: 600,
@@ -480,7 +467,7 @@ export default function Home({ onOpenBooking, onOpenContact }) {
                     transition: 'all 0.15s ease'
                   }}
                 >
-                  {cat}
+                  {slide.badge || `${slide.category} (${slide.location})`}
                 </button>
               );
             })}
